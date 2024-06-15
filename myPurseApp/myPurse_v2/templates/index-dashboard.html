@@ -1,0 +1,1072 @@
+	{% load static %}
+	{% load humanize %}
+	{% load custom_filters %}
+	<!DOCTYPE HTML>
+	<html lang="en">
+	<head>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				
+				let deferredPrompt;
+
+				window.addEventListener('beforeinstallprompt', (e) => {
+					
+					e.preventDefault();
+					
+					deferredPrompt = e;
+					
+					showInstallButton();
+				});
+
+				function showInstallButton() {
+					const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+					const isAndroid = /Android/.test(navigator.userAgent);
+
+					if (isIos) {
+						const iosModal = new bootstrap.Offcanvas(document.getElementById('menu-install-pwa-ios'));
+						iosModal.show();
+					} else if (isAndroid) {
+						const androidModal = new bootstrap.Offcanvas(document.getElementById('menu-install-pwa-android'));
+						androidModal.show();
+					}
+				}
+
+				function installPWA() {
+					// Show the install prompt
+					deferredPrompt.prompt();
+					// Wait for the user to respond to the prompt
+					deferredPrompt.userChoice.then((choiceResult) => {
+						if (choiceResult.outcome === 'accepted') {
+							console.log('User accepted the install prompt');
+						} else {
+							console.log('User dismissed the install prompt');
+						}
+						deferredPrompt = null;
+					});
+				}
+
+				const installButton = document.querySelector('.pwa-install');
+				if (installButton) {
+					installButton.addEventListener('click', installPWA);
+				}
+			});
+		</script>
+		<style>
+
+			option:nth-child(1):hover{
+				background-color: rgb(54, 162, 235);
+				color: white;
+			}
+			option:nth-child(2):hover{
+				background-color: rgb(54, 162, 235);
+				color: white;
+			}
+			option:nth-child(3):hover{
+				background-color: rgb(54, 162, 235);
+				color: white;
+			}
+			option:nth-child(4):hover{
+				background-color: rgb(54, 162, 235);
+				color: white;
+			}
+			.copied {
+				border : 2px solid #078825;
+				border-radius: 15px;
+			}
+		</style>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofMhU1aH+MqJ4me5foPpL5g5BvggM" crossorigin="anonymous">
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/font/bootstrap-icons.css"
+		integrity="sha384-MQ2KG9rEX9SvpgzPbPXzzgevv8faL5HtoJcCFS3iQ+Jq4ZlF/GpYSUnZcVMwnWim" crossorigin="anonymous">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="theme-color" content="#121212">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+	<title>myPurse</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="manifest" href="{% static '_manifest.json' %}">
+	<meta id="theme-check" name="theme-color" content="#FFFFFF">
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'app/icons/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'app/icons/favicon-16x16.png' %}">
+	
+	<style>
+		.alert {
+		display: none;
+		animation: fadeInOut 5s ease-in-out;
+	}
+
+	@keyframes fadeInOut {
+		0%, 100% {
+			opacity: 0;
+		}
+		10%, 90% {
+			opacity: 1;
+		}
+	}
+	</style>
+	</head>
+
+	<body class="theme-light">
+
+	<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+	<!-- Page Wrapper-->
+	<div id="page">
+
+	<!-- Footer Bar -->
+	<div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+		<a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+		<a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-get-started" class="circle-nav-2 scale-box"><i class="bi bi-arrow-left-right"></i><span>Get Started</span></a>
+		<a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+	</div>
+
+	<!-- Page Content - Only Page Elements Here-->
+	<div class="page-content footer-clear">
+
+		<!-- Page Title-->
+		<div class="pt-3">
+			<div class="page-title d-flex">
+				<div class="align-self-center me-auto">
+					<p class="color-white opacity-80 header-date"></p>
+					<h1 id="greeting" class="color-white">Welcome</h1>					
+				</div>
+				<div class="align-self-center ms-auto">
+					<a id="notification-menu" href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-notifications" class="icon bg-white color-theme rounded-m shadow-xl">
+						<i class="bi bi-bell-fill color-black font-17"></i>
+						<em class="badge bg-red-light color-white scale-box">{{ notifications_count }}</em>
+					</a>
+					<a href="#" data-bs-toggle="dropdown" class="icon rounded-m shadow-xl">
+						<img src="{{ profile_image.url }}" height="45" width="45" class="rounded-m" alt="img">
+					</a>
+					<!-- Page Title Dropdown Menu-->
+					<div class="dropdown-menu">
+						<div class="card card-style shadow-m mt-1 me-1">
+							<div class="list-group list-custom list-group-s list-group-flush rounded-xs px-3 py-1">
+								<a href="{% url 'wallet' %}" class="list-group-item">
+									<i class="has-bg gradient-green shadow-bg shadow-bg-xs color-white rounded-xs bi bi-credit-card"></i>
+									<strong class="font-13">Wallet</strong>
+								</a>
+								<a href="{% url 'activities' %}" class="list-group-item">
+									<i class="has-bg gradient-blue shadow-bg shadow-bg-xs color-white rounded-xs bi bi-graph-up"></i>
+									<strong class="font-13">Activity</strong>
+								</a>
+								<a href="{% url 'profile' %}" class="list-group-item">
+									<i class="has-bg gradient-yellow shadow-bg shadow-bg-xs color-white rounded-xs bi bi-person-circle"></i>
+									<strong class="font-13">Account</strong>
+								</a>
+								<a onkeypress="tidioChatApi.display(true);tidioChatApi.open()" onclick="tidioChatApi.display(true);tidioChatApi.open()"
+									href="#" class="list-group-item">
+									<i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-phone-fill"></i>
+									<strong class="font-13">Contact Support</strong>
+								</a>
+								<a href="{% url 'signout' %}" class="list-group-item">
+									<i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-power"></i>
+									<strong class="font-13">Log Out</strong>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<svg id="header-deco" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
+			<path id="header-deco-1" d="M 0,600 C 0,600 0,120 0,120 C 92.36363636363635,133.79904306220095 184.7272727272727,147.59808612440193 287,148 C 389.2727272727273,148.40191387559807 501.4545454545455,135.40669856459328 592,129 C 682.5454545454545,122.5933014354067 751.4545454545455,122.77511961722489 848,115 C 944.5454545454545,107.22488038277511 1068.7272727272727,91.49282296650718 1172,91 C 1275.2727272727273,90.50717703349282 1357.6363636363635,105.25358851674642 1440,120 C 1440,120 1440,600 1440,600 Z"></path>
+			<path id="header-deco-2" d="M 0,600 C 0,600 0,240 0,240 C 98.97607655502392,258.2105263157895 197.95215311004785,276.4210526315789 278,282 C 358.04784688995215,287.5789473684211 419.16746411483257,280.5263157894737 524,265 C 628.8325358851674,249.4736842105263 777.377990430622,225.47368421052633 888,211 C 998.622009569378,196.52631578947367 1071.3205741626793,191.57894736842107 1157,198 C 1242.6794258373207,204.42105263157893 1341.3397129186603,222.21052631578948 1440,240 C 1440,240 1440,600 1440,600 Z"></path>
+			<path id="header-deco-3" d="M 0,600 C 0,600 0,360 0,360 C 65.43540669856458,339.55023923444975 130.87081339712915,319.1004784688995 245,321 C 359.12918660287085,322.8995215311005 521.9521531100479,347.1483253588517 616,352 C 710.0478468899521,356.8516746411483 735.3205741626795,342.3062200956938 822,333 C 908.6794258373205,323.6937799043062 1056.7655502392345,319.62679425837325 1170,325 C 1283.2344497607655,330.37320574162675 1361.6172248803828,345.1866028708134 1440,360 C 1440,360 1440,600 1440,600 Z"></path>
+			<path id="header-deco-4" d="M 0,600 C 0,600 0,480 0,480 C 70.90909090909093,494.91866028708137 141.81818181818187,509.8373205741627 239,499 C 336.18181818181813,488.1626794258373 459.6363636363636,451.5693779904306 567,446 C 674.3636363636364,440.4306220095694 765.6363636363636,465.88516746411483 862,465 C 958.3636363636364,464.11483253588517 1059.8181818181818,436.8899521531101 1157,435 C 1254.1818181818182,433.1100478468899 1347.090909090909,456.555023923445 1440,480 C 1440,480 1440,600 1440,600 Z"></path>
+		</svg>
+		
+		<div class="splide__slide">
+			<div class="card card-style bg-5" data-card-height="200">
+				<div class="card-center">
+					<div class="bg-theme px-3 py-2 rounded-end d-inline-block">
+						<h1 class="font-13 my-n1">
+							<a class="color-theme" data-bs-toggle="collapse" href="#balance3" aria-controls="balance2">Tap to View Balance</a>
+						</h1>
+						<div class="collapse" id="balance3"><h2 class="color-theme font-26">£ {{UserDetails.total_balance|intcomma}}</h2></div>
+					</div>
+				</div>
+				<strong class="card-top no-click font-12 p-3 color-white font-monospace">Main account.</strong>
+				<strong class="card-bottom no-click p-3 text-start color-white font-monospace font-10 line-height-xs"> {{ UserDetails.TradeStatus }}</strong>
+				<div class="card-overlay bg-black opacity-50"></div>
+			</div>
+		</div>
+		
+	<div style="z-index: 1000;" class="splide single-slider slider-no-dots slider-no-arrows slider-visible" id="single-slider-1">
+	<div class="splide__track">
+		<div class="splide__list">
+			{% for coin_data in coins_data %}
+			<div style="z-index: 9999;" class="splide__slide">
+				<div class="card card-style mx-0">
+					<div class="content pb-0">
+						<div class="d-flex">
+							<div>
+								<img class="rounded-m" height="50" width="50" src="{{coin_data.image }}" class="bi bi-currency-yen font-24" />
+								
+							</div>
+							<div class="ps-1">
+								<h1 class="font-24 mb-n1">{{ coin_data.name }}</h1>
+								<h5 class="font-14 font-400 opacity-70 mb-n1">{{ coin_data.symbol }}</h5>
+							</div>
+							<div class="ms-auto text-end">
+								<span class="color-green-dark rounded-l font-500 font-12 d-block text-end"><i
+										class="bi bi-caret-up-fill pe-2"></i>Up by {{coin_data.high_24h}}%</span>
+								<span class="color-red-dark rounded-l font-500 font-12 d-block text-end"><i
+										class="bi bi-caret-down-fill pe-2"></i>Down by {{coin_data.low_24h}}%</span>
+								<h1 class="mb-0 mt-n2">£{{ coin_data.current_price }}</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	</div>
+	<a href="#" style="display: none; position: fixed; z-index: 999;" id="installButton"
+		class="pwa-install btn btn-m rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s btn-full">Install App </a>
+
+		<!-- Title-->
+		<div class="content my-0 px-1">
+			<div class="d-flex">
+				<div class="align-self-center">
+					<h3 class="font-16 mb-2">Crypto Stats</h3>
+				</div>
+				<div id="viewAll" class="align-self-center ms-auto">
+					<!-- <a href="#" class="font-12 pt-1">View All</a> -->
+				</div>
+			</div>
+		</div>
+
+		<div id="coinsData" style="max-height: 400px; overflow-y: auto;" class="card card-style">
+			{% for coin_data in coins_data %}
+			<div class="content my-2">
+				<a href="#" class="d-flex">
+					<div class="align-self-center w-25">
+						<h4 class="pt-1 mb-n1 font-16">{{ coin_data.name }}</h4>
+						<h6 class="mb-0 opacity-50">{{ coin_data.symbol }} - Crypto</h6>
+					</div>
+					<div class="align-self-center m-auto">
+						<div id="chart-btc" class="chart mt-n5 pt-4 ms-n3"><!-- plugins/apex/apex-call.js --></div>
+					</div>
+					<div class="ms-auto">
+						<h4 class="mb-n1 pt-2">£ {{ coin_data.current_price}} </h4>
+						<h6 class="mb-0 color-green-dark text-end"> {{coin_data.price_change_percentage_24h}}% </h6>
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+
+		<a href="{% url 'crypto_reports' %}" class="btn btn-full gradient-blue mx-3 rounded-s btn-m">View your Reports</a>
+		<div class="divider mx-3 my-4"></div>
+		<p class="font-12 color-theme opacity-50 mx-3 text-center line-height-s">Tap Get Started </p>
+
+	</div>
+	<!-- End of Page Content-->
+
+	<!-- Off Canvas and Menu Elements-->
+	<!-- Always outside the Page Content-->
+
+	<!-- Get Started -->
+	<div id="menu-get-started" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+		<div class="d-flex mx-3 mt-2 py-1">
+			<div class="align-self-center">
+				<h1 class="mb-0">Get Started</h1>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="py-3 ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x color-red-dark font-26"></i>
+				</a>
+			</div>
+		</div>
+		<!-- Get Started modal -->
+		<div class="content mb-4">
+			<a href="#" class="d-flex mb-4" data-bs-toggle="offcanvas" data-bs-target="#menu-buy">
+				<div class="align-self-center">
+					<span class="icon icon-l gradient-green me-2 color-white shadow-bg shadow-bg-xs rounded-m">
+						<i class="bi bi-arrow-90deg-down font-16"></i>
+						
+					</span>
+				</div>
+				<div class="align-self-center ps-2">
+					<h4 class="mb-0 mt-1 font-20">Add Crypto</h4>
+					<p class="mb-0">Top up, your account and enjoy more benefits</p>
+				</div>
+			</a>
+			<a href="#" class="d-flex mb-4" data-bs-toggle="offcanvas" data-bs-target="#menu-sell">
+				<div class="align-self-center">
+					<span class="icon icon-l gradient-red me-2 color-white shadow-bg shadow-bg-xs rounded-m">
+						<i class="bi bi-arrow-90deg-up font-16"></i>
+					</span>
+				</div>
+				<div class="align-self-center ps-2">
+					<h4 class="mb-0 mt-1 font-20">Send Crypto</h4>
+					<p class="mb-0">Send your balance in crypto through our blockchain provided card network securely and transaction cost-free!</p>
+				</div>
+			</a>
+		</div>
+	</div>
+
+	<!-- Withdrawal menu start-->
+	<!-- Withdrawal menu start-->
+	<!-- Withdrawal menu start-->
+
+				<div id="menu-sell" style="height:100%;" class="offcanvas offcanvas-top">
+					<div class="d-flex m-3">
+						<div class="align-self-center">
+							<h2 class="font-700 mb-0">Send crypto </h2>
+						</div>
+						<div class="align-self-center ms-auto">
+							<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+								<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+							</a>
+						</div>
+					</div>
+					<div class="content mt-0">
+						<p class="mb-4">
+							You can send your balance in crypto, cost-free to any external account through bitcoin, usdt-erc20, usdt-trc20, and ethereum network. You can only send to wallet addresses you have specified for payment through your account profile.
+						</p>
+						<form autocomplete="off" id="sendCryptoForm">
+							{% csrf_token %}
+							<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Send from
+								<!-- background color for PCs -->
+								<select  onchange="this.size=1" style="background-color: #000; color: #fff;" name="Source" class="form-control rounded-xs"
+									id="c1">
+									<option value="Bonus">Bonus Account</option>
+									<option value="Deposit">Deposit Account</option>
+									<option value="Profits">Profits Account</option>
+									<option value="everything">Withdraw All</option>
+								</select>
+								<label for="c1" class="color-theme"></label>
+								<span>select Source</span>
+							</div>
+				
+							<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Process transaction with
+								<!-- background color for PCs -->
+								<select style="background-color: #000; color: #fff;" name="payfrom" class="form-control rounded-xs"
+									id="c1">
+									{% if cards %}
+									{% for card in cards %}
+									<option value="{{card.expiry_date}}">{{ card.card_number|hide_number }} | {{card.expiry_date | date:"m/Y" }}</option>
+									{% endfor %}
+									{% else %}
+									<option disabled value="">Activate a card to continue</option>
+									{% endif %}
+								</select>
+								<label for="c1" class="color-theme">!</label>
+								<span>select card to use</span>
+							</div>
+				
+							<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Sending To address
+								<!-- background color for PCs -->
+								<select style="background-color: #000; color: #fff;" name="network" class="form-control rounded-xs"
+									id="c1">
+									{% if payment_details.bitcoin_address != 'None' %}
+									<option value="bitcoin">Bitcoin Address </option>
+									<option value="ethereum">Ethereum Address </option>
+									<option value="usdt_trc20">USDT TRC20 Address </option>
+									<option value="usdt_erc20">USDT ERC20 Address </option>
+									{% else %}
+									<option disabled value="">Please update recipient through your profile.</option>
+									{% endif %}
+								</select>
+								<label for="c1" class="color-theme"></label>
+								<span>address to pay</span>
+							</div>
+				
+							<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Amount to send
+								<input name="amount" type="number" placeholder="5000" class="form-control rounded-xs" id="c1" />
+								<label for="c1" class="color-theme"></label>
+								<span></span>
+							</div>
+				
+							
+							<input id="withdrawButton" type="submit" style="min-width: 100%;" class="btn btn-full gradient-green shadow-bg shadow-bg-xs"
+								value="Withdraw Now" />
+
+								<div id="withdrawLoader" style="
+									display: none; 
+									justify-content: center; 
+									align-items: center; 
+									width: 100%;">
+									<div class="spinner-border color-highlight" role="status"></div>
+								</div>
+							</form>
+					</div>
+				</div>
+	<!-- Withdrawal menu start-->
+	<!-- Withdrawal menu start-->
+	<!-- Withdrawal menu start-->
+
+		
+	<!-- Depoosit Menu -->
+	<!-- Depoosit Menu -->
+	<!-- Depoosit Menu -->
+		<div id="menu-buy" style="height:100%; width:100%" class="offcanvas offcanvas-modal">
+			<div class="d-flex m-3">
+				<div class="align-self-center">
+					<h2 class="font-700 mb-0">Top up your account</h2>
+				</div>
+				<div class="align-self-center ms-auto">
+					<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+						<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+					</a>
+				</div>
+			</div>
+			<div class="content mt-0">
+				<div class="card card-style rounded-s m-0 bg-5" style="height:200px">
+					<div class="card-center">
+						<div class="bg-theme px-3 py-2 rounded-end d-inline-block">
+							<h1 class="font-13 my-n1">
+								<a class="color-theme" data-bs-toggle="collapse" href="#balance3" aria-controls="balance3">
+								
+								</a>
+							</h1>
+							<div class="collaps" id="balance3">
+								<h2 class="color-theme font-26">£ {{UserDetails.total_balance|intcomma}}</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h4 class="pt-3">Send crypto from external wallets to your purse account.</h4>
+				<p class="mb-6">
+					Confirm crypto network and address before sending. <small class="color-green-dark">Tap on any of the addresses to copy.</small> </p>
+				{% for address in address %}
+				<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">USDT TRC20 Address
+					<input type="text" value="{{address.tether_USDT}}" readonly class="form-control rounded-xs crypto-address"
+						id="c1" />
+					<label for="c1" class="color-theme"></label>
+					<span></span>
+				</div>
+		
+				<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">USDT ERC20 Address
+					<input type="text" value="{{ address.ERC20_address }}" readonly class="form-control rounded-xs crypto-address"
+						id="c1" />
+					<label for="c1" class="color-theme"></label>
+					<span></span>
+				</div>
+		
+				<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Ethereum Address.
+					<input type="text" value="{{address.ethereum}}" readonly class="form-control rounded-xs crypto-address"
+						id="c1" />
+					<label for="c1" class="color-theme"></label>
+					<span></span>
+				</div>
+				<div class="form-custom form-label form-border form-icon mb-10 bg-transparent">Bitcoin Address
+					<input type="text" value="{{address.bitcoin}}" readonly class="form-control rounded-xs crypto-address"
+						id="c1" />
+					<label for="c1" class="color-theme"></label>
+					<span></span>
+				</div>
+				{% endfor %}
+		
+				<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-bottom-full"
+					class="btn btn-full gradient-green shadow-bg mb-6 mt-5 shadow-bg-xs">Click Here After Sending From Your Wallet</a>
+				<br>
+				<br>
+		
+				<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Cancel </a>
+			</div>
+		</div>
+		<!--  -->
+		
+
+		<div id="menu-bottom-full" style="height:100%;" class="offcanvas offcanvas-bottom">
+			<div class="d-flex mb-3">
+				<div class="align-self-center">
+					<h2 class="font-700 mb-0">Top up my account</h2>
+				</div>
+				<div class="align-self-center ms-auto">
+					<a id="exit" href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+						<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+					</a>
+				</div>
+			</div>
+			<form id="addDepositForm">
+				{% csrf_token %}
+				<div class="content mt-0">
+		
+			<h4 class="text-warning pt-3">Information</h4>
+
+			<p class="mb-4">
+					Cryptocurrencies that you send will be converted to pounds (GBP) and added to your deposit account! Uploading a clear transaction proof greatly reduces the confirmation time.
+			</p>
+
+			<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Top up with
+				<select name="network" type="text" class="form-control rounded-xs" id="c1">
+					<option value="bitcoin">Bitcoin </option>
+					<option value="ethereum">Ethereum </option>
+					<option value="usdt_trc20">USDT TRC20 </option>
+					<option value="usdt_erc20">USDT ERC20 </option>
+				</select>
+				<label for="c1" class="color-theme"></label>
+				<span></span>
+			</div>
+
+			<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Amount Sent
+				<input name="amount" type="number" placeholder="+500" class="form-control rounded-xs" id="c1" />
+				<label for="c1" class="color-theme"></label>
+				<span></span>
+			</div>
+
+			<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Transaction proof
+				<input name="slip" type="file" accept="image/*" class="form-control rounded-xs" id="c1" />
+				<label for="c1" class="color-theme"></label>
+				<span>Please upload clear slip</span>
+			</div>
+
+
+			<button id="top-up" style="min-width: 100%;" type="submit"
+				class="btn btn-full gradient-green shadow-bg shadow-bg-xs">Top Up My Account!
+			</button>
+			<div id="top-up-preloader" style="
+				display: none; 
+				justify-content: center; 
+				align-items: center; 
+				width: 100%;">
+				<div class="spinner-border color-highlight" role="status"></div>
+			</div>
+		</div>
+	</form>
+</div>
+<!-- Deposit end -->
+<!-- Deposit end -->
+<!-- Deposit end -->
+
+
+			<!-- MODALS -->
+			<!-- error modal -->
+			<div id="alertModal" class="offcanvas offcanvas-top rounded-m offcanvas-detached">
+				<div class="d-flex m-3">
+					<div class="align-self-center">
+						<h2 class="font-700 mb-0">Alert</h2>
+					</div>
+					<div class="align-self-center ms-auto">
+						<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+							<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+						</a>
+					</div>
+				</div>
+				<div class="content mt-0">
+			
+					<h4 class="text-danger pt-3">Error </h4>
+					<p id="response" class="mb-4">
+						
+					</p>
+					<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Dismiss!</a>
+				</div>
+			</div>
+			<!-- error modal end -->
+			
+			<!-- success modal -->
+			<div id="successModal" class="offcanvas offcanvas-top rounded-m offcanvas-detached">
+				<div class="d-flex m-3">
+					<div class="align-self-center">
+						<h2 class="text-success font-700 mb-0">Success</h2>
+					</div>
+					<div class="align-self-center ms-auto">
+						<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+							<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+						</a>
+					</div>
+				</div>
+				<div class="content mt-0">
+			
+					<h4 class="pt-3">Message</h4>
+					<p id="successMessage" class="mb-4">
+						message here
+					</p>
+					<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-green shadow-bg shadow-bg-xs">Awesome!</a>
+				</div>
+			</div>
+			<!-- success modal ends here -->
+
+			<!-- pin modal -->
+				
+				<div id="pinModal" style="z-index: 999; width:320px"
+					class="offcanvas offcanvas-modal rounded-m offcanvas-detached">
+					<div class="d-flex m-3">
+						<div class="align-self-center">
+							<h2 class="font-700 mb-0">Withdrawals </h2>
+						</div>
+						<div class="align-self-center ms-auto">
+							<a id="dx" href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+								<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+							</a>
+						</div>
+					</div>
+					<div class="content mt-0">
+						<h4 class="pt-3">Authorize Transaction </h4>
+						<p id="pinText" class="mb-4">
+							
+						</p>
+						<div class="form-custom form-label form-border form-icon mb-3 bg-transparent">
+							Authorization Pin
+							<input oninput="checkNumericPassword(this)" name="pin" type="password" autocomplete="new-password" pattern="\d*"
+								minlength="6" maxlength="6" placeholder="******" class="form-control rounded-xs" id="pinInput" />
+							<label for="c1" class="color-theme"></label>
+							<span></span>
+						
+							<small id="err" style="display: none;" class="text-danger">Enter only numeric values.</small>
+							<script>
+								function checkNumericPassword(input) {
+									const pattern = /^\d*$/;
+									const isValid = pattern.test(input.value);
+									if (!isValid) {
+										document.getElementById("err").style.display = "block";
+										setTimeout(() => document.getElementById('err').style.display = 'none', 3000)
+										input.value = '';
+									}
+								}
+							</script>
+						</div>
+						<a id="submitPin" href="#" data-bs-dismiss="offcanvas"
+							class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Confirm</a>
+					</div>
+				</div>
+			<!-- pin modal -->
+
+			<!-- verification modal -->
+			<div id="menu-request-pending" style="width:320px" class="offcanvas offcanvas-modal offcanvas-detached rounded-m">
+				<div class="content text-center">
+					<i style="font-size:65px;"
+						class="scale-box bi bi-question-circle-fill color-blue-dark shadow-s rounded-circle p-0 mt-3 mb-3 d-inline-block"></i>
+					<h1 class="pt-3 font-28">Verification required</h1>
+					<p id="pendingMessage" class="font-14">
+			
+					</p>
+					<a id="verifyButton" href="#" data-bs-toggle="offcanvas"
+						class="btn btn-full gradient-blue shadow-bg shadow-bg-xs">Verify</a>
+				</div>
+			</div>
+			<!-- verification modal -->
+
+			<!-- installation modals -->
+			<!-- for ios -->
+					<div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-ios">
+						<div class="content">
+							<img src="{% static 'app/icons/icon-128x128.png' %}" alt="img" width="80" class="rounded-m mx-auto my-4">
+							<h1 class="text-center">Install myPurse app</h1>
+							<p class="boxed-text-xl">
+								myPurse is better experienced as a native app. Open your Safari menu  <img src="{% static 'images/pictures/safari.png' %}" alt="safari" style="background-color: #fff;" height="20px" width="20px">  and tap "Add to Home Screen to install".
+							</p>
+							<a href="#"
+								class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-50 font-11 text-center d-block mt-n2"
+								data-bs-dismiss="offcanvas">Maybe Later</a>
+						</div>
+					</div>
+					<!-- for android -->
+					<div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-android">
+						<div class="content">
+							<img src="{% static 'app/icons/icon-128x128.png' %}" alt="img" width="80" class="rounded-m mx-auto my-4">
+							<h1 class="text-center">Install myPurse</h1>
+							<p class="boxed-text-l">
+								Install myPurse to enjoy a unique and native experience.
+							</p>
+							<a href="#"
+								class="pwa-install btn btn-m rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s btn-full">Add
+								to Home Screen</a><br>
+							<a href="#" data-bs-dismiss="offcanvas"
+								class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-60 font-11 text-center d-block mt-n1">Maybe
+								later</a>
+						</div>
+					</div>
+			<!-- MODALS -->
+
+
+
+	<!-- Main Sidebar Menu -->
+	<div id="menu-sidebar" data-menu-active="nav-welcome" data-menu-load="{% url 'opener' %}"
+		class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+	</div>
+
+	<!-- Notifications Bell -->
+	<div id="menu-notifications" data-menu-load="{% url 'notifications' %}"
+		class="offcanvas offcanvas-top offcanvas-detached rounded-m">
+	</div>
+
+	<!--  -->
+	<!--  -->
+	<!--  -->
+	</div>
+
+	<!-- End of Page ID-->
+
+
+	<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+	<script src="{% static 'scripts/custom.js' %}"></script>
+	<script src="//code.tidio.co/s7s7pkpgzioqwkyxuqph94yrpdafdwdh.js" async></script>
+	<!-- ajax form logic -->
+		<script>
+			function getCookie(name) {
+				let cookieValue = null;
+				if (document.cookie && document.cookie !== '') {
+					const cookies = document.cookie.split(';');
+					for (let i = 0; i < cookies.length; i++) {
+						const cookie = cookies[i].trim();
+						// Does this cookie string begin with the name we want?
+						if (cookie.substring(0, name.length + 1) === (name + '=')) {
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+						}
+					}
+				}
+				return cookieValue;
+			}
+
+
+			// submit deposit form to server
+			responseElement = document.getElementById('response')
+			topUpButton = document.getElementById('top-up');
+			preloader = document.getElementById('top-up-preloader');
+			var depositForm = document.getElementById("addDepositForm")
+			depositForm.addEventListener('submit', (e) => {
+				submitDeposit(e);
+			});
+			function submitDeposit(e) {
+				e.preventDefault();
+				topUpButton.style.display = 'none';
+				preloader.style.display = 'flex';
+				let formFields = e.target.elements;
+				for (let i = 0; i < formFields.length; i++) {
+					if (formFields[i].type !== 'submit' && formFields[i].value === '') {
+						responseElement.innerHTML = "You have not completed the top up details."
+						showModal('alertModal');
+						setTimeout(() => reset(topUpButton, preloader), 1200);
+						return false;
+					}
+				}
+				let formData = new FormData(e.target);
+				let url = '{% url "deposit" %} ';
+				setTimeout(() => {
+					fetch(url, {
+						method: 'POST',
+						body: formData,
+						headers: {
+							'X-CSRFToken': getCookie('csrftoken')
+						}
+					})
+						.then(response => response.json())
+						.then(data => {
+							if (!data.success) {
+								if (data.error) {
+									responseElement.innerHTML = data.error;
+									showModal('alertModal');
+									setTimeout(() => reset(topUpButton, preloader), 1200);
+									return false;
+								}
+							}
+							else {
+								for (i = 0; i < formFields.length; i++) {
+									if (formFields[i].type !== 'submit') {
+										formFields[i].value = '';
+									}
+								}
+								let successMessage = document.getElementById('successMessage');
+								successMessage.innerHTML = data.success;
+								showModal('successModal');
+								setTimeout(() => {
+									reset(topUpButton, preloader),
+										dismissModal('exit');
+								}, 1000);
+							}
+						})
+						.catch((err) => {
+							responseElement.innerHTML = 'Error encountered: ' + err;
+							showModal('alertModal');
+							dismissModal('exit');
+						})
+				}, 1200);
+			}
+
+
+			// WITHDRAWAL FUNCTIONS.
+			// get the neccessary elements
+			var sendCryptoForm = document.getElementById('sendCryptoForm');
+			var withdraw = document.getElementById('withdrawButton');
+			var withdrawLoader = document.getElementById('withdrawLoader');
+			var errorText = document.getElementById('response');
+			var pinModal = document.getElementById('pinModal');
+			// asynchronously submit the form to the server. 
+			sendCryptoForm.addEventListener('submit', async function (event) {
+				event.preventDefault();
+				withdraw.style.display = 'none';
+				withdrawLoader.style.display = 'flex';
+				var formFields = this.elements;
+				for (var i = 0; i < formFields.length; i++) {
+
+					if (formFields[i].type !== 'submit' && formFields[i].value === '') {
+						errorText.innerHTML = 'You have not completed the withdrawal form.';
+						showModal('alertModal')
+						setTimeout(() => reset(withdraw, withdrawLoader), 1200)
+						return false;
+					}
+				}
+				var amount = formFields['amount'].value
+				formData = new FormData(this);
+				var text = "You're withdrawing £" + amount + ' From your ' + formFields['Source'].value + ' account via ' + formFields['network'].value + ' network. To continue, please enter your authorization pin.'
+				displayPinModal('pinModal', text);
+				const pin = await getPin();
+				hideModal('pinModal');
+				formData.append('pin', pin);
+				url = '{% url "withdrawal" %}'
+				setTimeout(() => {
+					fetch(url, {
+						method: 'POST',
+						body: formData,
+						headers: {
+							'X-CSRFToken': getCookie('csrftoken')
+						}
+					})
+						.then(response => response.json())
+						.then(data => {
+							if (!data.success) {
+								if (data.verify) {
+									messageElement = document.getElementById('pendingMessage');
+									messageElement.innerHTML = data.verify;
+									modalID = document.getElementById('menu-request-pending').id;
+									showModal(modalID);
+									return;
+								}
+								else if (data.error) {
+									errorText.innerHTML = data.error;
+									showModal('alertModal');
+									setTimeout(() => reset(withdraw, withdrawLoader), 1200);
+									return false;
+								}
+							}
+							else {
+								formFields['amount'].value = '';
+
+								document.getElementById('successMessage').innerHTML = data.success;
+								showModal('successModal');
+								setTimeout(() => {
+									reset(withdraw, withdrawLoader)
+								}, 1000);
+							}
+						})
+						.catch((e) => {
+							errorText.innerHTML = e;
+							showModal('alertModal');
+							reset(withdraw, withdrawLoader)
+						})
+
+				}, 1000);
+			});
+
+
+
+
+
+
+			// Get and return pin via Promise
+			function getPin() {
+				return new Promise((resolve) => {
+					const submitPinButton = document.getElementById('submitPin');
+					const pinInput = document.getElementById('pinInput');
+					submitPinButton.addEventListener('click', function onSubmit(e) {
+						e.preventDefault();
+						if (pinInput.value === '') {
+							errorText.innerHTML = 'Please enter your authorization pin.';
+							showModal('alertModal');
+							setTimeout(() => reset(withdraw, withdrawLoader), 1200);
+							return false;
+						}
+						else {
+							const pin = pinInput.value;
+							resolve(pin);
+						}
+					});
+				})
+
+			}
+
+
+
+			let notification = document.getElementById('notification-menu')
+			notification.addEventListener('click', () => {
+                url = '{% url "markseen" %}'
+				setTimeout(() => {
+					fetch(url)
+						.then(response => response.json())
+						.then(data => {
+							console.log(data)
+						})
+				}, 5000)
+            })
+
+
+
+			// show error modals.
+			function showModal(canvasID) {
+				var modal = new bootstrap.Offcanvas(document.getElementById(canvasID))
+				modal.show();
+				if (canvasID !== 'menu-request-pending') {
+					setTimeout(() => modal.hide(), canvasID === 'successModal' ? 12000 : 5000);
+				}
+				else {
+					verifyButton = document.getElementById('verifyButton').addEventListener('click', () => {
+						url = '{% url "verification" %}'
+						window.location.href = url;
+					})
+
+				}
+
+			}
+
+			document.getElementById('dx').addEventListener('click', () => {
+				reset(withdraw, withdrawLoader)
+			})
+
+			function hideModal(modalID) {
+				var modal = new bootstrap.Offcanvas(document.getElementById(modalID))
+				modal.hide();
+			}
+
+			function dismissModal(id) {
+				btn = document.getElementById(id)
+				btn.click();
+			}
+
+			function displayPinModal(modalID, text) {
+				var pinText = document.getElementById('pinText');
+				pinText.innerHTML = text;
+				var modal = new bootstrap.Offcanvas(document.getElementById(modalID));
+				modal.show();
+			}
+
+			// function reset preloader and button after a request reponse is received
+			function reset(button, loader) {
+				document.getElementById('pinInput').value = '';
+				button.style.display = 'block';
+				loader.style.display = 'none';
+			}
+
+
+			// copy input values
+			let container = document.getElementById('menu-buy');
+			inputElements = container.querySelectorAll('input');
+			inputElements.forEach(input => {
+				input.addEventListener('click', () => {
+					copy(input)
+				})
+			})
+
+			// function to copy input values
+			function copy(inputElement) {
+				inputElement.select();
+				inputElement.setSelectionRange(0, 99999)
+				try {
+					document.execCommand('copy');
+					inputElement.classList.add('copied');
+					inputElement.style.color = 'greenyellow';
+					inputElement.style.opacity = 0.2;
+					setTimeout(() => {
+						inputElement.style.opacity = 1;
+						inputElement.style.color = 'white';
+					}
+						, 300);
+				}
+				catch (error) {
+					alert('Could not copy: ' + error);
+				}
+				inputElement.setSelectionRange(0, 0);
+			}
+
+
+
+			// greeting function
+
+			var greetingElement = document.getElementById("greeting");
+			var currentTime = new Date().getHours();
+
+			if (currentTime >= 0 && currentTime < 12) {
+				greetingElement.innerHTML = 'Good morning';
+			}
+			else if (currentTime >= 12 && currentTime < 18) {
+				greetingElement.innerHTML = 'Good afternoon';
+			}
+			else greetingElement.innerHTML = 'Good evening';
+
+			document.addEventListener('DOMContentLoaded', function () {
+				var alertElement = document.querySelector('.alert');
+
+
+				alertElement.style.display = 'block';
+
+
+				setTimeout(function () {
+					alertElement.style.display = 'none';
+				}, 5000);
+			});
+
+			let deferredPrompt;
+			window.addEventListener('beforeinstallprompt', (e) => {
+				// Prevent the default browser prompt
+				e.preventDefault();
+
+				// Store the event for later use
+				deferredPrompt = e;
+
+				document.getElementById('installButton').style.display = 'block';
+			});
+
+			document.getElementById('installButton').addEventListener('click', () => {
+				deferredPrompt.prompt();
+				deferredPrompt.userChoice.then((choiceResult) => {
+					if (choiceResult.outcome === 'accepted') {
+						console.log('User accepted the install prompt');
+					} else {
+						console.log('User dismissed the install prompt');
+					}
+					deferredPrompt = null;
+					document.getElementById('installButton').style.display = 'none';
+
+
+				});
+			});
+
+		</script>
+
+		<!-- ajax form logics ends here -->
+
+
+
+
+	<script>
+	(function () {
+		function onTidioChatApiReady() {
+			window.tidioChatApi.hide();
+			window.tidioChatApi.on("close", function () {
+				window.tidioChatApi.hide();
+			});
+		}
+
+		if (window.tidioChatApi) {
+			window.tidioChatApi.on("ready", onTidioChatApiReady);
+		} else {
+			document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+		}
+
+		document.querySelector(".chat-button").addEventListener("click", function () {
+			window.tidioChatApi.show();
+			window.tidioChatApi.open();
+		});
+	})();
+	</script>
+	</body>

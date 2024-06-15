@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ProfitPulse </title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url page_payment %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center me-auto">
+                    <p class="color-highlight">Copy & Paste</p>
+                    <h1 class="color-theme">Components</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon gradient-highlight color-white shadow-bg shadow-bg-xs rounded-m">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-style bg-3" style="height:150px">
+            <div class="card-bottom p-3">
+                <h1 class="color-white mb-0">PayApp is Flexible</h1>
+                <p class="color-white mb-0 opacity-60">
+                    Copy & Paste Component Blocks.
+                </p>
+            </div>
+            <div class="card-overlay bg-gradient-fade"></div>
+        </div>
+
+        <div class="card card-style">
+            <div class="content mb-0">
+                <h4>What are components?</h4>
+                <p>
+                    PayApp is modular built, meaning, components can easily be customised to suit your every need and create new pages in minutes.
+                </p>
+                
+                <div class="list-group list-custom list-group-m list-group-flush rounded-xs overflow-visible check-visited">
+                    <a href="component-add-to-home.html" class="list-group-item">
+                        <i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-phone font-14"></i>
+                        <div><strong class="font-600">Add To Home</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-accordions.html" class="list-group-item">
+                        <i class="has-bg gradient-green shadow-bg shadow-bg-xs color-white rounded-xs bi bi-plus-circle-fill font-14"></i>
+                        <div><strong class="font-600">Accordions</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-actions.html" class="list-group-item">
+                        <i class="has-bg gradient-brown shadow-bg shadow-bg-xs color-white rounded-xs bi bi-exclamation-circle font-14"></i>
+                        <div><strong class="font-600">Actions</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-alerts.html" class="list-group-item">
+                        <i class="has-bg gradient-blue shadow-bg shadow-bg-xs color-white rounded-xs bi bi-exclamation font-14"></i>
+                        <div><strong class="font-600">Alerts</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-buttons.html" class="list-group-item">
+                        <i class="has-bg gradient-yellow shadow-bg shadow-bg-xs color-white rounded-xs bi bi-cursor-fill font-14"></i>
+                        <div><strong class="font-600">Buttons</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-cards.html" class="list-group-item">
+                        <i class="has-bg gradient-orange shadow-bg shadow-bg-xs color-white rounded-xs bi bi-square font-14"></i>
+                        <div><strong class="font-600">Cards</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-charts.html" class="list-group-item">
+                        <i class="has-bg gradient-magenta shadow-bg shadow-bg-xs color-white rounded-xs bi bi-bar-chart-fill font-14"></i>
+                        <div><strong class="font-600">Charts</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-columns.html" class="list-group-item">
+                        <i class="has-bg gradient-mint shadow-bg shadow-bg-xs color-white rounded-xs bi bi-columns font-14"></i>
+                        <div><strong class="font-600">Columns</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-colors.html" class="list-group-item">
+                        <i class="has-bg gradient-brown shadow-bg shadow-bg-xs color-white rounded-xs bi bi-droplet font-14"></i>
+                        <div><strong class="font-600">Colors</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-collapse.html" class="list-group-item">
+                        <i class="has-bg gradient-teal shadow-bg shadow-bg-xs color-white rounded-xs bi bi-plus-circle-fill font-14"></i>
+                        <div><strong class="font-600">Collapse</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-footer-bar.html" class="list-group-item">
+                        <i class="has-bg gradient-gray shadow-bg shadow-bg-xs color-white rounded-xs bi bi-dash font-14"></i>
+                        <div><strong class="font-600">Footer Bar</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-header-bar.html" class="list-group-item">
+                        <i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-dash font-14"></i>
+                        <div><strong class="font-600">Header Bar</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-grid.html" class="list-group-item">
+                        <i class="has-bg gradient-green shadow-bg shadow-bg-xs color-white rounded-xs bi bi-columns-gap font-14"></i>
+                        <div><strong class="font-600">Grid Boxes</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-menus.html" class="list-group-item">
+                        <i class="has-bg gradient-blue shadow-bg shadow-bg-xs color-white rounded-xs bi bi-list font-14"></i>
+                        <div><strong class="font-600">Menus</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-inputs.html" class="list-group-item">
+                        <i class="has-bg gradient-orange shadow-bg shadow-bg-xs color-white rounded-xs bi bi-code font-14"></i>
+                        <div><strong class="font-600">Inputs Fields</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-list-groups.html" class="list-group-item">
+                        <i class="has-bg gradient-mint shadow-bg shadow-bg-xs color-white rounded-xs bi bi-list-check font-14"></i>
+                        <div><strong class="font-600">List Groups</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-tabs.html" class="list-group-item">
+                        <i class="has-bg gradient-brown shadow-bg shadow-bg-xs color-white rounded-xs bi bi-arrow-bar-up font-14"></i>
+                        <div><strong class="font-600">Tabs Bars</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-tables.html" class="list-group-item">
+                        <i class="has-bg gradient-orange shadow-bg shadow-bg-xs color-white rounded-xs bi bi-table font-14"></i>
+                        <div><strong class="font-600">Tables</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="component-typography.html" class="list-group-item">
+                        <i class="has-bg gradient-magenta shadow-bg shadow-bg-xs color-white rounded-xs bi bi-type-h1 font-14"></i>
+                        <div><strong class="font-600">Typography</strong></div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="card card-style">
+            <div class="content">
+                <a href="{% url 'pages' %}" class="d-flex py-1">
+                    <div class="align-self-center">
+                        <span class="icon rounded-s me-2 gradient-red shadow-bg shadow-bg-xs"><i class="bi bi-heart-fill font-20 color-white"></i></span>
+                    </div>
+                    <div class="align-self-center ps-1">
+                        <h5 class="pt-1 mb-n1 font-18">App Pages</h5>
+                        <p class="mb-0 font-11 opacity-50">Ready Built for PayApp</p>
+                    </div>
+                    <div class="align-self-center ms-auto text-end">
+                        <span class="btn btn-xxs gradient-red shadow-bg shadow-bg-xs scale-box">View</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+              
+        
+
+
+
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+	
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js'%}"></script>
+<script src="{% static 'scripts/custom.js'%}"></script>
+</body>

@@ -1,0 +1,355 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ProfitPulse </title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+    
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}" class="active-nav"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center me-auto">
+                    <p class="color-highlight">Hello Enabled</p>
+                    <h1 class="color-theme">Pay a Bill</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#menu-notifications"
+                    class="icon gradient-blue color-white shadow-bg shadow-bg-xs rounded-m">
+                        <i class="bi bi-bell-fill font-17"></i>
+                        <em class="badge bg-red-dark color-white scale-box">3</em>
+                    </a>
+                    <a href="#"
+                    data-bs-toggle="dropdown"
+                    class="icon gradient-blue shadow-bg shadow-bg-s rounded-m">
+                        <img src="{% static 'images/pictures/25s.jpg' %}" width="45" class="rounded-m" alt="img">
+                    </a>
+                    <!-- Page Title Dropdown Menu-->
+                    <div class="dropdown-menu">
+                        <div class="card card-style shadow-m mt-1 me-1">
+                            <div class="list-group list-custom list-group-s list-group-flush rounded-xs px-3 py-1">
+                                <a href="{% url 'wallet' %}" class="list-group-item">
+                                    <i class="has-bg gradient-green shadow-bg shadow-bg-xs color-white rounded-xs bi bi-credit-card"></i>
+                                    <strong class="font-13">Wallet</strong>
+                                </a>
+                                <a href="{% url 'activities' %}" class="list-group-item">
+                                    <i class="has-bg gradient-blue shadow-bg shadow-bg-xs color-white rounded-xs bi bi-graph-up"></i>
+                                    <strong class="font-13">Activity</strong>
+                                </a>
+                                <a href="{% url 'profile' %}" class="list-group-item">
+                                    <i class="has-bg gradient-yellow shadow-bg shadow-bg-xs color-white rounded-xs bi bi-person-circle"></i>
+                                    <strong class="font-13">Account</strong>
+                                </a>
+                                <a href="{% url 'logout' %}" class="list-group-item">
+                                    <i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-power"></i>
+                                    <strong class="font-13">Log Out</strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-style">
+            <div class="content mb-0">
+                <div class="tabs tabs-pill" id="tab-group-2">
+                    <div class="tab-controls rounded-m p-1 overflow-visible">
+                        <a class="font-13 rounded-s py-1 shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-4" aria-expanded="true">Bills List</a>
+                        <a class="font-13 rounded-s py-1 shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-5" aria-expanded="false">Make a Payment</a>
+                    </div>
+                    <div class="mt-3"></div>
+                    <!-- Tab Bills List -->
+                    <div class="collapse show" id="tab-4" data-bs-parent="#tab-group-2">
+                        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-bill" class="d-flex py-1 mb-2">
+                            <div class="align-self-center">
+                                <h5 class="pt-1 mb-n1">Water Bill</h5>
+                                <p class="mb-0 font-11 opacity-70">Overdue by 3 Days</p>
+                            </div>
+                            <div class="align-self-center ms-auto text-end">
+                                <h4 class="pt-1 mb-n1">$15.35</h4>
+                                <p class="mb-0 font-11 color-red-light">Bill Unpaid</p>
+                            </div>
+                        </a>
+                        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-bill" class="d-flex py-1 mb-2">
+                            <div class="align-self-center">
+                                <h5 class="pt-1 mb-n1">Telephone Bill</h5>
+                                <p class="mb-0 font-11 opacity-70">Due in 14 Days</p>
+                            </div>
+                            <div class="align-self-center ms-auto text-end">
+                                <h4 class="pt-1 mb-n1">$31.41</h4>
+                                <p class="mb-0 font-11 color-red-light">Bill Unpaid</p>
+                            </div>
+                        </a>
+                        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-bill" class="d-flex py-1 mb-2">
+                            <div class="align-self-center">
+                                <h5 class="pt-1 mb-n1">Cloud Storage</h5>
+                                <p class="mb-0 font-11 opacity-70">Due in 16 Days</p>
+                            </div>
+                            <div class="align-self-center ms-auto text-end">
+                                <h4 class="pt-1 mb-n1">$43.21</h4>
+                                <p class="mb-0 font-11 color-yellow-dark">Pending</p>
+                            </div>
+                        </a>
+                        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-bill-paid" class="d-flex py-1 mb-2">
+                            <div class="align-self-center">
+                                <h5 class="pt-1 mb-n1">Spotify Music</h5>
+                                <p class="mb-0 font-11 opacity-70">Paid via Main Account</p>
+                            </div>
+                            <div class="align-self-center ms-auto text-end">
+                                <h4 class="pt-1 mb-n1">$19.21</h4>
+                                <p class="mb-0 font-11 color-green-dark">Approved</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Tab Custom Payments-->
+                    <div class="collapse" id="tab-5" data-bs-parent="#tab-group-2">
+                        <div class="pt-3"></div>
+                        <div class="form-custom form-label form-icon">
+                            <i class="bi bi-bank font-13"></i>
+                            <select class="form-select rounded-xs" id="c6">
+                                <option value="0" disabled selected>Select Account</option>
+                                <option value="0">Main Account</option>
+                                <option value="1">Savings Account</option>
+                                <option value="2">Company Account</option>
+                            </select>
+                            <label for="c6" class="color-highlight">Select Paying Account</label>
+                        </div>
+                        <div class="pb-2"></div>
+                        <div class="form-custom form-label form-icon">
+                            <i class="bi bi-building font-13"></i>
+                            <select class="form-select rounded-xs" id="c61">
+                                <option value="0" disabled selected>Select Provider</option>
+                                <option value="0">Water Company</option>
+                                <option value="1">Electric Company</option>
+                                <option value="2">Company Account</option>
+                                <option value="3">Custom - IBAN</option>
+                            </select>
+                            <label for="c61" class="color-highlight form-label-always-">Select Provider</label>
+                        </div>
+                        <div class="pb-2"></div>
+                        <div class="form-custom form-label form-icon">
+                            <i class="bi bi-code font-14"></i>
+                            <input type="text" class="form-control rounded-xs" id="c31" placeholder="Bill Serial Number"/>
+                            <label for="c31" class="color-highlight form-label-always-">Bill Serial Number</label>
+                            <span>(required)</span>
+                        </div>
+                        <div class="pb-2"></div>
+                        <div class="form-custom form-label form-icon">
+                            <i class="bi bi-currency-dollar font-14"></i>
+                            <input type="number" class="form-control rounded-xs" id="c32" placeholder="Bill Amount"/>
+                            <label for="c32" class="color-highlight form-label-always-">Bill Amount</label>
+                            <span>(required)</span>
+                        </div>
+                        <div class="pb-2"></div>
+                        <div class="form-custom form-label form-icon">
+                            <i class="bi bi-at font-16"></i>
+                            <input type="email" class="form-control rounded-xs" id="c2" placeholder="Email Invoice To" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
+                            <label for="c2" class="color-highlight form-label-always-">Email Invoice To</label>
+                            <span>(required)</span>
+                        </div>
+                        <div class="pb-3"></div>
+                        <a href="#" class="btn btn-full gradient-green rounded-s shadow-bg shadow-bg-s mb-4">Pay Bill Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--Account Activity Notification-->
+        <div class="card card-style gradient-red rounded-s shadow-bg shadow-bg-xs mb-3">
+            <div class="content my-2">
+                <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-bill" class="d-flex">
+                    <div class="align-self-center">
+                        <h1 class="mb-0 font-14"><i class="bi bi-droplet color-white pe-3"></i></h1>
+                    </div>
+                    <div class="align-self-center">
+                        <h5 class="color-white font-600 mb-0 mt-0 font-14 line-height-s">
+                            Utilities Bill Overdue.
+                        </h5>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                        <h5 class="color-white font-600 mb-0 mt-0 font-14 line-height-s">
+                            Tap to Pay
+                        </h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="card card-style gradient-green rounded-s shadow-bg shadow-bg-xs">
+            <div class="content my-2">
+                <a href="#" class="d-flex">
+                    <div class="align-self-center">
+                        <h1 class="mb-0 font-14"><i class="bi bi-wallet color-white pe-3"></i></h1>
+                    </div>
+                    <div class="align-self-center">
+                        <h5 class="color-white font-600 mb-0 mt-0 font-14 line-height-s">
+                            Salary due next week.
+                        </h5>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                        <h5 class="color-white font-600 mb-0 mt-0 font-14 line-height-s">
+                            5 Days Left
+                        </h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-pages"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+	
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+    
+    <!-- Notifications Bell -->
+    <div id="menu-notifications" data-menu-load="menu-notifications.html"
+        class="offcanvas offcanvas-top offcanvas-detached rounded-m">
+    </div>
+    
+    <!-- Bill Button Menu -->
+    <div id="menu-bill"
+        class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+        <!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+        <div class="menu-size" style="height:350px;">
+            <div class="d-flex mx-3 mt-3 py-1">
+                <div class="align-self-center">
+                    <h1 class="mb-0">Pay a Bill</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" class="ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+                        <i class="bi bi-x color-red-dark font-26 line-height-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="divider divider-margins mt-3 mb-2"></div>
+            <div class="content mt-0">
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">From</h5>
+                    <h5 class="mb-0 ms-auto font-600 font-14">Cool-Co LTD</h5>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">Period</h5>
+                    <h5 class="mb-0 ms-auto font-600 font-14">1st to 30th June</h5>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">Invoice</h5>
+                    <h5 class="mb-0 ms-auto font-600 font-14">ID-315613</h5>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">Amount</h5>
+                    <h5 class="mb-0 ms-auto font-700 font-14 color-blue-dark">$145 USD</h5>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">Bill Status</h5>
+                    <h5 class="mb-0 ms-auto font-700 font-14 color-red-dark">Overdue</h5>
+                </div>
+                <div class="divider my-2"></div>
+            </div>
+            <a href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-blue shadow-bg shadow-bg-s">Tap to Pay -  145 USD</a>
+        </div>
+    </div>
+    
+    <!-- Bill Button Menu -->
+    <div id="menu-bill-paid"
+        class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+        <!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+        <div class="menu-size" style="height:350px;">
+            <div class="d-flex mx-3 mt-3 py-1">
+                <div class="align-self-center">
+                    <h1 class="mb-0">Pay a Bill</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" class="ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+                        <i class="bi bi-x color-red-dark font-26 line-height-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="divider divider-margins mt-3 mb-2"></div>
+            <div class="content mt-0">
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">From</h5>
+                    <h5 class="mb-0 ms-auto font-600 font-14">Cool-Co LTD</h5>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">Period</h5>
+                    <h5 class="mb-0 ms-auto font-600 font-14">1st to 30th June</h5>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">Invoice</h5>
+                    <h5 class="mb-0 ms-auto font-600 font-14">ID-315613</h5>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">Amount</h5>
+                    <h5 class="mb-0 ms-auto font-600 font-14">$145 USD</h5>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="d-flex">
+                    <h5 class="mb-0 font-600 font-14">Bill Status</h5>
+                    <h5 class="mb-0 ms-auto font-600 font-14 color-green-dark">Paid & Approved</h5>
+                </div>
+                <div class="divider my-2"></div>
+            </div>
+            <a href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-green shadow-bg shadow-bg-s">Paid - Thank you</a>
+        </div>
+    </div>
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

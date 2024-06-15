@@ -1,0 +1,43 @@
+//Extending Checkboxes and Radios
+
+.form-check-custom {
+	input {
+		position: absolute !important;
+		transform: translateX(-10000px);
+		&:checked {
+			&~.is-unchecked {
+				opacity: 0 !important;
+				display: none !important;
+			}
+			&~.is-checked {
+				display: block;
+			}
+		}
+	}
+	i {
+		width: 20px;
+		text-align: center;
+		pointer-events: none;
+		position: absolute;
+		left: 30px;
+		top: 0px;
+		font-size:15px;
+		height: 24px;
+		line-height: 24px;
+	}
+	margin-left: -30px;
+	margin-right: 10px;
+	margin-bottom:5px;
+	cursor: pointer;
+	position: relative;
+	width: auto;
+	display: block;
+	label {
+		cursor: pointer;
+		font-size: 13px;
+		padding: 0px 15px 0px 40px;
+	}
+	.is-checked {
+		display: none;
+	}
+}

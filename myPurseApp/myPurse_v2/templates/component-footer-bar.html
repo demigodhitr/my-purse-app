@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>myProfitPurse</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url page_payment %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+	<!-- Header Bar-->
+	<div class="header-bar header-fixed header-app header-auto-show">
+		<a href="#" data-back-button><i class="bi bi-chevron-left font-13"></i></a>
+		<a href="#" class="header-title">Back to Components</a>
+		<a href="#" data-toggle-theme class="show-on-theme-dark"><i class="bi bi-sun-fill color-yellow-dark font-16"></i>
+		<a href="#" data-toggle-theme class="show-on-theme-light"><i class="bi bi-moon-fill font-13"></i>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="font-16 bi bi-list"></i></a>
+	</div>
+
+
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Footer Bars</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+		<div class="card card-style">
+			<div class="content">
+				<p>
+					Footer Bars with countless options to make your mobile navigation a perfect experience.
+				</p>
+				<ul class="px-3 mb-0">
+					<li>Colorful Icons</li>
+					<li>No Icon Limit</li>
+					<li>Multiple Select Styles</li>
+					<li>Text or Number Badges</li>
+				</ul>
+			</div>
+		</div>
+
+
+		<h6 class="opacity-30 px-3 pt-3 mb-3">Badges</h6>
+		<nav id="footer-bar" class="footer-bar-1 position-relative shadow-m">
+			<a href="index-components.html"><em class="badge badge-text bg-green-dark">NEW</em><i class="bi bi-star-fill color-yellow-dark"></i><span>Features</span></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill color-red-dark"></i><span>Pages</span></a>
+			<a href="index.html"><i class="bi bi-house-fill color-green-dark"></i><span>Home</span></a>
+			<a href="index-search.html"><i class="bi bi-gear-fill color-brown-dark"></i><span>Settings</span></a>
+			<a href="#" data-menu="menu-settings"><em class="badge badge-text bg-red-dark">5</em><i class="bi bi-bell-fill color-blue-dark"></i><span>Alerts</span></a>
+		</nav>
+
+
+		<h6 class="opacity-30 px-3 pt-3 mb-3">Mixed Styles</h6>
+		<nav id="footer-bar" class="footer-bar-1 position-relative shadow-m">
+			<a href="index-components.html"><em class="badge badge-text bg-green-dark">NEW</em><i class="bi bi-star-fill color-yellow-dark"></i><span>Features</span></a>
+			<a href="index.html"><i class="bi bi-house-fill color-green-dark"></i><span>Home</span></a>
+			<a href="#" data-menu="menu-settings"><em class="badge badge-text bg-red-dark">5</em><i class="bi bi-bell-fill color-blue-dark"></i><span>Alerts</span></a>
+			<a href="#" class="btn bg-highlight rounded-m font-700 shadow-bg shadow-bg-s">CALL NOW</a>
+		</nav>
+
+
+		<h6 class="opacity-30 px-3 pt-5 mb-3">Classic Selected Icon</h6>
+		<nav id="footer-bar" class="footer-bar-1 position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i><span>Features</span></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i><span>Pages</span></a>
+			<a href="index.html" class="active-nav"><i class="bi bi-house-fill"></i><span>Home</span></a>
+			<a href="index-search.html"><i class="bi bi-search"></i><span>Search</span></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i><span>Settings</span></a>
+		</nav>
+		<div class="pt-2"></div>
+		<nav id="footer-bar" class="footer-bar-1 footer-bar-no-text position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i></a>
+			<a href="index.html" class="active-nav"><i class="bi bi-house-fill"></i></a>
+			<a href="index-search.html"><i class="bi bi-search"></i></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i></a>
+		</nav>
+
+		<h6 class="opacity-30 px-3 pt-5 mb-3">Border Bottom Selected Icon</h6>
+		<nav id="footer-bar" class="footer-bar-2 position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i><span>Features</span></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i><span>Pages</span></a>
+			<a href="index.html" class="active-nav"><i class="bi bi-house-fill"></i><span>Home</span></a>
+			<a href="index-search.html"><i class="bi bi-search"></i><span>Search</span></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i><span>Settings</span></a>
+		</nav>
+		<div class="pt-2"></div>
+		<nav id="footer-bar" class="footer-bar-2 footer-bar-no-text position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i></a>
+			<a href="index.html" class="active-nav"><i class="bi bi-house-fill"></i></a>
+			<a href="index-search.html"><i class="bi bi-search"></i></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i></a>
+		</nav>
+
+		<h6 class="opacity-30 px-3 pt-5 mb-3">Border Top Selected Icon</h6>
+		<nav id="footer-bar" class="footer-bar-3 position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i><span>Features</span></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i><span>Pages</span></a>
+			<a href="index.html" class="active-nav"><i class="bi bi-house-fill"></i><span>Home</span></a>
+			<a href="index-search.html"><i class="bi bi-search"></i><span>Search</span></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i><span>Settings</span></a>
+		</nav>
+		<div class="pt-2"></div>
+		<nav id="footer-bar" class="footer-bar-3 footer-bar-no-text position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i></a>
+			<a href="index.html" class="active-nav"><i class="bi bi-house-fill"></i></a>
+			<a href="index-search.html"><i class="bi bi-search"></i></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i></a>
+		</nav>
+
+		<h6 class="opacity-30 px-3 pt-5 mb-3">Full Background Selected Icon</h6>
+		<nav id="footer-bar" class="footer-bar-4 position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i><span>Features</span></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i><span>Pages</span></a>
+			<a href="index.html" class="active-nav"><i class="bi bi-house-fill"></i><span>Home</span></a>
+			<a href="index-search.html"><i class="bi bi-search"></i><span>Search</span></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i><span>Settings</span></a>
+		</nav>
+		<div class="pt-2"></div>
+		<nav id="footer-bar" class="footer-bar-4 footer-bar-no-text position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i></a>
+			<a href="index.html" class="active-nav"><i class="bi bi-house-fill"></i></a>
+			<a href="index-search.html"><i class="bi bi-search"></i></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i></a>
+		</nav>
+
+		<h6 class="opacity-30 px-3 pt-5 mb-3">Circle Selected Nav</h6>
+		<nav id="footer-bar" class="footer-bar-1 position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i><span>Features</span></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i><span>Pages</span></a>
+			<a href="index.html" class="circle-nav-1"><i class="bi bi-house-fill"></i><span>Home</span></a>
+			<a href="index-search.html"><i class="bi bi-search"></i><span>Search</span></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i><span>Settings</span></a>
+		</nav>
+		<div class="pt-2"></div>
+		<nav id="footer-bar" class="footer-bar-1 footer-bar-no-text position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i></a>
+			<a href="index.html" class="circle-nav-1"><i class="bi bi-house-fill"></i></a>
+			<a href="index-search.html"><i class="bi bi-search"></i></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i></a>
+		</nav>
+
+		<h6 class="opacity-30 px-3 pt-5 mb-3">Circle Selected Nav</h6>
+		<nav id="footer-bar" class="footer-bar-1 position-relative shadow-m">
+			<a href="index-components.html"><i class="bi bi-star-fill"></i><span>Features</span></a>
+			<a href="index-pages.html"><i class="bi bi-heart-fill"></i><span>Pages</span></a>
+			<a href="index-waves.html" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+			<a href="index-search.html"><i class="bi bi-search"></i><span>Search</span></a>
+			<a href="#" data-menu="menu-settings"><i class="bi bi-gear-fill"></i><span>Settings</span></a>
+		</nav>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/custom.js"></script>
+</body>

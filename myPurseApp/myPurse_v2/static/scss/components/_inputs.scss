@@ -1,0 +1,284 @@
+//Extending Inputs
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+//General Settings
+textarea:focus,
+select:focus,
+input[type="text"]:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+input[type="date"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus{
+	outline-color: $colorHighlightFade;
+	box-shadow:0px 0px 0px 0px $colorHighlightFade!important;
+	background-color:transparent;
+}
+
+input::placeholder, textarea::placeholder, select::placeholder, input, textarea, select{
+	font-size:12px!important;
+}
+
+select{
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+	transform:translateY(-5px) translateX(6px);
+}
+input{border-width:1px!important;}
+
+.upload-file{height:50px; position:absolute; width:100%; opacity:0;}
+
+.was-validated .form-control:valid, .form-control.is-valid,
+.was-validated .form-select:valid, .form-select.is-valid{border-color: rgba(140, 193, 82, 0.3)!important;}
+.was-validated .form-control:invalid, .form-control.is-invalid,
+.was-validated .form-select:invalid, .form-select.is-invalid{border-color: rgba(213, 25, 77, 0.3)!important;}
+
+/*Form Custom Text*/
+.form-custom span{
+	position:absolute;
+	top:0px;
+	right:10px;
+	height:53px;
+	line-height:53px;
+	pointer-events:none;
+	font-size:9px;
+	opacity:0.5;
+}
+
+/*Form Icons*/
+.form-custom input,
+.form-custom select,
+.form-custom textarea{
+	height:53px!important;
+	padding:13px 15px 0px 15px!important;
+}
+
+.form-custom label{line-height:50px; padding:0px 15px 0px 15px;}
+
+.form-custom.form-icon input,
+.form-custom.form-icon select,
+.form-custom.form-icon textarea{
+	padding-left:40px!important;
+}
+.form-custom.form-icon label{padding-left:45px;}
+
+.form-custom.form-icon i{
+	position:absolute;
+	font-size:16px;
+	height:53px;
+	width:40px;
+	line-height:53px;
+	text-align:center;
+}
+
+.form-custom textarea{padding-top:20px!important; line-height:23px!important;}
+.form-custom textarea:focus{min-height:150px;}
+
+.was-validated *{background-image:none!important;}
+
+//Form Custom
+.form-custom{position:relative;}
+
+//Form Border
+.form-border *{
+	border-left:0px!important;
+	border-right:0px!important;
+	border-top:0px!important;
+	border-radius:0px!important;
+}
+.form-border.form-icon i{margin-left:-10px;}
+
+//With Icons
+.form-border.form-icon input,
+.form-border.form-icon select,
+.form-border.form-icon textarea{padding-left:30px!important;}
+.form-border.form-icon label{padding-left:33px!important;}
+
+//Without Icons
+.form-border.form-custom:not(.form-icon) input,
+.form-border.form-custom:not(.form-icon) select,
+.form-border.form-custom:not(.form-icon) textarea{padding-left:2px!important;}
+.form-border.form-custom:not(.form-icon) label{padding-left:0px!important;}
+
+//Floating Edits
+.form-custom.form-floating input,
+.form-custom.form-floating select,
+.form-custom.form-floating textarea{
+	padding-top:15px!important;
+}
+
+// Classic Label Forms
+.form-custom:not(.form-floating) *{padding-top:0px!important;}
+.form-custom:not(.form-floating) textarea{padding-top:15px!important;}
+
+//Fix for Androids and iOS Safari
+.form-custom:not(.form-floating) input[type="date"]{line-height:46px;}
+.form-custom.form-floating input[type="date"]{line-height:36px;}
+
+//Range Sliders
+input[type=range]{-webkit-appearance: none;}
+
+.range-1 *,
+.range-2 *,
+.range-3 *{
+	border-radius:50%;
+}
+
+.range-1 input[type=range]::-webkit-slider-runnable-track {height: 8px; border-radius: 3px;}
+.range-1 input[type=range]::-webkit-slider-thumb{
+	-webkit-appearance: none;
+	height: 20px;
+	width: 20px;
+	margin-top: -7px;
+}
+
+.range-2 input[type=range]::-webkit-slider-runnable-track {height: 24px; border-radius: 20px; padding:0px 2px;}
+.range-2 input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 20px;
+	width: 20px;
+	margin-top:2px;
+}
+
+.range-3 input[type=range]::-webkit-slider-runnable-track {height: 2px; border-radius: 20px; padding:0px 2px;}
+.range-3 input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 23px;
+	width: 23px;
+	background-color:#FFF;
+	border:solid 1px rgba(0,0,0,0.15);
+	margin-top:-11px;
+	box-shadow:0 3px 7px 0px rgba(0,0,0,0.2);
+}
+
+//Steppers
+.stepper {width: 102px;}
+.stepper:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.stepper input {
+	height: 33px;
+	width: 33px;
+	float: left;
+	border: none !important;
+	text-align: center;
+	display: block;
+	line-height: 33px;
+	font-size: 11px !important;
+	background-color: transparent;
+}
+.stepper input::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.stepper input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.stepper a {
+	text-align: center;
+	width: 33px;
+	height: 33px;
+	line-height: 33px;
+	font-size: 9px;
+}
+
+.stepper *{
+	outline:none!important;
+}
+
+
+//Dark and Light Modes
+
+//Inputs
+.theme-dark .form-custom label{color:rgba(255,255,255,0.4);}
+.theme-dark .form-custom *{background-color:transparent; color:rgba(255,255,255,0.9);}
+.theme-dark .form-custom input,
+.theme-dark .form-custom textarea,
+.theme-dark .form-custom select{border:solid 1px rgba(255,255,255,0.1);}
+
+.theme-light .form-custom input,
+.theme-light .form-custom textarea,
+.theme-light .form-custom select{border:solid 1px rgba(0,0,0,0.07);}
+
+//Range Slider
+.theme-dark .range-1 input[type=range]::-webkit-slider-runnable-track,
+.theme-dark .range-2 input[type=range]::-webkit-slider-runnable-track,
+.theme-dark .range-3 input[type=range]::-webkit-slider-runnable-track{background-color:rgba(255,255,255,0.1);}
+
+//Stepper
+
+.theme-light .stepper{border: solid 1px rgba(0, 0, 0, 0.1);}
+.theme-light .stepper a:last-child{border-left: solid 1px rgba(0, 0, 0, 0.1);}
+.theme-light .stepper a:first-child{border-right: solid 1px rgba(0, 0, 0, 0.1);}
+
+.theme-dark .stepper{ border: solid 1px rgba(255, 255, 255, 0.1);}
+.theme-dark .stepper a:last-child{border-left: solid 1px rgba(255, 255, 255, 0.1);}
+.theme-dark .stepper a:first-child{border-right: solid 1px rgba(255, 255, 255, 0.1);}
+
+
+//Custom Labels
+.form-label label{
+	position:absolute;
+	top:-5px;
+	background-color:#FFF;
+	height:10px;
+	line-height:10px;
+	left:0px;
+	font-size:11px;
+	text-transform:uppercase;
+	font-family:$font-heading-family;
+	font-weight:700;
+	opacity:0;
+	transition: $globalTransitions;
+	background-color:#FFF;
+	padding-left:2px!important;
+	padding-right:5px!important;
+}
+
+.form-label:not(.form-icon) label{transform:translateX(10px)!important;}
+.form-label.form-icon label{transform:translateX(40px)!important;}
+.form-label.form-border label{transform:translateX(0px)!important;}
+
+.form-label-active{opacity:1!important;}
+.form-label-always-active{opacity:1!important;}
+
+.form-label:not(.form-icon) label{margin-left:2px!important;}
+.form-label.form-icon label{margin-left:-32px!important;}
+.form-label:not(.form-icon) label{margin-left:2px!important;}
+.form-label.form-border.form-icon label{margin-left:-32px!important; margin-top:2px;}
+
+.form-label.form-border i{
+	margin-top:-4px;
+}
+.form-label.form-border input,
+.form-label.form-border select,
+.form-label.form-border textarea{
+	height:45px!important;
+}
+
+.form-label.form-border textarea{
+	padding-top:10px!important
+}
+
+.no-animation *{
+	transition:all 250ms ease!important;
+}
+//Setting Full Transparency
+.form-custom *, .form-custom *:after, .form-custom *:before{
+	background-color:transparent!important;
+}

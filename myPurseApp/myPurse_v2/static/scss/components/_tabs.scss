@@ -1,0 +1,135 @@
+/*Tabs*/
+$tabTransitions:all 200ms ease;
+
+//General Settings
+.tabs a[aria-expanded="true"]{pointer-events:none;}
+.tabs .tab-controls{font-weight:600; font-family:$font-heading-family;}
+
+//////////////////
+//Tabs Boxed Style
+//////////////////
+.tabs-box .tab-controls{overflow:hidden; display:flex; border:solid 1px $faded_dark;}
+.tabs-box .tab-controls a:last-child{border-right:none!important;}
+.tabs-box .tab-controls a{
+	transition:$tabTransitions;
+	overflow: hidden;
+	text-align:center;
+	border-right:solid 1px $faded_dark;
+	width:100%;
+	margin:auto;
+	color:$color_black;
+	line-height:38px;
+}
+.tabs-box a[aria-expanded="true"]{
+	background-color:$colorHighlightDark;
+	border-color:$colorHighlightDark;
+	color:$color_white!important;
+}
+
+
+//////////////////
+//Tabs Track Style
+//////////////////
+.tabs-pill .tab-controls{background-color:$faded_dark; overflow:hidden; display:flex;}
+.tabs-pill .tab-controls a{
+	transition:$tabTransitions;
+	overflow: hidden;
+	text-align:center;
+	width:100%;
+	margin:auto;
+	color:$color_black;
+	line-height:35px;
+}
+.tabs-pill a[aria-expanded="true"]{
+	background-color:$colorHighlightDark;
+	border-color:$colorHighlightDark;
+	color:$color_white!important;
+}
+
+/////////////////
+//Tabs Link Style
+/////////////////
+.tabs-links .tab-controls{background-color:$faded_dark;}
+.tabs-links .tab-controls{overflow:hidden; display:flex;}
+.tabs-links .tab-controls a{
+	transition:$tabTransitions;
+	overflow: hidden;
+	text-align:center;
+	padding:2px 12px;
+	color:$color_black;
+}
+.tabs-links a[aria-expanded="true"]{
+	background-color:$colorHighlightDark;
+	border-color:$colorHighlightDark;
+	color:$color_white!important;
+}
+
+/////////////////////
+//Tabs Floating Style
+/////////////////////
+.tabs-icons .tab-controls a *{display:block; font-weight:400;}
+.tabs-icons .tab-controls{overflow:hidden; display:flex; margin:auto -15px auto -15px;}
+.tabs-icons a[aria-expanded="true"] *{opacity:1!important;}
+.tabs-icons a[aria-expanded="true"]{color:$colorHighlightDark!important;}
+.tabs-icons .tab-controls a{
+	overflow: hidden;
+	text-align:center;
+	width:100%;
+	margin:auto;
+	color:$color_black;
+	line-height:20px;
+}
+
+////////////////////
+//Tabs Borders Style
+////////////////////
+.tabs-borders .tab-controls{overflow:hidden; display:flex;}
+.tabs-borders .tab-controls a{
+	transition:$tabTransitions;
+	overflow: hidden;
+	text-align:center;
+	border-bottom:solid 1px $faded_dark;
+	width:100%;
+	margin:auto;
+	color:$color_black;
+	line-height:40px;
+}
+.tabs-borders a[aria-expanded="true"]{
+	color:$colorHighlightDark!important;
+	border-color:$colorHighlightDark!important;
+}
+
+//////////////////
+//Tabs Cards Style
+//////////////////
+.tabs-cards{margin:0px $globalHalfMargin $globalFullMargin $globalHalfMargin;}
+.tabs-cards .card-style{
+	overflow:visible;
+	border-top-left-radius: 0px;
+	margin:6px 0px $globalFullMargin 0px;
+}
+.tabs-cards .tab-controls a{
+	transition:$tabTransitions;
+	border-radius:10px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	color:#1f1f1f;
+	background-color:rgba(0,0,0,0.04);
+	padding:12px 22px 18px 22px;
+}
+
+.tabs-cards .tab-controls a[aria-expanded="true"]{
+	color:$colorHighlightDark!important;
+	background-color:#FFF;
+	padding:14px 22px 20px 22px;
+}
+
+//Tabs Dark Settings
+.theme-dark .tabs-box a{border:solid 1px $faded_light;}
+.theme-dark .tabs-pill .tab-controls a{color:$color_white;}
+.theme-dark .tabs-pill .tab-controls{background-color:$faded_light!important;}
+.theme-dark .tabs-links .tab-controls a{color:$color_white}
+.theme-dark .tabs-icons .tab-controls a{color:$color_white}
+.theme-dark .tabs-borders .tab-controls a{border-bottom:solid 1px $faded_light; color:$color_white;}
+.theme-dark .tabs-cards .tab-controls a{color:$color_white; background-color:rgba(255,255,255,0.05);}
+.theme-dark .tabs-cards .tab-controls a[aria-expanded="true"]{background-color:$theme-dark-background;}

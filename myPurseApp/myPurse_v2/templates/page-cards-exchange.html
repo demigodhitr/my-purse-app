@@ -1,0 +1,150 @@
+{% load %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ProfitPulse</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="_manifest.json">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}" class="active-nav"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url 'page_payments' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Exchange</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+		<div class="card card-style">
+			<div class="content my-2">
+				<a href="#" class="d-flex">
+					<div class="align-self-center w-25">
+						<h4 class="pt-1 mb-n1 font-16">Bitcoin</h4>
+						<h6 class="mb-0 opacity-50">BTC - Crypto</h6>
+					</div>
+					<div class="align-self-center m-auto">
+						<div id="chart-btc" class="chart mt-n5 pt-4 ms-n3"><!-- plugins/apex/apex-call.js --></div>
+					</div>
+					<div class="ms-auto">
+						<h4 class="mb-n1 pt-2">$53.513</h4>
+						<h6 class="mb-0 color-green-dark text-end">+1.583%</h6>
+					</div>
+				</a>
+			</div>
+			<div class="content my-2">
+				<a href="#" class="d-flex">
+					<div class="align-self-center w-25">
+						<h4 class="pt-1 mb-n1 font-16">Ethereum</h4>
+						<h6 class="mb-0 opacity-50">ETH - Crypto</h6>
+					</div>
+					<div class="align-self-center m-auto">
+						<div id="chart-eth" class="chart mt-n5 pt-4 ms-n3"><!-- plugins/apex/apex-call.js --></div>
+					</div>
+					<div class="ms-auto">
+						<h4 class="mb-n1 pt-2">$12.113</h4>
+						<h6 class="mb-0 color-red-dark text-end">-1.583%</h6>
+					</div>
+				</a>
+			</div>
+			<div class="content my-2">
+				<a href="#" class="d-flex">
+					<div class="align-self-center w-25">
+						<h4 class="pt-1 mb-n1 font-16">Euro</h4>
+						<h6 class="mb-0 opacity-50">EUR - Cash</h6>
+					</div>
+					<div class="align-self-center m-auto">
+						<div id="chart-eur" class="chart mt-n5 pt-4 ms-n3"><!-- plugins/apex/apex-call.js --></div>
+					</div>
+					<div class="ms-auto">
+						<h4 class="mb-n1 pt-2">$1,231</h4>
+						<h6 class="mb-0 color-blue-dark text-end">0.00%</h6>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-6">
+					<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="btn btn-full gradient-highlight rounded-s shadow-bg shadow-bg-s">Buy</a>
+				</div>
+				<div class="col-6">
+					<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="btn btn-full gradient-green rounded-s shadow-bg shadow-bg-s">Sell</a>
+				</div>
+			</div>
+		</div>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-pages"
+        data-menu-load="{% url 'opener' %}"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+	
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="{% url 'highlights' %}"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+    <!-- Exchange Button Menu -->
+	<div id="menu-exchange" data-menu-load="{% url 'paym' %}"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

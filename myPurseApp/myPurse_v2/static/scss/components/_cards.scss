@@ -1,0 +1,91 @@
+//Extending Card Styles
+
+$z-card-top:3;
+$z-card-mid:2;
+$z-card-bot:1;
+
+$rounded-card-style:22px;
+// $shadow-card-style:0 8px 24px 0 rgba(0,0,0,0.08);
+$shadow-card-style:rgb(0 0 0 / 3%) 0px 20px 25px -5px, rgb(0 0 0 /2%) 0px 10px 10px -5px;
+
+.card{
+	background-size:cover;
+	background-position: center center;
+}
+.card-fixed, .card-fixed .card-overlay{
+	border-radius:0px;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+}
+
+.card-style{
+	overflow:hidden;
+	border-radius:$rounded-card-style;
+	margin:0px $globalHalfMargin $globalFullMargin $globalHalfMargin;
+	border:none;
+	box-shadow:$shadow-card-style;
+	background-size:cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.card-overlay{
+	position:absolute;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	top:0px;
+	z-index:$z-card-bot;
+	border-radius:$rounded-card-style;
+}
+
+.card-body, .card-top, .card-center, .card-bottom{z-index:$z-card-top;}
+.card-top, .card-center, .card-bottom{
+	z-index:$z-card-top;
+	position:absolute;
+	left:0px;
+	right:0px;
+}
+
+.card-top{top:0px;}
+.card-center{top:50%; transform:translateY(-50%);}
+.card-bottom{bottom:0px;}
+
+.card-over{z-index:$z-card-top;}
+.card-inter{z-index:$z-card-mid;}
+.card-under{z-index:$z-card-bot;}
+
+//Shadow Cards
+//////////////
+.shadow-card:after {
+	transform: scale(0.95) translateY(10px) translateZ(-36px);
+	filter: blur(12px);
+	content: '';
+	position: absolute;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	background-image: inherit;
+	background-size: cover;
+	background-color:inherit;
+	z-index: -1;
+}
+.shadow-card {overflow:visible;}
+.shadow-card .card-overlay{
+	left:0px;
+	top:0px;
+	bottom:0px;
+	right:0px;
+}
+.shadow-card-s::after{transform: scale(0.80) translateY(15px) translateZ(-26px); filter: blur(12px);}
+.shadow-card-m::after{transform: scale(0.85) translateY(15px) translateZ(-36px); filter: blur(12px);}
+.shadow-card-l::after{transform: scale(0.95) translateY(15px) translateZ(-46px); filter: blur(12px);}
+
+//Dark Settings
+.theme-light .shadow-card:after{opacity: 0.8;}
+.theme-dark .shadow-card:after{opacity:0.3;}
+
+

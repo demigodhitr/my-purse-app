@@ -1,0 +1,77 @@
+/*Table of Contents
+
+Item Name: PayApp
+Item Purpose: Mobile Finance, Banking and Wallet Template
+Item Author: Enabled
+Item Support: https://www.enableds.com/contact/
+
+1. PayApp Color Scheme
+2. Demo Elements - Can be removed
+3. Typography Settings
+4. Page Structure Settings
+5. Header Bar
+6. Footer Bar
+7. Secondary / Utility Classes
+8. Sidebar
+9. Splide Carousel
+10. List Groups
+11. Cards
+12. Dividers
+13. Icons
+14. Buttons
+15. Accordions
+16. Tabs
+17. Switchers / Toggles
+18. Notifications
+19. Input Elements
+20. Checkboxes and Radio
+21. Off Canvases
+22. Page Preloader
+23. Paginations
+24. Offline Detection
+25. Currency Exchanger
+26. Card Stacker
+*/
+
+// Importing Bootstrap Variables to Reuse
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+
+//Importing PayApp Utility Classes
+@import "payapp/variables";
+
+//Importing Dark and Color Scheme
+@import "payapp/dark";
+@import "payapp/colors";
+@import "components/demo";
+
+//Importing Structural Elements
+@import "payapp/typography";
+@import "payapp/structure";
+@import "payapp/header-bar";
+@import "payapp/footer-bar";
+@import "payapp/utilities";
+@import "payapp/sidebar";
+
+//Importing Plugins
+@import "plugins/splide";
+
+//Importing Components and Extending
+@import "components/list-group";
+@import "components/cards";
+@import "components/dividers";
+@import "components/icons";
+@import "components/buttons";
+@import "components/accordion";
+@import "components/tabs";
+@import "components/switches";
+@import "components/notifications";
+@import "components/inputs";
+@import "components/checkradio";
+@import "components/offcanvas";
+@import "components/preloader";
+@import "components/pagination";
+@import "components/offline";
+@import "components/exchanger";
+@import "components/card-stack";
+

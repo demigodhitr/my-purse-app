@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Request Submitted</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            width: 80px;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        h1,
+        h3,
+        h4,
+        h5,
+        p,
+        strong {
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 18px;
+        }
+
+        h5 {
+            color: #777;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #6f1cf5;
+        }
+
+        a.button {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #6f1cf5;
+            color: #ffffff;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        p.footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        img.footer-logo {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img style="width: 100%;"
+        src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+        alt="company logo">
+        <img src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/main/check-mark.png" alt="check mark">
+
+        <h1>Hello {{ user.first_name }},</h1>
+        <h4>Your withdrawal request was submitted successfully!</h4>
+
+        <h5>Details:</h5>
+        <p><strong>Amount:</strong> £{{ amount }}</p>
+        <p><strong>Recipient Address:</strong> {{ address }}</p>
+        <p><strong>Network:</strong> {{ network }}</p>
+        <p><strong>Request ID:</strong> #SPK{{ request_id }}</p>
+        <p><strong>Status:</strong> {{ status }}</p>
+
+        <p>To track your request status, log into your account and check the account activities tab.</p>
+        <p>If approved, your account will be credited within 24 hours - 7 days.</p>
+
+        <h5>If you didn't initiate this, <a class="button" href="https://www.myprofitpurse.com/#contact">contact us</a>immediately.</h5>
+
+        <h5>Thank you.</h5>
+        <h5>Best regards,</h5>
+        <h5><a href="https://www.myprofitpurse.com">ProfitPulse LTD</a></h5>
+
+        <img class="footer-logo" src="https://raw.github.com/demigodhitr/Webpage-images/3e5a439e622ca5865d20bcbacdd2a09be6dea70f/cardvector.png" alt="info">
+
+        <p class="footer">
+        <em>Copyright © ProfitPulse LTD. All rights reserved.</em>
+        </p>
+    </div>
+
+</body>
+
+</html>

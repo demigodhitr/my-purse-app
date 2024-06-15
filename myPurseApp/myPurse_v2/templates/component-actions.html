@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Profit Purse</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+	<!-- Header Bar-->
+	<div class="header-bar header-fixed header-app header-auto-show">
+		<a href="#" data-back-button><i class="bi bi-chevron-left font-13"></i></a>
+		<a href="#" class="header-title">Back to Components</a>
+		<a href="#" data-toggle-theme class="show-on-theme-dark"><i class="bi bi-sun-fill color-yellow-dark font-16"></i>
+		<a href="#" data-toggle-theme class="show-on-theme-light"><i class="bi bi-moon-fill font-13"></i>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="font-16 bi bi-list"></i></a>
+	</div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Actions</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+		<div class="card card-style">
+			<div class="content">
+				<p>
+					Action sheets are great to show interactive content to your users, while staying on the same page.
+				</p>
+
+				<div class="list-group list-custom list-group-m rounded-xs">
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-highlights">
+						<i class="bi bi-droplet color-blue-dark"></i>
+						<div>Highlights</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-notifications">
+						<i class="bi bi-exclamation-circle color-red-dark"></i>
+						<div>Notifications</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-card-more">
+						<i class="bi bi-credit-card color-brown-dark"></i>
+						<div>Card Settings</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer">
+						<i class="bi bi-arrow-up-circle color-magenta-dark"></i>
+						<div>Transfer Funds</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-request">
+						<i class="bi bi-arrow-down-circle color-green-dark"></i>
+						<div>Request Funds</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-friends-transfer">
+						<i class="bi bi-person-circle color-blue-dark"></i>
+						<div>Friends Transfer</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-exchange">
+						<i class="bi bi-arrow-left-right color-brown-dark"></i>
+						<div>Exchange Currency</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+				</div>
+				<h4 class="pt-3">Action Notifications</h4>
+				<p>
+					You can use actions to notify your users of an action after they tap a button. These can be triggered
+					via a button or programmatically.
+				</p>
+				<div class="list-group list-custom list-group-m rounded-xs">
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer-ok">
+						<i class="bi bi-check font-20 color-green-dark"></i>
+						<div>Transfer Success</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer-pending">
+						<i class="bi bi-question font-20 color-blue-dark"></i>
+						<div>Transfer Pending</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a href="#" class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer-failed">
+						<i class="bi bi-x font-20 color-red-dark"></i>
+						<div>Transfer Failed</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<h4>More Off Canvas Examples?</h4>
+				<p>
+					We have an entire component dedicated to action sheets and menus. Check it out.
+				</p>
+				<a href="{% url 'actions' %}" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">View Menus & Actions</a>
+			</div>
+		</div>
+
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+	<!--
+		How to load action sheets inside the page
+
+		- to load any action sheet directly inside the page simply remove
+		the data-menu-load="your-action-sheet.html". After doing so, just
+		open your-action-sheet.html and copy paste the entire file directly
+		inside the div that had the data-menu-load="your-action-sheet.html"
+
+		Action sheets are loaded externally to make them easier to import
+		in multiple pages while editing only one external file, rather than
+		each individual page.
+
+		In projects using Laravel, WordPress, Drupal, Joomla, ReactJS, VueJS
+		AngularJS  you must load the actionsheets in each individual page.
+	-->
+
+	<!-- Transfer Successful-->
+	<div id="menu-transfer-ok" style="width:320px" class="offcanvas offcanvas-modal offcanvas-detached rounded-m">
+		<div class="content text-center">
+			<i style="font-size:65px;" class="scale-box bi bi-check-circle-fill color-green-dark shadow-s rounded-circle p-0 mt-3 mb-3 d-inline-block"></i>
+			<h1 class="pt-3 font-28">Transfer Successful</h1>
+			<p class="font-14">
+				Your transfer was successfully processed.
+			</p>
+			<a href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-green shadow-bg shadow-bg-xs">Okay</a>
+		</div>
+	</div>
+
+	<!-- Transfer Pending-->
+	<div id="menu-transfer-pending" style="width:320px" class="offcanvas offcanvas-modal offcanvas-detached rounded-m">
+		<div class="content text-center">
+			<i style="font-size:65px;" class="scale-box bi bi-question-circle-fill color-blue-dark shadow-s rounded-circle p-0 mt-3 mb-3 d-inline-block"></i>
+			<h1 class="pt-3 font-28">Transfer Pending</h1>
+			<p class="font-14">
+				Transfer process has started. Awaiting approval from bank before processing.
+			</p>
+			<a href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-blue shadow-bg shadow-bg-xs">Okay</a>
+		</div>
+	</div>
+
+	<!-- Transfer Failed-->
+	<div id="menu-transfer-failed" style="width:320px" class="offcanvas offcanvas-modal offcanvas-detached rounded-m">
+		<div class="content text-center">
+			<i style="font-size:65px;" class="scale-box bi bi-x-circle-fill color-red-dark shadow-s rounded-circle p-0 mt-3 mb-3 d-inline-block"></i>
+			<h1 class="pt-3 font-28">Transfer Failed</h1>
+			<p class="font-14 mb-0">
+				There was an error processing your transfer. Please contact support for more details.
+			</p>
+			<a href="tel:+1 234 567 155" class="py-4 font-700 text-uppercase d-block">Tap to Call Support</a>
+			<a href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Okay</a>
+		</div>
+	</div>
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+	<!-- Notifications Bell -->
+	<div id="menu-notifications" data-menu-load="menu-notifications.html"
+		class="offcanvas offcanvas-top offcanvas-detached rounded-m">
+	</div>
+
+	<!-- Card Menu More -->
+	<div id="menu-card-more" data-menu-load="menu-card-settings.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+	<!-- Transfer Button Menu -->
+	<div id="menu-transfer" data-menu-load="menu-transfer.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+	<!-- Transfer Friends Menu -->
+	<div id="menu-friends-transfer" data-menu-load="menu-friends-transfer.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+	<!-- Request Button Menu -->
+	<div id="menu-request" data-menu-load="menu-request.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+	<!-- Exchange Button Menu -->
+	<div id="menu-exchange" data-menu-load="menu-exchange.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

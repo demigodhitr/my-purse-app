@@ -1,0 +1,450 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    
+    <style>
+        .fluctuating-numbers {
+            font-size: 24px;
+            color: #2ce144;
+        }
+    
+        .red-zero {
+            color: rgb(250, 28, 12);
+        }
+    
+        .yellow-one {
+            color: rgb(254, 232, 38);
+        }
+    </style>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>Profit Purse</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="manifest" href="{% static '_manifest.json' %}">
+    <meta id="theme-check" name="theme-color" content="#FFFFFF">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'app/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'app/icons/favicon-16x16.png' %}">
+</head>
+
+<body class="theme-light">
+
+    <div id="preloader">
+        <div class="spinner-border color-highlight" role="status"></div>
+    </div>
+
+    <!-- Page Wrapper-->
+    <div id="page">
+
+        <!-- Footer Bar -->
+        <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+            <a href="{% url 'wallet' %}" class="active-nav"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+            <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+            <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+            <a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+            <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i
+                    class="bi bi-three-dots"></i><span>More</span></a>
+        </div>
+
+        <!-- Page Content - Only Page Elements Here-->
+        <div class="page-content footer-clear">
+
+            <!-- Page Title-->
+            <div class="pt-3">
+                <div class="page-title d-flex">
+                    <div class="align-self-center me-auto">
+                        <p class="color-highlight">Hello {{user.first_name}}</p>
+                        <h1 class="color-theme">Investment Reports</h1>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-notifications"
+                            class="icon gradient-blue color-white shadow-bg shadow-bg-xs rounded-m">
+                            <i class="bi bi-bell-fill font-17"></i>
+                            <em class="badge bg-red-dark color-white scale-box">{{ notifications_count }}</em>
+                        </a>
+                        <a href="#" data-bs-toggle="dropdown"
+                            class="icon gradient-blue shadow-bg shadow-bg-s rounded-m">
+                            <img src="{{ profile_image.url }}" width="45" height="45" class="rounded-m" alt="img">
+                        </a>
+                        <!-- Page Title Dropdown Menu-->
+                        <div class="dropdown-menu">
+                            <div class="card card-style shadow-m mt-1 me-1">
+                                <div class="list-group list-custom list-group-s list-group-flush rounded-xs px-3 py-1">
+                                    <a href="{% url 'wallet' %}" class="list-group-item">
+                                        <i
+                                            class="has-bg gradient-green shadow-bg shadow-bg-xs color-white rounded-xs bi bi-credit-card"></i>
+                                        <strong class="font-13">Wallet</strong>
+                                    </a>
+                                    <a href="{% url 'activities' %}" class="list-group-item">
+                                        <i
+                                            class="has-bg gradient-blue shadow-bg shadow-bg-xs color-white rounded-xs bi bi-graph-up"></i>
+                                        <strong class="font-13">Activity</strong>
+                                    </a>
+                                    <a href="{% url 'profile' %}" class="list-group-item">
+                                        <i
+                                            class="has-bg gradient-yellow shadow-bg shadow-bg-xs color-white rounded-xs bi bi-person-circle"></i>
+                                        <strong class="font-13">Account</strong>
+                                    </a>
+                                    <a href="{% url 'signout' %}" class="list-group-item">
+                                        <i
+                                            class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-power"></i>
+                                        <strong class="font-13">Log Out</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-style px-0">
+                <div class="form-custom form-label form-border form-icon px-3 pt-1">
+                    <i class="bi bi-calendar font-13"></i>
+                    <select class="form-select rounded-xs" id="c6a">
+                        <option value="0" selected>Current Month</option>
+                    </select>
+                </div>
+                <div class="position-relative">
+                    <div class="position-absolute w-100" style="height:320px">
+                        <!-- same height as chart in plugins/apex/apex-call.js-->
+                        <div class="card-center">
+                            <h1 class="pb-5 mb-5 text-center">
+                                <span class="font-25 d-block pt-4 mt-1">£{{user_details.total_balance|intcomma}}</span>
+                                <span class="font-12 font-400 opacity-50 d-block mt-n2">Current total balance</span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="mx-auto" style="width:320px"><!-- same height as chart in plugins/apex/apex-call.js-->
+                        <div class="chart mx-auto no-click" id="chart-activity"></div>
+                    </div>
+                </div>
+                <div class="content mt-0 mb-0">
+                    <a data-bs-toggle="offcanvas" data-bs-target="#menu-activity" href="#" class="d-flex pb-3">
+                        <div class="align-self-center">
+                            <span class="icon rounded-s me-2 gradient-green shadow-bg shadow-bg-xs"><i
+                                    class="bi bi-wallet font-18 color-white"></i></span>
+                        </div>
+                        <div class="align-self-center ps-1">
+                            <h5 class="pt-1 mb-n1">Total earnings</h5>
+                            <p class="mb-0 font-11 opacity-50">since day of deposit</p>
+                        </div>
+                        <div class="align-self-center ms-auto text-end">
+                            <h4 class="pt-1 mb-n1 color-green-dark">£{{user_details.Profits|intcomma}}</h4>
+                            <p class="mb-0 font-12 opacity-50">Market status({{user_details.TradeStatus}})</p>
+                        </div>
+                    </a>
+                    <a data-bs-toggle="offcanvas" data-bs-target="#menu-activity" href="#" class="d-flex pb-3">
+                        <div class="align-self-center">
+                            <span class="icon rounded-s me-2 gradient-blue shadow-bg shadow-bg-xs"><i
+                                    class="bi bi-arrow-repeat font-20 color-white"></i></span>
+                        </div>
+                        <div class="align-self-center ps-1">
+                            <h5 class="pt-1 mb-n1">Amount in trade</h5>
+                            <p class="mb-0 font-11 opacity-50">initial deposit</p>
+                        </div>
+                        <div class="align-self-center ms-auto text-end">
+                            
+                            <h4 class="pt-1 mb-n1 color-green-dark">£{{ total_invested|intcomma}}</h4>
+                            <p class="mb-0 font-12 opacity-50">invested amount</p>
+                        </div>
+                    </a>
+                    <a data-bs-toggle="offcanvas" data-bs-target="#menu-activity" href="#" class="d-flex pb-3">
+                        <div class="align-self-center">
+                            <span class="icon rounded-s me-2 gradient-mint shadow-bg shadow-bg-xs"><i
+                                    class="bi bi-plus font-24 color-white"></i></span>
+                        </div>
+                        <div class="align-self-center ps-1">
+                            <h5 class="pt-1 mb-n1">Bonuses</h5>
+                            <p class="mb-0 font-11 opacity-50">account activites</p>
+                        </div>
+                        <div class="align-self-center ms-auto text-end">
+                            <h4 class="pt-1 mb-n1 color-green-dark">£{{ user_details.Bonus|intcomma}}</h4>
+                            <p class="mb-0 font-12 opacity-50">spendable</p>
+                        </div>
+                    </a>
+                    <h6 style="padding: 15px 0px;" class="text-muted">Your assigned account manager  is: <strong class="color-green-dark">{{user_details.AccountManager}}</strong></h6>
+                </div>
+                {% if 'Active' in user_details.TradeStatus %}
+                <p style="padding-left:15px ;" class="text-muted">You have <span class="color-green-dark">1 trade ongoing</span></p>
+            </div>
+            {% else %}
+            <p style="padding-left:15px ;" class="text-muted color-red-dark">You have 0 trades ongoing</p>
+            {% endif %}
+        </div>
+        <small class="text-muted mb-5" style="margin-left: 20%;">refresh page for chart updates </small>
+        <div style="text-align: center;  padding: 10px 40px;" class="card card-style px-0">
+            <div style="display: inline-flex;">
+            <h4 style="margin: 20px ;" class="text-muted">Investment analysis</h4>
+            {% for date in charts %}
+            <p style="margin: 20px 0px 0px 100px">last updated: {{date.date}} </p>
+            {% endfor %}
+            </div>
+        <canvas width="400" height="300" id="myChart"></canvas>
+        </div>
+
+        <div style="padding: 44px; margin-bottom: 100px; align-items: center !important; justify-content: center;" class="card card-style px-0">
+            <h5 class="">Logs: <span id="fluctuatingNumbers" class="fluctuating-numbers"></span></h5>
+            <!-- <h4 style="margin-top: 20px; text-align: center;" class="text-muted">.</h4> -->
+            <canvas id="customChart" width="400" height="400"></canvas>
+        </div>
+        <!-- End of Page Content-->
+
+        <!-- Off Canvas and Menu Elements-->
+        <!-- Always outside the Page Content-->
+
+        <!-- Activity Sidebar Menu -->
+
+
+        <!-- Main Sidebar Menu -->
+        <div id="menu-sidebar" data-menu-active="nav-pages" data-menu-load="{% url 'opener' %}"
+            class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+        </div>
+
+
+        <!-- Notifications Bell -->
+        <div id="menu-notifications" data-menu-load="{% url 'notifications' %}"
+            class="offcanvas offcanvas-top offcanvas-detached rounded-m">
+        </div>
+
+
+    </div>
+    
+    <!-- End of Page ID-->
+        <script>
+
+          // Function to refresh the page only once
+            function refreshPage() {
+                if (!sessionStorage.getItem('pageRefreshed')) {
+                    location.reload();
+                    sessionStorage.setItem('pageRefreshed', 'true');
+                };
+            };
+             setTimeout(refreshPage, 3000);
+
+
+        </script>
+            <script>
+                var chartConfig = 
+                    {
+                        type: 'radialGauge',
+                        data: { datasets: [{ data: [70], backgroundColor: 'green' }] },
+                        options: {
+                            layout: {
+                                padding: {
+                                    bottom: 30,
+                                },
+                            },
+                            plugins: {
+                                annotation: {
+                                    annotations: [
+                                        {
+                                            type: 'text',
+                                            x: 50,
+                                            y: 50,
+                                            text: 'Trade progress',
+                                            font: {
+                                                size: 20,
+                                                weight: 'bold',
+                                            },
+                                            textAlign: 'center',
+                                            color: 'black',
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                    }
+                var ctx = document.getElementById('radialGaugeChart').getContext('2d');
+
+                var Chart = new Chart(ctx, chartConfig);
+            </script>
+    <script>
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chartConfig = {
+            type: 'line',
+            data: {
+                labels: [
+                    'Day one - 25%',
+                    'Day two - 25%',
+                    'Day three - 64%',
+                    'Day four - 64%',
+                    'Day five - 64%',
+                ],
+                datasets: [
+                    {% for deposit in charts %}
+                    {
+                        
+                        label: 'Deposits',
+                        data: [{{deposit.deposits_day_one}}, {{ deposit.deposits_day_two }}, {{ deposit.deposits_day_three }}, {{deposit.deposits_day_four}}, {{deposit.deposits_day_five}}],
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.4)',
+                    },
+                    {% endfor %}
+                    {% for losses in charts %}
+                    {
+                        label: 'Losses incurred',
+                        data: [{{losses.losses_day_one}}, {{losses.losses_day_two}}, {{losses.losses_day_three}}, {{losses.losses_day_four}}, {{losses.losses_day_five}}],
+                        borderColor: 'rgb(192, 75, 75)',
+                        backgroundColor: 'rgba(192, 100, 100, 0.4)',
+                        pointHoverBackgroundColor: 'rgba(192, 100, 100, 0.4)',
+                        pointHoverBorderColor: 'rgba(192, 100, 100, 1)',
+                        pointHoverRadius: 5,
+                        pointHoverBorderWidth: 2,
+                        pointHoverBorderCapStyle: 'round',
+                        pointHoverBorderDash: [5, 5],
+                        pointHoverBorderDashOffset: 2,
+                        pointHoverBorderJoinStyle: 'round',
+                        pointHoverMode: 'label',
+                        pointHoverIntersect: true,
+                        pointHoverRotation: 90,
+                        pointHoverLabel: 'You lost here'
+                    },
+                    {% endfor %}
+                    {% for profits in charts %}
+                    {
+                        label: 'Profits accrued',
+                        data: [{{profits.profits_day_one}}, {{profits.profits_day_two}}, {{profits.profits_day_three}}, {{profits.profits_day_four}}, {{profits.profits_day_five}}],
+                        borderColor: 'rgb(50, 65, 200)',
+                        backgroundColor: 'rgba(50, 65, 200, 0.4)',
+                    },
+                    {% endfor %}
+                ],
+            },
+            options: {
+                layout: {
+                    padding: {
+                        bottom: 30,
+                    },
+                },
+                plugins: {
+                    watermark: {
+                        text: 'ProfitPulse',
+                        color: 'rgba(0, 0, 0, 0.4)',
+                        font: {
+                            size: 100,
+                            weight: 'bold',
+                        },
+                    },
+                },
+            },
+        };
+
+        // Create the chart
+        var myChart = new Chart(ctx, chartConfig);
+
+        </script>
+
+        <script>
+            // Initialize your chart data
+            var chartData = {
+                labels: ['10.01', '20.01', '30.01', '40.01', '50.01', '60.01', '70.01', '80.01', '90.01', '99.09',],
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'Buy/Long',
+                        borderColor: 'rgb(54, 162, 235)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)',
+                        borderWidth: 2,
+                        fill: true,
+                        data: generateRandomData(),
+                    },
+                    {
+                        type: 'line',
+                        label: 'Sell/Short',
+                        borderColor: 'rgb(255, 110, 100)',
+                        backgroundColor: 'rgba(255, 110, 100, 0.4)',
+                        borderWidth: 2,
+                        fill: true,
+                        data: generateRandomData(), 
+                    },
+                   
+                ],
+            };
+
+           
+            var ctx = document.getElementById('customChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'My Chart',
+                        textDecoration: 'underline',
+                    },
+                    animation: {
+                        duration: 0, 
+                    },
+                },
+            });
+
+           
+            function generateRandomData() {
+                var data = [];
+                for (var i = 0; i < 10; i++) {
+                    data.push(Math.random() * 100 - 50);
+                }
+                return data;
+            }
+
+            
+            function updateChartData() {
+                
+                chartData.datasets.forEach(dataset => {
+                    dataset.data.shift(); 
+                    dataset.data.push(Math.random() * 100 - 50); 
+                });
+
+                
+                myChart.update();
+            }
+
+            
+            setInterval(updateChartData, 2000); 
+        </script>
+        <script>
+            function updateFluctuatingNumbers() {
+                   
+                    var randomNumber = Math.floor(Math.random() * 90000) + 10000;
+
+                    var numberString = randomNumber.toString();
+
+                    var displayString = "";
+                    for (var i = 0; i < numberString.length; i++) {
+                        if (numberString[i] === "0") {
+                            displayString += "<span class='red-zero'>0</span>";
+                        } else if (numberString[i] === "1") {
+                            displayString += "<span class='yellow-one'>1</span>";
+                        } else {
+                            displayString += numberString[i];
+                        }
+                    }
+                    document.getElementById("fluctuatingNumbers").innerHTML = displayString;
+
+                    setTimeout(updateFluctuatingNumbers, Math.random() * 500 + 200);
+                }
+
+                updateFluctuatingNumbers();
+        </script>
+
+    <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+    <script src="{% static 'scripts/custom.js' %}"></script>
+</body>
+</html>

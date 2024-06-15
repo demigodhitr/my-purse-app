@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Profit Purse</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Download App</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-style">
+            <div class="content">
+                <p>
+                    Install myProfitPurse to your homescreen and use it as a native App.
+                   
+                </p>
+                <h6 class="opacity-50 font-11">Tap to See Available platforms.</h6>
+                <div class="list-group list-custom list-group-m rounded-xs">
+                    <a data-bs-toggle="offcanvas" data-bs-target="#menu-install-pwa-ios" href="#" class="list-group-item">
+                        <i class="bi bi-phone-fill color-green-dark font-16"></i>
+                        <div>iOS Window</div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a data-bs-toggle="offcanvas" data-bs-target="#menu-install-pwa-android" href="#" class="list-group-item">
+                        <i class="bi bi-phone-fill color-gray-dark font-16"></i>
+                        <div>Android Window</div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a data-bs-toggle="offcanvas" data-bs-target="#menu-install-pwa-pc" href="#" class="list-group-item">
+                        <i class="bi bi-laptop-fill color-gray-dark font-16"></i>
+                        <div>PC Window </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="{% url 'opener' %}"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+
+   <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-ios">
+       <div class="content">
+        <!-- i was here --demi--  -->
+          <h1 class="text-center">Install myProfitPurse App</h1>
+          <p class="boxed-text-xl">
+              Install myProfitPurse on your home screen, and access it just like a regular app. Open your Safari menu and tap "Add to Home Screen".
+          </p>
+           <a href="#" class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-50 font-11 text-center d-block mt-n2" data-bs-dismiss="offcanvas">Maybe Later</a>
+       </div>
+   </div>
+
+   <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-android">
+       <div class="content">
+           
+           <h1 class="text-center">Install ProfitPulse</h1>
+           <p class="boxed-text-l">
+               Install PayApp to your Home Screen to enjoy a unique and native experience.
+           </p>
+           <a href="#" id="installButton" class="pwa-install btn btn-m rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s btn-full">Add to Home Screen </a><br>
+           <script>
+            	let deferredPrompt;
+
+                    window.addEventListener('beforeinstallprompt', (e) => {
+                        // Prevent the default browser prompt
+                        e.preventDefault();
+
+                        // Store the event for later use
+                        deferredPrompt = e;
+
+                        document.getElementById('installButton').style.display = 'block';
+                    });
+
+                    document.getElementById('installButton').addEventListener('click', () => {
+                        deferredPrompt.prompt();
+                        deferredPrompt.userChoice.then((choiceResult) => {
+                            if (choiceResult.outcome === 'accepted') {
+                                console.log('User accepted the install prompt');
+                            } else {
+                                console.log('User dismissed the install prompt');
+                            }
+                            deferredPrompt = null;
+                            document.getElementById('installButton').style.display = 'none';
+
+
+                        });
+                    });
+           </script>
+           <a href="#" data-bs-dismiss="offcanvas" class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-60 font-11 text-center d-block mt-n1">Maybe later</a>
+       </div>
+   </div>
+   <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-pc">
+       <div class="content">
+        <!-- i was here --demi--  -->
+          <h1 class="text-center">Install myProfit Purse App</h1>
+          <p class="boxed-text-xl">
+              Install myProfitPurse on your home screen, and access it just like a regular app. Click on the desktop icon in your tab bar to download app".
+          </p>
+           <a href="#" class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-50 font-11 text-center d-block mt-n2" data-bs-dismiss="offcanvas">Maybe Later</a>
+       </div>
+   </div>
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

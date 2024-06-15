@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Trade Has Been Completed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00cc00;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img style="width: 100%;"
+            src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+            alt="company logo">
+        <h1>Congratulations Investor !!</h1>
+        <p>Dear {{ userprofile.user.first_name }},</p>
+        <p>We are pleased to inform you that your trade has been successfully completed and earnings settled in your Purse account. you may login to confirm</p>
+        <p>For reference, review your completed trade details below:</p>
+        <!-- Trade details -->
+        <ul>
+            <li><strong>Initial Capital: </strong>£{{ userprofile.Deposits }}</li><br>
+            <li><strong>Accrued Profits: </strong>£ {{ userprofile.Profits }}</li>
+            <li><strong>Trade Status:</strong> Completed</li>
+            <li><strong>Assigned Account Manager:</strong> {{ userprofile.AccountManager }}</li>
+        </ul>
+        <p>Thank you for choosing our service!</p>
+        <p>Best Regards,</p>
+        <p>The Finance Team</p>
+        <p><a href="https://www.example.com">ProfitPulse LTD</a></p>
+    </div>
+</body>
+
+</html>

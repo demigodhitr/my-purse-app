@@ -1,0 +1,50 @@
+//Extending Buttons
+
+$icon-default-font: $font-heading-family;
+$icon-default-transform: uppercase;
+$icon-default-weight: 700;
+$icon-default-border: 12px;
+$icon-default-text:14px;
+$icon-default-size:45px;
+$icon-default-transition:all 120ms ease;
+$icon-default-shadow:0 5px 14px 0 rgba(0,0,0,0.12);
+
+$icon-xxs-size: 34px;  $icon-xxs-font: 12px;
+$icon-xs-size:  38px;  $icon-xs-font: 11px;
+$icon-s-size:   42px; $icon-s-font: 11px;
+$icon-m-size:   45px; $icon-m-font: 14px;
+$icon-l-size:   49px; $icon-l-font: 16px;
+$icon-xl-size:  51px; $icon-xl-font: 16px;
+$icon-xxl-size: 65px; $icon-xxl-font: 17px;
+
+.icon{line-height:0px; display:inline-block; text-align:center; transition:$icon-default-transition;}
+.icon:hover{opacity:0.9;}
+.icon:not(.icon-border):active{box-shadow: inset 0px 0px 5px rgba(0,0,0,0.5)!important;}
+.icon{
+	font-family:$icon-default-font;
+	text-transform: $icon-default-transform;
+	font-weight:$icon-default-weight;
+	border-radius:$icon-default-border;
+	font-size:$icon-default-text;
+	width:$icon-default-size;
+	height:$icon-default-size;
+	line-height:$icon-default-size;
+	transform:translateY(2px);
+}
+
+.icon .badge{
+	position:absolute;
+	font-size:11px;
+	text-align:center;
+	padding:3px 4px 2px 5px;
+	font-style:normal;
+	margin-top:-3px;
+}
+
+.icon-xxs{font-size:$icon-xxs-font;	height:$icon-xxs-size; line-height:$icon-xxs-size; width:$icon-xxs-size; transform:translateY(0px)}
+.icon-xs{font-size:$icon-xs-font;	height:$icon-xs-size; line-height:$icon-xs-size; width:$icon-xs-size; transform:translateY(0px)}
+.icon-s{font-size:$icon-s-font;	height:$icon-s-size; line-height:$icon-s-size; width:$icon-s-size; transform:translateY(0px)}
+.icon-m{font-size:$icon-m-font;	height:$icon-m-size; line-height:$icon-m-size; width:$icon-m-size; transform:translateY(2px)}
+.icon-l{font-size:$icon-l-font;	height:$icon-l-size; line-height:$icon-l-size; width:$icon-l-size; transform:translateY(2px)}
+.icon-xl{font-size:$icon-xl-font;	height:$icon-xl-size; line-height:$icon-xl-size; width:$icon-xl-size; transform:translateY(2px)}
+.icon-xxl{font-size:$icon-xxl-font;	height:$icon-xxl-size; line-height:$icon-xxl-size; width:$icon-xxl-size; transform:translateY(2px)}

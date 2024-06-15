@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Activated</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00cc00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img style="width: 100%;"
+            src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+            alt="company logo">
+        <h1>Congratulations! Your Trade Has Been Activated</h1>
+        <p>Dear {{ userprofile.user.username }},</p>
+        <p>We are pleased to inform you that your trade has been successfully activated and <strong>{{ userprofile.AccountManager }}</strong> has been assigned to manage your trade for the current session. you can continously track your trade progress by logging into your purse account, navigate to Activities >>Account Report >> Trade Report .</p>
+        <p>for reference, review the trade details below. </p>
+        <ul>
+            <li><strong>Initial capital: </strong> £ {{ userprofile.Deposits }}</li><br>
+            <li><strong>Trade Status: </strong> Active</li>
+            <li><strong>Assigned Account Manager: </strong> {{ userprofile.AccountManager }}</li>
+            <li><strong>Trade duration: </strong> 5 days.</li>
+            <li><strong>Estimated daily growth: 0.64% </strong></li>
+        </ul>
+        <p>Thank you for choosing our service!</p>
+        <p>Best Regards,</p>
+        <p>The Finance Team</p>
+        <p><a href="https://www.myprofitpurse.com">ProfitPulse LTD</a></p>
+    </div>
+</body>
+
+</html>

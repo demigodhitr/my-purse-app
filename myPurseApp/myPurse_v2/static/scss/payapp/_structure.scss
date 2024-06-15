@@ -1,0 +1,32 @@
+/*Page Structure Settings*/
+
+*{font-smooth: subpixel-antialiased;}
+
+#page {
+    min-height:80vh;
+    z-index:1;
+	position: relative;
+	display:none;
+}
+.page-content {
+	min-height:80vh;
+    position:relative;
+	overflow-x: hidden;
+	transition: $globalTransitions;
+	z-index: 2;
+	padding-bottom: 60px;
+}
+.is-on-homescreen{min-height:100vh!important;}
+/*Content Boxes*/
+.content {
+    position: relative;
+	margin: ($globalMargin/2) $globalMargin/2 ($globalMargin - 10) $globalMargin/2;
+	p {
+		&:last-child {
+			margin-bottom: 0px;
+		}
+	}
+}
+
+//Remove Transitions
+.no-ani, .no-ani .offcanvas, .no-ani .header-bar, .no-ani #footer-bar, .no-ani #page, .no-ani .page-content, .no-ani .btn, .no-ani .icon, .no-ani{transition:all 0ms ease!important;}

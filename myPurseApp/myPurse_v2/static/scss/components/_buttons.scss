@@ -1,0 +1,73 @@
+/*Buttons*/
+
+$btn-default-font: $font-heading-family;
+$btn-default-transform: uppercase;
+$btn-default-weight: 700;
+$btn-default-border: 12px;
+$btn-default-text:13px;
+$btn-default-size:14px 20px;
+$btn-default-transition:all 120ms ease;
+$btn-default-shadow:0 5px 14px 0 rgba(0,0,0,0.1);
+
+$btn-xxs-size: 8px 13px;  $btn-xxs-font: 11px;
+$btn-xs-size:  9px 14px;  $btn-xs-font: 12px;
+$btn-s-size:   12px 18px; $btn-s-font: 12px;
+$btn-m-size:   13px 20px; $btn-m-font: 13px;
+$btn-l-size:   13px 22px; $btn-l-font: 14px;
+$btn-xl-size:  14px 24px; $btn-xl-font: 15px;
+$btn-xxl-size: 15px 28px; $btn-xxl-font: 15px;
+
+//General Settings//
+////////////////////
+.btn{color:#FFF; display:inline-block; transition:$btn-default-transition;}
+.btn:hover{opacity:0.9; color:#FFF;}
+.btn:focus{box-shadow:none!important;}
+.btn:not(.btn-border):active{box-shadow: inset 0px 0px 5px rgba(0,0,0,0.5)!important;}
+.btn{
+	font-family:$btn-default-font;
+	text-transform: $btn-default-transform;
+	font-weight:$btn-default-weight;
+	border-radius:$btn-default-border;
+	font-size:$btn-default-text;
+	padding:$btn-default-size;
+	box-shadow:$btn-default-shadow;
+}
+
+.btn-3d{
+	border-bottom-width: 4px!important;
+	border-left:none;
+	border-right:none;
+	border-top:none;
+}
+.btn-3d:hover{
+	opacity:1!important;
+	border-bottom:solid 0px rgba(255,255,255,0)!important;
+}
+.btn-3d:active{
+	opacity:1!important;
+	border-bottom:solid 0px rgba(255,255,255,0)!important;
+}
+
+//Button Sizes
+//////////////
+.btn-xxs{font-size:$btn-xxs-font;	padding:$btn-xxs-size;}
+.btn-xs{font-size:$btn-xs-font;	padding:$btn-xs-size;}
+.btn-s{font-size:$btn-s-font;	padding:$btn-s-size;}
+.btn-m{font-size:$btn-m-font;	padding:$btn-m-size;}
+.btn-l{font-size:$btn-l-font;	padding:$btn-l-size;}
+.btn-xl{font-size:$btn-xl-font;	padding:$btn-xl-size;}
+.btn-xxl{font-size:$btn-xxl-font;	padding:$btn-xxl-size;}
+
+.btn-full{display:block;}
+
+//Button Badges
+///////////////
+.btn .badge{
+	font-size:9px;
+	margin-left:10px;
+	padding:3px 5px;
+	border-radius:5px;
+}
+
+.btn .badge-border{	border:solid 1px #FFF;	color:#FFF;}
+.btn .badge-shadow{	box-shadow:inset 0px 0px 3px rgba(0,0,0,0.3)!important;	color:#FFF;}

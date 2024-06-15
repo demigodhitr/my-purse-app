@@ -1,0 +1,665 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>myPurse </title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url page_payment %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+	<!-- Header Bar-->
+	<div class="header-bar header-fixed header-app header-auto-show">
+		<a href="#" data-back-button><i class="bi bi-chevron-left font-13"></i></a>
+		<a href="#" class="header-title">Back to Components</a>
+		<a href="#" data-toggle-theme class="show-on-theme-dark"><i class="bi bi-sun-fill color-yellow-dark font-16"></i>
+		<a href="#" data-toggle-theme class="show-on-theme-light"><i class="bi bi-moon-fill font-13"></i>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="font-16 bi bi-list"></i></a>
+	</div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Inputs</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+		<div class="card card-style">
+			<div class="content">
+				<p class="mb-3">
+					All the input styles you could ever need, styled to match your device and powered by HTML5 validation for maximum compatibility.
+				</p>
+
+				<div class="alert bg-fade2-blue alert-dismissible color-blue-dark rounded-s fade show pe-2" role="alert">
+					<strong>Note:</strong> To view all available styles, use the toggles below to switch between views. Inputs have a variety of styles available.
+				</div>
+
+				<a href="#" data-trigger-switch="switch-1s" class="demo-icons d-flex pb-1">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-13 opacity-80">Show / Hide Icons</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-green switch-xs">
+							<input type="checkbox" class="ios-input" id="switch-1s" checked>
+							<label class="custom-control-label" for="switch-1s"></label>
+						</div>
+					</div>
+				</a>
+				<a href="#" data-trigger-switch="switch-2s" class="demo-boxed d-flex pb-1">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-13 opacity-80">Boxed / Unboxed Layout</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-green switch-xs">
+							<input type="checkbox" class="ios-input" id="switch-2s" checked>
+							<label class="custom-control-label" for="switch-2s"></label>
+						</div>
+					</div>
+				</a>
+				<a href="#" data-trigger-switch="switch-3s" class="demo-floating d-flex pb-4">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-13 opacity-80">Inside / Floating Label</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-green switch-xs">
+							<input type="checkbox" class="ios-input" id="switch-3s" checked>
+							<label class="custom-control-label" for="switch-3s"></label>
+						</div>
+					</div>
+				</a>
+
+				<form class="demo-animation needs-validation m-0" novalidate>
+					<div class="form-custom form-label form-icon mb-3">
+						<i class="bi bi-person-circle font-14"></i>
+						<input type="text" class="form-control rounded-xs" id="c1" placeholder="John Doe" pattern="[A-Za-z ]{1,32}" required />
+						<label for="c1" class="color-theme">Your Name</label>
+						<div class="valid-feedback">Excellent!<!-- text for field valid--></div>
+						<div class="invalid-feedback">Name is Missing or Invalid</div>
+						<span>(required)</span>
+					</div>
+					<div class="form-custom form-label form-icon mb-3">
+						<i class="bi bi-at font-16"></i>
+						<input type="email" class="form-control rounded-xs" id="c2" placeholder="name@example.com" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
+						<label for="c2" class="color-theme">Your Email</label>
+						<div class="valid-feedback">Email address looks good!<!-- text for field valid--></div>
+						<div class="invalid-feedback">Email is missing or is invalid.</div>
+						<span>(required)</span>
+					</div>
+					<div class="form-custom form-label form-icon mb-3">
+						<i class="bi bi-asterisk font-12"></i>
+						<input type="password" class="form-control rounded-xs" id="c2a" placeholder="Password" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" required />
+						<label for="c2a" class="color-theme">Your Password</label>
+						<div class="valid-feedback">Password address looks good!<!-- text for field valid--></div>
+						<div class="invalid-feedback">Minumum 8 characters, 1 Number and 1 Capital Letter.</div>
+						<span>(required)</span>
+					</div>
+					<div class="form-custom form-label form-icon mb-3">
+						<i class="bi bi-telephone-fill font-12"></i>
+						<input type="tel" class="form-control rounded-xs" id="c3" placeholder="+1 234 567 315" pattern="[+ 0-9]{10,15}" required />
+						<label for="c3" class="color-theme">Your Phone</label>
+						<div class="valid-feedback">Phone Number looks good!<!-- text for field valid--></div>
+						<div class="invalid-feedback">Phone Number is missing or is invalid.</div>
+						<span>(required)</span>
+					</div>
+					<div class="form-custom form-label form-icon mb-3">
+						<i class="bi bi-globe2 font-12"></i>
+						<input type="url" class="form-control rounded-xs" id="c4" placeholder="https://www.google.com" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
+						<label for="c4" class="color-theme">Your Website</label>
+						<div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
+						<div class="invalid-feedback">Website is missing or is invalid.</div>
+						<span>(required)</span>
+					</div>
+					<div class="form-custom form-label form-icon mb-3">
+						<i class="bi bi-calendar font-12"></i>
+						<input type="date" class="form-control rounded-xs" id="c5" min="2021-01-01" value="2021-06-01" />
+						<label for="c5" class="color-theme">Select a Date</label>
+						<div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
+					</div>
+					<div class="form-custom form-label form-icon mb-3">
+						<i class="bi bi-check-circle font-13"></i>
+						<select class="form-select rounded-xs" id="c6" aria-label="Floating label select example">
+							<option selected>Mobile PWA</option>
+							<option value="1">Bootstrap 5</option>
+							<option value="2">Vanilla JavaScript</option>
+							<option value="3">Latest Web Technologies</option>
+						</select>
+						<label for="c6" class="color-theme">Select an Option</label>
+						<div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
+					</div>
+					<div class="form-custom form-label form-icon mb-3">
+						<i class="bi bi-pencil-fill font-12"></i>
+						<textarea class="form-control rounded-xs" placeholder="Leave a comment here" id="c7"></textarea>
+						<label for="c7" class="color-theme">Your Message</label>
+						<div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
+					</div>
+
+					<button class="btn btn-full bg-blue-dark rounded-xs text-uppercase font-700 w-100 btn-s mt-4" type="submit">Submit form</button>
+				</form>
+
+				<div class="divider mt-4"></div>
+				<h4>Colors, Sizes, Always Active</h4>
+				<p>
+					The input fields allow you to always show the label, set coloured icons or even increase the font size all from
+					simple utility classes.
+				</p>
+				<div class="form-custom form-label form-icon mb-3">
+					<i class="bi bi-person-circle color-blue-dark font-14"></i>
+					<input type="text" class="form-control rounded-xs" id="c1d" placeholder="John Doe" pattern="[A-Za-z ]{1,32}" required />
+					<label for="c1d" class="form-label-always-active color-blue-dark">Your Name</label>
+					<div class="valid-feedback">Excellent!<!-- text for field valid--></div>
+					<div class="invalid-feedback">Name is Missing or Invalid</div>
+					<span>(required)</span>
+				</div>
+
+			</div>
+		</div>
+		
+		<div class="card card-style">
+			<div class="content mb-0">
+				<h3>Checkbox and Radio Styles</h3>
+				<p>
+					All the input styles you could ever need, styled to match your device and powered by HTML5 validation for maximum compatibility.
+				</p>
+			</div>
+			<div class="content">
+				<div class="row">
+					<div class="col-6">
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c1b">
+							<label class="form-check-label" for="c1b">Classic 1</label>
+							<i class="is-checked color-green-dark bi bi-check-circle-fill"></i>
+							<i class="is-unchecked color-highlight bi bi-circle-fill"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c2c">
+							<label class="form-check-label" for="c2c">Classic 2</label>
+							<i class="is-checked color-green-dark bi bi-check-circle"></i>
+							<i class="is-unchecked color-highlight bi bi-circle"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c2ad">
+							<label class="form-check-label" for="c2ad">Classic 3</label>
+							<i class="is-checked color-green-dark bi bi-check-circle"></i>
+							<i class="is-unchecked color-red-dark bi bi-x-circle"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c3ef">
+							<label class="form-check-label" for="c3ef">Minimalist</label>
+							<i class="is-checked color-green-dark bi bi-check2 font-16"></i>
+							<i class="is-unchecked color-red-dark bi bi-x font-18"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c3a">
+							<label class="form-check-label" for="c3a">Thumbs Up</label>
+							<i class="is-checked color-green-dark bi bi-hand-thumbs-up-fill"></i>
+							<i class="is-unchecked color-blue-dark bi bi-hand-thumbs-down-fill"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c4g">
+							<label class="form-check-label" for="c4g">Smile/Emoji</label>
+							<i class="is-checked color-green-dark bi bi-emoji-smile"></i>
+							<i class="is-unchecked color-yellow-dark bi bi-emoji-frown"></i>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c12">
+							<label class="form-check-label" for="c12">Classic 1</label>
+							<i class="is-checked color-green-dark bi bi-check-square-fill"></i>
+							<i class="is-unchecked color-highlight bi bi-square-fill"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c22">
+							<label class="form-check-label" for="c22">Classic 2</label>
+							<i class="is-checked color-green-dark bi bi-check-square"></i>
+							<i class="is-unchecked color-highlight bi bi-square"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c2a2">
+							<label class="form-check-label" for="c2a2">Classic 3</label>
+							<i class="is-checked color-green-dark bi bi-check-square"></i>
+							<i class="is-unchecked color-red-dark bi bi-x-square"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c32">
+							<label class="form-check-label" for="c32">Minimalist</label>
+							<i class="is-checked color-green-dark bi bi-check-square"></i>
+							<i class="is-unchecked color-red-dark bi bi-dash-square"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c3a2">
+							<label class="form-check-label" for="c3a2">Thumbs Up</label>
+							<i class="is-checked color-green-dark bi bi-hand-thumbs-up"></i>
+							<i class="is-unchecked color-blue-dark bi bi-hand-thumbs-down"></i>
+						</div>
+						<div class="form-check form-check-custom">
+							<input class="form-check-input" type="checkbox" value="" id="c42">
+							<label class="form-check-label" for="c42">Star/Love</label>
+							<i class="is-checked color-yellow-dark bi bi-star-fill"></i>
+							<i class="is-unchecked color-gray-dark bi bi-star"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<h4>Range Sliders</h4>
+				<p>
+					Mobile friend range sliders with classic CSS code. Fully compatible with
+					any mobile device.
+				</p>
+
+				<div class="range-1">
+					<h6 class="opacity-50">Classic Range Slider</h6>
+					<input type="range" class="form-range" min="0" max="100" id="range1a">
+				</div>
+				<div class="mt-3"></div>
+				<div class="range-2">
+					<h6 class="opacity-50">Slider Thumb Inside</h6>
+					<input type="range" class="form-range" min="0" max="100" id="range1b">
+				</div>
+				<div class="mt-3"></div>
+				<h6 class="opacity-50">Range Slider Modern</h6>
+				<div class="d-flex">
+					<div>
+						<i class="opacity-60 bi bi-volume-down-fill pe-3 font-22"></i>
+					</div>
+					<div class="range-3 w-100">
+						<input type="range" class="form-range" min="0" max="100" id="range1c" value="52">
+					</div>
+					<div>
+						<i class="opacity-60 bi bi-volume-up-fill ps-3 font-22"></i>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<h3>File Upload</h3>
+				<p>
+					All the input styles you could ever need, styled to match your device and powered by HTML5 validation for maximum compatibility.
+				</p>
+				<ul class="ps-3">
+					<li>Using WebAPI's</li>
+					<li>Retrieve file data and info</li>
+					<li>Preview the Uploaded Image</li>
+				</ul>
+				<div class="divider mb-0"></div>
+				<div class="file-data">
+					<img id="image-data" src="images/empty.png" class="img-fluid rounded-s" alt="img">
+					<span class="upload-file-name d-block text-center"
+						  data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> Image:"
+						  data-text-after=" is ready.">
+					</span>
+					<div>
+						<input type="file" class="upload-file" accept="image/*">
+						<p class="btn btn-full btn-m text-uppercase font-700 rounded-s upload-file-text bg-highlight">Upload Image</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<h3>Switches</h3>
+				<p>
+					Platform agnostic switches with color highlights. Built using inputs for perfect integration in any scenario.
+				</p>
+				<ul class="mb-0 ps-3">
+					<li>Android and iOS</li>
+					<li>Multiple Colors</li>
+					<li>Can Contain icons</li>
+					<li>Small, Medium, Large</li>
+					<li>Ability to Toggle Content</li>
+					<li>Ability to Toggle Dark Mode</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content my-3">
+				<h4>iOS Styled</h4>
+				<p>
+					Designed to look like iOS switches, they support multiple colors and the ability to add icons
+					or text inside the switch.
+				</p>
+				<a href="#" data-trigger-switch="switch-1" class="d-flex pb-3">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-700 font-15">iOS Switch Classic</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-green switch-m">
+							<input type="checkbox" class="ios-input" id="switch-1" checked>
+							<label class="custom-control-label" for="switch-1"></label>
+						</div>
+					</div>
+				</a>
+
+				<a href="#" data-trigger-switch="switch-2" class="d-flex pb-3">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-700 font-15">iOS Switch with Icon</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-blue switch-m">
+							<i class="font-22 color-white bi bi-check opacity-50"></i>
+							<input type="checkbox" class="ios-input" id="switch-2">
+							<label class="custom-control-label" for="switch-2"></label>
+							<i class="font-22 color-theme bi bi-x opacity-30"></i>
+						</div>
+					</div>
+				</a>
+
+				<a href="#" data-trigger-switch="switch-3" class="d-flex pb-2">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-700 font-15">iOS Switch with Text</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-red switch-m">
+							<i class="color-white font-9">ON</i>
+							<input type="checkbox" class="ios-input" id="switch-3">
+							<label class="custom-control-label" for="switch-3"></label>
+							<i class="color-theme font-9">OFF</i>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+
+
+		<div class="card card-style">
+			<div class="content my-3">
+				<h4>What can Switches do?</h4>
+				<p>
+					Switches can be used to toggle content, show dark modes or any other purpose where an input or a toggle feature
+					can be used! The sky is the limit!
+				</p>
+
+				<a data-bs-toggle="collapse" href="#collapse1" aria-controls="collapse1" data-trigger-switch="switch-1ab" class="d-flex">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-700 font-15">Toggle Box Content</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-green switch-m">
+							<input type="checkbox" class="ios-input" id="switch-1ab">
+							<label class="custom-control-label" for="switch-1ab"></label>
+						</div>
+					</div>
+				</a>
+				<div class="collapse" id="collapse1">
+					<p class="pt-1">
+						This content is hidden by default but revealed when the user taps. It can be shown by default too!
+					</p>
+				</div>
+
+				<div class="mb-3"></div>
+
+				<a href="#" data-toggle-theme data-trigger-switch="switch-1ac" class="d-flex">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-700 font-15">Toggle Dark Mode</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-green switch-m">
+							<input type="checkbox" class="ios-input" data-toggle-theme id="switch-1abc">
+							<label class="custom-control-label" for="switch-1abc"></label>
+						</div>
+					</div>
+				</a>
+
+
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content my-3">
+				<h4>Android Styled</h4>
+				<p>
+					Designed to look like iOS switches, they support multiple colors and the ability to add icons
+					or text inside the switch.
+				</p>
+				<a href="#" data-trigger-switch="switch-1a" class="d-flex pb-3">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-700 font-15">Android Switch Classic</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch android-switch switch-blue switch-m">
+							<input type="checkbox" class="android-input" id="switch-1a" checked>
+							<label class="custom-control-label" for="switch-1a"></label>
+						</div>
+					</div>
+				</a>
+
+				<a href="#" data-trigger-switch="switch-2a" class="d-flex pb-3">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-700 font-15">Android Switch Short</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch android-switch android-switch-short switch-red switch-m">
+							<input type="checkbox" class="android-input" id="switch-2a">
+							<label class="custom-control-label" for="switch-2a"></label>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<h4>Different Sizes</h4>
+				<p>
+					Select your favorite size. It's easy. Just add a class!
+				</p>
+				<a href="#" data-trigger-switch="switch-1s" class="d-flex pb-2">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-14">Small</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-red switch-s">
+							<input type="checkbox" class="ios-input" id="switch-1s" checked>
+							<label class="custom-control-label" for="switch-1s"></label>
+						</div>
+					</div>
+				</a>
+				<a href="#" data-trigger-switch="switch-2m" class="d-flex pb-2">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-14">Medium</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-green switch-m">
+							<input type="checkbox" class="ios-input" id="switch-2m" checked>
+							<label class="custom-control-label" for="switch-2m"></label>
+						</div>
+					</div>
+				</a>
+				<a href="#" data-trigger-switch="switch-3l" class="d-flex pb-2 mb-1">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-17">Large</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-blue switch-l">
+							<input type="checkbox" class="ios-input" id="switch-3l" checked>
+							<label class="custom-control-label" for="switch-3l"></label>
+						</div>
+					</div>
+				</a>
+
+				<hr>
+
+				<a href="#" data-trigger-switch="switch-1s2" class="d-flex pb-2">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-14">Small</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch android-switch switch-red switch-s">
+							<input type="checkbox" class="android-input" id="switch-1s2" checked>
+							<label class="custom-control-label" for="switch-1s2"></label>
+						</div>
+					</div>
+				</a>
+				<a href="#" data-trigger-switch="switch-2m2" class="d-flex pb-2">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-14">Medium</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch android-switch switch-green switch-m">
+							<input type="checkbox" class="android-input" id="switch-2m2" checked>
+							<label class="custom-control-label" for="switch-2m2"></label>
+						</div>
+					</div>
+				</a>
+				<a href="#" data-trigger-switch="switch-3l2" class="d-flex pb-2">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-17">Large</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch android-switch switch-blue switch-l">
+							<input type="checkbox" class="android-input" id="switch-3l2" checked>
+							<label class="custom-control-label" for="switch-3l2"></label>
+						</div>
+					</div>
+				</a>
+
+
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<h4>Steppers</h4>
+				<p>
+					Perfect for increasing your quantity in carts or setting higher or lower values.
+				</p>
+
+				<h6 class="opacity-40">Classic Icons</h6>
+				<div class="row">
+					<div class="col-6">
+						<div class="stepper rounded-s">
+							<a href="#" class="stepper-sub float-start"><i class="bi bi-dash font-18 color-theme opacity-40"></i></a>
+							<input type="number" class="color-theme" min="1" max="99" value="1">
+							<a href="#" class="stepper-add float-end"><i class="bi bi-plus font-18 color-theme opacity-40"></i></a>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="stepper rounded-xs">
+							<a href="#" class="stepper-sub float-start"><i class="bi bi-dash-circle font-16 color-theme opacity-20"></i></a>
+							<input type="number" class="color-theme" min="1" max="99" value="1">
+							<a href="#" class="stepper-add float-end"><i class="bi bi-plus-circle font-16 color-theme opacity-20"></i></a>
+						</div>
+					</div>
+				</div>
+
+				<h6 class="opacity-40 pt-4">Color Icons</h6>
+				<div class="row">
+					<div class="col-6">
+						<div class="stepper rounded-s">
+							<a href="#" class="stepper-sub float-start"><i class="bi bi-dash font-18 color-red-dark"></i></a>
+							<input type="number" class="color-theme" min="1" max="99" value="1">
+							<a href="#" class="stepper-add float-end"><i class="bi bi-plus font-18 color-green-dark"></i></a>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="stepper rounded-xs">
+							<a href="#" class="stepper-sub float-start"><i class="bi bi-dash-circle font-16 color-red-dark"></i></a>
+							<input type="number" class="color-theme" min="1" max="99" value="1">
+							<a href="#" class="stepper-add float-end"><i class="bi bi-plus-circle font-16 color-green-dark"></i></a>
+						</div>
+					</div>
+				</div>
+
+				<h6 class="opacity-40 pt-4">Text Labels</h6>
+				<div class="row">
+					<div class="col-6">
+						<div class="stepper rounded-xxs">
+							<a href="#" class="stepper-sub float-start color-theme opacity-30">Less</a>
+							<input type="number" class="color-theme" min="1" max="99" value="1">
+							<a href="#" class="stepper-add float-end color-theme opacity-30">More</a>
+						</div>
+
+					</div>
+					<div class="col-6">
+						<div class="stepper rounded-xxs">
+							<a href="#" class="stepper-sub float-start color-red-dark">Less</a>
+							<input type="number" class="color-theme" min="1" max="99" value="1">
+							<a href="#" class="stepper-add float-end color-green-dark">More</a>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

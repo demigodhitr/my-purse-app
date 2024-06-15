@@ -1,0 +1,20 @@
+/*Offline Detector*/
+.offline-message, .online-message {
+	position: fixed;
+	transform: translateY(300%);
+	padding-bottom: 0px;
+	font-weight: 700;
+	font-family:$font-heading-family;
+	transition: $globalTransitions;
+	bottom: 10px;
+	left: 10px;
+	right: 10px;
+	z-index: 95;
+	padding-left:15px;
+	border-radius:12px;
+	line-height: 50px;
+}
+.offline-message-active, .online-message-active {
+	transform: translateY(calc(-70px + (constant(safe-area-inset-bottom))));
+	transform: translateY(calc(-70px + (env(safe-area-inset-bottom))));
+}

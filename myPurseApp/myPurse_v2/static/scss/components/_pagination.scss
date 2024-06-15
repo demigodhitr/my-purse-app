@@ -1,0 +1,23 @@
+/*Pagination*/
+.pagination {
+	margin-bottom: $globalMargin;
+	.page-link {
+		padding: 6px 14px;
+	}
+	.page-item {
+		margin-right: 5px;
+	}
+	i{
+		padding:0px;
+	}
+	
+	.page-item:first-child .page-link,
+	.page-item:last-child .page-link{
+		padding:6px 12px!important;
+	}
+}
+.page-item.active {
+	a {
+		color: $color_white !important;
+	}
+}

@@ -1,0 +1,38 @@
+<!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+<div id="menu-notification" class="menu-size" style="height:365px;">
+    <div class="d-flex mx-3 mt-3 py-1">
+        <div class="align-self-center">
+            <h1 class="mb-0">Notifications</h1>
+        </div>
+        <div class="align-self-center ms-auto">
+            <a href="#" class="py-3 ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+                <i class="bi bi-x color-red-dark font-26"></i>
+            </a>
+        </div>
+    </div>
+    {% if notifications %}
+    {% for notification in notifications %}
+    <div class="content pb-2">       
+        <a href="#" class="d-flex py-1">
+            
+            <div class="align-self-center ps-1">
+                <h5 class="pt-1 mb-n1">{{ notification.title }}</h5>
+                <p class="mb-0 font-11"><strong>{{ notification.message }}</strong></p>
+                <p class="mb-0 font-10 opacity-70">{{ notification.created_at }}</p>
+            </div>
+            <div class="divider my-2 opacity-50"></div>
+            
+        </a>      
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="content pb-2">
+        <a href="#" class="d-flex py-1">
+            <div class="align-self-center ps-1">
+                <h5 class="pt-1 mb-n1">You have no notifications at this moment</h5>
+            </div>
+            <div class="divider my-2 opacity-50"></div>
+        </a>
+    </div>
+    {% endif %}
+</div>

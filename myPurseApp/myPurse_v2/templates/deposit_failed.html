@@ -1,0 +1,58 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff0000;
+        }
+        
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <img style="width: 100%;"
+        src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+        alt="company logo">
+    <h1>Deposit Failed</h1>
+    <p>Dear {{ deposit.user.username }},</p>
+    <p>We regret to inform you that your recent payment attempt has failed.</p>
+    <p>For reference, please review the deposit submission details below:</p>
+    <ul>
+        <li><strong>Deposit amount:</strong> £{{ deposit.DepositAmount|intcomma }}</li><br>
+        <li><strong>Deposit network:</strong> {{ deposit.Network }}</li><br>
+        <li><strong>Deposit status:</strong> {{ deposit.status }}</li><br>
+        <li><strong>Transaction ID:</strong> #DEP{{ deposit.requestID }}</li><br>
+        <li><strong>Deposit date:</strong> {{ deposit.created_at|date:"F d, Y H:i:s" }}</li>
+
+    </ul>
+    <h5><strong>Important Message:</strong></h5>
+    <p><em>{{ deposit.status_message }}</em></p>
+    <br>
+    <p>Thank you;</p>
+    <p>The Finance Team</p>
+    <p><a href="https://www.myprofitpurse.com">ProfitPulse LTD</a></p>
+</div>
+
+</body>
+
+</html>

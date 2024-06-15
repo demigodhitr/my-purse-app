@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ProfitPulse</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+	<!-- Header Bar-->
+	<div class="header-bar header-fixed header-app header-auto-show">
+		<a href="#" data-back-button><i class="bi bi-chevron-left font-13"></i></a>
+		<a href="#" class="header-title">Back to Pages</a>
+		<a href="#" data-toggle-theme class="show-on-theme-dark"><i class="bi bi-sun-fill color-yellow-dark font-16"></i>
+		<a href="#" data-toggle-theme class="show-on-theme-light"><i class="bi bi-moon-fill font-13"></i>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="font-16 bi bi-list"></i></a>
+	</div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Your Goals</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+		
+		<div class="card card-style bg-3 shadow-card shadow-card-l" data-card-height="150"> 
+			<div class="card-top text-end p-3">
+				<h1 class="color-white font-24">1/5</h1>
+				<p class="font-8 color-white mt-n3">Complete</p>
+			</div>
+			<div class="card-bottom p-3">
+				<h1 class="color-white mb-n1">Focus on your Goals</h1>
+				<p class="color-white mb-0 opacity-40">Your goals are here. Any style, any design.</p>
+			</div>
+			<div class="card-overlay bg-gradient-fade"></div>
+		</div>
+		
+		<div class="row text-center">
+			<div class="col-6 mb-n2">
+				<a href="#" class="card card-style me-0" style="height:170px">
+					<div class="card-top mt-4">
+						<span class="icon icon-l rounded-m gradient-green shadow-bg shadow-bg-xs"><i class="bi bi-truck font-24 color-white"></i></span>
+						<h1 class="font-22 pt-3 line-height-m">New Truck</h1>
+					</div>
+					<div class="card-bottom mx-3 mb-3">
+						<div class="progress rounded-xs bg-theme border border-green-light" style="height:20px">
+							<div class="progress-bar gradient-green text-start ps-3 font-600 font-10" role="progressbar" 
+								style="width: 84%" aria-valuenow="29" aria-valuemin="0" aria-valuemax="100">
+								84%
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-6 mb-n2">
+				<a href="#" class="card card-style ms-0" style="height:170px">
+					<div class="card-top mt-4">
+						<span class="icon icon-xl rounded-m gradient-orange shadow-bg shadow-bg-xs"><i class="bi bi-house font-24 color-white"></i></span>
+						<h1 class="font-22 pt-3">New House</h1>
+					</div>
+					<div class="card-bottom mx-3 mb-3">
+						<div class="progress rounded-xs bg-theme border border-blue-light" style="height:20px">
+							<div class="progress-bar gradient-blue text-start ps-3 font-600 font-10" role="progressbar" 
+								style="width: 64%" aria-valuenow="29" aria-valuemin="0" aria-valuemax="100">
+								64%
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<div class="d-flex">
+					<div>
+						<h6 class="opacity-30 mb-n1">Entertainment</h6>
+						<h3 class="mb-2">Gaming Console</h3>
+					</div>
+					<div class="align-self-end ms-auto">
+						<h3 class="mb-2">$1.499</h3>
+					</div>
+				</div>
+				<div class="progress rounded-xs bg-theme border border-blue-light" style="height:35px">
+					<div class="progress-bar gradient-blue text-start ps-3 font-600 font-10" role="progressbar" 
+						style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100">
+						78%
+					</div>
+				</div>
+				<div class="d-flex mt-3">
+					<div>
+						<h6 class="opacity-30 mb-n1">Entertainment</h6>
+						<h3 class="mb-2">iPhone Fold</h3>
+					</div>
+					<div class="align-self-end ms-auto">
+						<h3 class="mb-2">$5.499</h3>
+					</div>
+				</div>
+				<div class="progress rounded-xs bg-theme border border-green-light" style="height:35px">
+					<div class="progress-bar gradient-green text-start ps-3 font-600 font-10" role="progressbar" 
+						style="width: 85%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100">
+						85%
+					</div>
+				</div>
+				<div class="d-flex mt-3">
+					<div>
+						<h6 class="opacity-30 mb-n1">Long Term</h6>
+						<h3 class="mb-2">Vacation</h3>
+					</div>
+					<div class="align-self-end ms-auto">
+						<h3 class="mb-2">$4.999</h3>
+					</div>
+				</div>
+				<div class="progress rounded-xs bg-theme border border-yellow-light" style="height:35px">
+					<div class="progress-bar gradient-yellow text-start ps-3 font-600 font-10" role="progressbar" 
+						style="width: 53%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+						53%
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+		<a href="{% url 'progress' %}" class="btn btn-m btn-full mx-3 gradient-highlight shadow-bg shadow-bg-s mb-4">More Progress Components</a>
+
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="{% url 'opener' %}"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="{% url 'highlights' %}"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js%}"></script>
+<script src="{% static 'scripts/custom.js%}"></script>
+</body>

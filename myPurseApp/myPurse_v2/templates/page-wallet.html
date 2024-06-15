@@ -1,0 +1,1146 @@
+{% load static %}
+{% load humanize %}
+{% load custom_filters %}
+{% load cache %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <style>
+	    .alert {
+            display: none;
+            animation: fadeInOut 10s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+            opacity: 0;
+            }
+            7%, 93% {
+            opacity: 1;
+            }
+        }
+        #backgroundVideo{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofMhU1aH+MqJ4me5foPpL5g5BvggM" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <!-- Bootstrap JS (Optional, if you need Bootstrap JavaScript features)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"></script> -->
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#121212">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>User Wallet</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'app/icons/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'app/icons/favicon-16x16.png' %}">
+</head>
+<style>
+    body {
+    color-scheme: dark;
+}
+</style>
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<!-- Footer Bar -->
+<div id="page">
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}" class="active-nav"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center me-auto">
+                    <p class="color-highlight">Hello {{user.first_name}}</p>
+                    <h1 class="color-theme">Cards</h1>
+
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#menu-notifications"
+                    class="icon gradient-blue color-white shadow-bg shadow-bg-xs rounded-m">
+                        <i class="bi bi-bell-fill font-17"></i>
+                        <em class="badge bg-red-dark color-white scale-box">{{ notifications_count }}</em>
+                    </a>
+                    <a href="#"
+                    data-bs-toggle="dropdown"
+                    class="icon gradient-blue shadow-bg shadow-bg-s rounded-m">
+                        <img src="{{ profile_image.url }}" width="45" height="45" class="rounded-m" alt="img">
+                    </a>
+                    <!-- Page Title Dropdown Menu-->
+                    <div class="dropdown-menu">
+                        <div class="card card-style shadow-m mt-1 me-1">
+                            <div class="list-group list-custom list-group-s list-group-flush rounded-xs px-3 py-1">
+                                <a href="{% url 'wallet' %}" class="list-group-item">
+                                    <i class="has-bg gradient-green shadow-bg shadow-bg-xs color-white rounded-xs bi bi-credit-card"></i>
+                                    <strong class="font-13">Wallet</strong>
+                                </a>
+                                <a href="{% url 'activities' %}" class="list-group-item">
+                                    <i class="has-bg gradient-blue shadow-bg shadow-bg-xs color-white rounded-xs bi bi-graph-up"></i>
+                                    <strong class="font-13">Activity</strong>
+                                </a>
+                                <a href="{% url 'profile' %}" class="list-group-item">
+                                    <i class="has-bg gradient-yellow shadow-bg shadow-bg-xs color-white rounded-xs bi bi-person-circle"></i>
+                                    <strong class="font-13">Account</strong>
+                                </a>
+                                <a onkeypress="tidioChatApi.display(true);tidioChatApi.open()" onclick="tidioChatApi.display(true);tidioChatApi.open()" href="#" class="list-group-item">
+                                    <i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-phone-fill"></i>
+                                    <strong class="font-13">Contact Support</strong>
+                                </a>
+                                <a href="{% url 'logout' %}" data-bs-toggle="offcanvas" data-bs-target="menu-request-pending" class="list-group-item">
+                                    <i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-power"></i>
+                                    <strong class="font-13">Log Out</strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card Stack - The Stack Height Below will be the card height-->
+        <div class="card-stack" data-stack-height="180">
+           
+            <!-- Card Open on Click-->
+            <div class="card-stack-click"></div>
+            
+            <!-- Card 1-->
+            <div class="card card-style bg-5">
+                <div class="card-top p-3">
+                </div>
+                <div class="card-center">
+                    <div class="bg-theme px-3 py-2 rounded-end d-inline-block">
+                        <h1 class="font-13 my-n1">
+                            <a class="color-theme" data-bs-toggle="collapse" href="#balance3" aria-controls="balance2">Click for Balance</a>
+                        </h1>
+                        <div class="collapse" id="balance3"><h2 class="color-theme font-26">£ {{ UserDetails.total_balance|intcomma }}</h2></div>
+                    </div>
+                </div>
+                <strong class="card-top no-click font-12 p-3 color-white font-monospace">Main Balance</strong>
+                <div class="card-overlay bg-black opacity-50"></div>
+            </div>
+            
+            <!-- Card 2 -->
+            {% if cards %}
+            {% for card in cards %}
+            <div style="position: relative; z-index: 1;" class="card card-style bg-6">
+                <video id="backgroundVideo" playsinline autoplay muted loop>
+                    <source src="{% static 'videos/card-bg.mp4' %}" type="video/mp4" >
+                </video>
+                <div class="card-top p-3">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-card-more"
+                        class="icon icon-xxs bg-white color-black float-end"><i class="bi bi-three-dots font-18"></i></a>
+                </div>
+                <div class="card-center">
+                    <div style="z-index: 1;" class="bg-theme px-3 py-2 rounded-end d-inline-block">
+                        <h1 class="font-13 my-n1">
+                            <a class="color-theme" data-bs-toggle="collapse" href="#balanceone" aria-controls="balanceone">Click for Balance</a>
+                        </h1>
+                        <div class="collapse" id="balanceone"><h2 class="color-theme font-20">£ {{ card.available_amount|intcomma }}</h2></div>
+                    </div>
+                </div>
+                <strong class="card-top no-click font-12 p-3 color-white font-monospace">Transaction Card</strong>
+                <strong class="card-bottom no-click font-22 p-3 text-start color-white font-monospace">{{ card.card_number|format_number }}</strong>
+
+                <strong  id="cvvb" style="z-index: 3; position: absolute; left: 50%; bottom: 10%;" class="card-bottom no-click p-3 text-center font-10 color-highlight font-monospace"><span id="cvv">cvv: {{card.cvv}}</span></strong>
+
+                <strong class="card-bottom no-click p-3 text-end color-white font-monospace">exp: {{ card.expiry_date|date:"m/Y" }}</strong>
+                <div class="card-overlay bg-black opacity-50"></div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="card card-style bg-7">
+                <div class="card-top p-3">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-add-card"
+                        class="mt-5 icon icon-xxs bg-white color-black float-end"><i class="bi bi-three-dots font-18"></i></a>        
+                </div>
+                <div class="card-bottom">
+                    <div class="bg-theme px-3 py-2 rounded-end d-inline-block">
+                        <h1 class="font-13 my-n1">
+                            <a class="color-theme" data-bs-toggle="collapse" href="#balance1" aria-controls="balance1">Click for
+                                Balance</a>
+                        </h1>
+                        <div class="collapse" id="balance1">
+                            <h5 class="color-red-dark font-16">Not activated</h5>
+                        </div>
+                    </div>
+                </div>
+                <strong class="card-top no-click font-12 p-3 color-white font-monospace">Enjoy free and secured blockchain transactions. Pay for online purchases and subscriptions with pounds (GBP) wherever debit cards are accepted using your virtual card. Tap the menu to request your card</strong>
+                <strong class="card-bottom no-click p-3 text-start color-white font-monospace"></strong>
+                <strong id="currentYear" class="card-bottom no-click p-3 text-end color-white font-monospace">Not set</strong>
+                <div class="card-overlay bg-black opacity-50"></div>
+            </div>
+            <script>
+                var year = new Date().getFullYear()
+                document.getElementById("currentYear").innerHTML = year
+            </script>
+            {% endif %}
+
+            
+
+        </div>
+        
+        <!-- Card Stack Info Message / Hides when deployed -->
+        <h6 class="btn-stack-info color-theme opacity-80 text-center mt-n2 mb-3">Tap the Cards to Expand your Wallet</h6>
+        <!-- Card Stack Button / shows when deployed -->
+        <a href="#" class="disabled btn-stack-click btn mx-3 mb-4 btn-full gradient-highlight shadow-bg shadow-bg-xs">Close my Wallet</a>
+
+        <!-- Tabs-->
+        <div class="card card-style">
+            <div class="content mb-0">
+                
+                <!-- Tab Wrapper-->
+                <div class="tabs tabs-pill" id="tab-group-2">
+                    <!-- Tab Controls -->
+                    <div class="tab-controls rounded-m p-1">
+                        <a class="font-13 rounded-m" data-bs-toggle="collapse" href="#tab-5" aria-expanded="true">Withdrawals</a>
+                        <a class="font-13 rounded-m" data-bs-toggle="collapse" href="#tab-x" aria-expanded="false">Deposits</a>
+                    </div>
+                    
+                    <!-- Tab 1 -->
+
+                    <!-- Tab 2-->
+                    <div class="collapse show" id="tab-5" data-bs-parent="#tab-group-2">
+                        <div class="form-custom form-label form-border form-icon mt-0 mb-0">
+                            <i class="bi bi-check-circle font-13"></i>
+                           
+                        </div>
+                        <div class="list-group list-custom list-group-m list-group-flush rounded-xs">
+                            <a href="{% url 'activities' %}" class="list-group-item">
+                                <i class="has-bg gradient-green color-white rounded-xs bi bi-cash-coin"></i>
+                                <div><strong> Withdrawals</strong><span></span></div>
+                                <span class="badge bg-transparent color-theme text-end font-15">
+                                {{withdrawal_count}}<br>
+                                   <em class="fst-normal font-12 opacity-30"></em>
+                                </span>
+                                <br><br><br>
+                            </a>
+
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 3 -->
+                    <div class="collapse" id="tab-x" data-bs-parent="#tab-group-2">
+
+                        <div class="divider my-2 opacity-50"></div>
+                        <a href="{% url 'activities' %}" class="d-flex py-1">
+                            <div class="align-self-center">
+                                <span class="icon rounded-s me-2 gradient-green shadow-bg shadow-bg-xs"><i class="bi bi-caret-down-fill color-white"></i></span>
+                            </div>
+                            <div class="align-self-center ps-1">
+                                <h5 class="pt-1 mb-n1">Deposits</h5>
+                            </div>
+                            <div class="align-self-center ms-auto text-end">
+                                <h4 class="pt-1 mb-n1 color-blue-dark">{{deposit_count}}</h4>
+                                <p class="mb-0 font-11"></p>
+                            </div>
+                        </a>
+                        <div class="divider my-2 opacity-50"></div>
+                        <div class="pb-3"></div>
+                    </div>
+                    
+                    <!-- End of Tabs-->
+                </div>
+                
+                <!-- End of Tab Wrapper-->
+            </div>
+        </div>
+                
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Withdrawal menu start-->
+    <!-- Withdrawal menu start-->
+    <!-- Withdrawal menu start-->
+    
+    <div id="menu-sell" style="height:100%;" class="offcanvas offcanvas-top">
+        <div class="d-flex m-3">
+            <div class="align-self-center">
+                <h2 class="font-700 mb-0">Send crypto </h2>
+            </div>
+            <div class="align-self-center ms-auto">
+                <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                </a>
+            </div>
+        </div>
+        <div class="content mt-0">
+            <p class="mb-4">
+                You can send your balance in crypto, cost-free to any external account through bitcoin, usdt-erc20,
+                usdt-trc20, and ethereum network. You can only send to wallet addresses you have specified for payment
+                through your account profile.
+            </p>
+            <form autocomplete="off" id="sendCryptoForm">
+                {% csrf_token %}
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Send from
+                    <!-- background color for PCs -->
+                    <select onchange="this.size=1" style="background-color: #000; color: #fff;" name="Source"
+                        class="form-control rounded-xs" id="c1">
+                        <option value="Bonus">Bonus Account</option>
+                        <option value="Deposit">Deposit Account</option>
+                        <option value="Profits">Profits Account</option>
+                        <option value="everything">Withdraw All</option>
+                    </select>
+                    <label for="c1" class="color-theme"></label>
+                    <span>select Source</span>
+                </div>
+    
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Process transaction with
+                    <!-- background color for PCs -->
+                    <select style="background-color: #000; color: #fff;" name="payfrom" class="form-control rounded-xs"
+                        id="c1">
+                        {% if cards %}
+                        {% for card in cards %}
+                        <option value="{{card.expiry_date}}">{{ card.card_number|hide_number }} | {{card.expiry_date|date:"m/Y" }}</option>
+                        {% endfor %}
+                        {% else %}
+                        <option disabled value="">Activate a card to continue</option>
+                        {% endif %}
+                    </select>
+                    <label for="c1" class="color-theme">!</label>
+                    <span>select card to use</span>
+                </div>
+    
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Sending To address
+                    <!-- background color for PCs -->
+                    <select style="background-color: #000; color: #fff;" name="network" class="form-control rounded-xs"
+                        id="c1">
+                        {% if payment_details.bitcoin_address != 'None' %}
+                        <option value="bitcoin">Bitcoin Address </option>
+                        <option value="ethereum">Ethereum Address </option>
+                        <option value="usdt_trc20">USDT TRC20 Address </option>
+                        <option value="usdt_erc20">USDT ERC20 Address </option>
+                        {% else %}
+                        <option disabled value="">Please update recipient through your profile.</option>
+                        {% endif %}
+                    </select>
+                    <label for="c1" class="color-theme"></label>
+                    <span>address to pay</span>
+                </div>
+    
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Amount to send
+                    <input name="amount" type="number" placeholder="5000" class="form-control rounded-xs" id="c1" />
+                    <label for="c1" class="color-theme"></label>
+                    <span></span>
+                </div>
+    
+    
+                <input id="withdrawButton" type="submit" style="min-width: 100%;"
+                    class="btn btn-full gradient-green shadow-bg shadow-bg-xs" value="Withdraw Now" />
+    
+                <div id="withdrawLoader" style="
+    									display: none; 
+    									justify-content: center; 
+    									align-items: center; 
+    									width: 100%;">
+                    <div class="spinner-border color-highlight" role="status"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Withdrawal menu start-->
+    <!-- Withdrawal menu start-->
+    <!-- Withdrawal menu start-->
+    
+    
+    <!-- Depoosit Menu -->
+    <!-- Depoosit Menu -->
+    <!-- Depoosit Menu -->
+    <div id="menu-buy" style="height:100%; width:100%" class="offcanvas offcanvas-modal">
+        <div class="d-flex m-3">
+            <div class="align-self-center">
+                <h2 class="font-700 mb-0">Top up my account</h2>
+            </div>
+            <div class="align-self-center ms-auto">
+                <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                </a>
+            </div>
+        </div>
+        <div class="content mt-0">
+            <div class="card card-style rounded-s m-0 bg-5" style="height:200px">
+                <div class="card-center">
+                    <div class="bg-theme px-3 py-2 rounded-end d-inline-block">
+                        <h1 class="font-13 my-n1">
+                            <a class="color-theme" data-bs-toggle="collapse" href="#balance3" aria-controls="balance3">
+    
+                            </a>
+                        </h1>
+                        <div class="collaps" id="balance3">
+                            <h2 class="color-theme font-26">£ {{UserDetails.total_balance|intcomma}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="pt-3">Send crypto from external wallets to your purse account.</h4>
+            <p class="mb-6">
+                Confirm crypto network and address before sending. <small class="color-green-dark">Tap on any of the
+                    addresses to copy.</small> </p>
+            {% for address in address %}
+            <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">USDT TRC20 Address
+                <input type="text" value="{{address.tether_USDT}}" readonly class="form-control rounded-xs crypto-address"
+                    id="c1" />
+                <label for="c1" class="color-theme"></label>
+                <span></span>
+            </div>
+    
+            <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">USDT ERC20 Address
+                <input type="text" value="{{ address.ERC20_address }}" readonly
+                    class="form-control rounded-xs crypto-address" id="c1" />
+                <label for="c1" class="color-theme"></label>
+                <span></span>
+            </div>
+    
+            <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Ethereum Address.
+                <input type="text" value="{{address.ethereum}}" readonly class="form-control rounded-xs crypto-address"
+                    id="c1" />
+                <label for="c1" class="color-theme"></label>
+                <span></span>
+            </div>
+            <div class="form-custom form-label form-border form-icon mb-10 bg-transparent">Bitcoin Address
+                <input type="text" value="{{address.bitcoin}}" readonly class="form-control rounded-xs crypto-address"
+                    id="c1" />
+                <label for="c1" class="color-theme"></label>
+                <span></span>
+            </div>
+            {% endfor %}
+    
+            <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-bottom-full"
+                class="btn btn-full gradient-green shadow-bg mb-6 mt-5 shadow-bg-xs">Click Here After Sending From Your
+                Wallet</a>
+            <br>
+            <br>
+    
+            <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Cancel </a>
+        </div>
+    </div>
+    <!--  -->
+    
+    
+    <div id="menu-bottom-full" style="height:100%;" class="offcanvas offcanvas-bottom">
+        <div class="d-flex mb-3">
+            <div class="align-self-center">
+                <h2 class="font-700 mb-0">Top up my account</h2>
+            </div>
+            <div class="align-self-center ms-auto">
+                <a id="exit" href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                </a>
+            </div>
+        </div>
+        <form id="addDepositForm">
+            {% csrf_token %}
+            <div class="content mt-0">
+    
+                <h4 class="text-warning pt-3">Information</h4>
+    
+                <p class="mb-4">
+                    Cryptocurrencies that you send will be converted to pounds (GBP) and added to your deposit account!
+                    Uploading a clear transaction proof greatly reduces the confirmation time.
+                </p>
+    
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Top up with
+                    <select name="network" type="text" class="form-control rounded-xs" id="c1">
+                        <option value="bitcoin">Bitcoin </option>
+                        <option value="ethereum">Ethereum </option>
+                        <option value="usdt_trc20">USDT TRC20 </option>
+                        <option value="usdt_erc20">USDT ERC20 </option>
+                    </select>
+                    <label for="c1" class="color-theme"></label>
+                    <span></span>
+                </div>
+    
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Amount Sent
+                    <input name="amount" type="number" placeholder="+500" class="form-control rounded-xs" id="c1" />
+                    <label for="c1" class="color-theme"></label>
+                    <span></span>
+                </div>
+    
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Transaction proof
+                    <input name="slip" type="file" accept="image/*" class="form-control rounded-xs" id="c1" />
+                    <label for="c1" class="color-theme"></label>
+                    <span>Please upload clear slip</span>
+                </div>
+    
+    
+                <button id="top-up" style="min-width: 100%;" type="submit"
+                    class="btn btn-full gradient-green shadow-bg shadow-bg-xs">Top Up My Account!
+                </button>
+                <div id="top-up-preloader" style="
+    				display: none; 
+    				justify-content: center; 
+    				align-items: center; 
+    				width: 100%;">
+                    <div class="spinner-border color-highlight" role="status"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Deposit end -->
+    <!-- Deposit end -->
+    <!-- Deposit end -->
+    
+    
+    <!-- MODALS -->
+    <!-- error modal -->
+    <div style="z-index: 999;" id="alertModal" class="offcanvas offcanvas-top rounded-m offcanvas-detached">
+        <div class="d-flex m-3">
+            <div class="align-self-center">
+                <h2 class="font-700 mb-0">Alert</h2>
+            </div>
+            <div class="align-self-center ms-auto">
+                <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                </a>
+            </div>
+        </div>
+        <div class="content mt-0">
+    
+            <h4 class="text-danger pt-3">Error </h4>
+            <p id="response" class="mb-4">
+    
+            </p>
+            <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Dismiss!</a>
+        </div>
+    </div>
+    <!-- error modal end -->
+    
+    <!-- success modal -->
+    <div id="successModal" class="offcanvas offcanvas-top rounded-m offcanvas-detached">
+        <div class="d-flex m-3">
+            <div class="align-self-center">
+                <h2 class="text-success font-700 mb-0">Success</h2>
+            </div>
+            <div class="align-self-center ms-auto">
+                <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                </a>
+            </div>
+        </div>
+        <div class="content mt-0">
+    
+            <h4 class="pt-3">Message</h4>
+            <p id="successMessage" class="mb-4">
+                message here
+            </p>
+            <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-green shadow-bg shadow-bg-xs">Awesome!</a>
+        </div>
+    </div>
+    <!-- success modal ends here -->
+    
+    <!-- pin modal -->
+    
+    <div id="pinModal" style="z-index: 999; width:320px" class="offcanvas offcanvas-modal rounded-m offcanvas-detached">
+        <div class="d-flex m-3">
+            <div class="align-self-center">
+                <h2 class="font-700 mb-0">Withdrawals </h2>
+            </div>
+            <div class="align-self-center ms-auto">
+                <a id="dx" href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                </a>
+            </div>
+        </div>
+        <div class="content mt-0">
+            <h4 class="pt-3">Authorize Transaction </h4>
+            <p id="pinText" class="mb-4">
+    
+            </p>
+            <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">
+                Authorization Pin
+                <input oninput="checkNumericPassword(this)" name="pin" type="password" autocomplete="new-password"
+                    pattern="\d*" minlength="6" maxlength="6" placeholder="******" class="form-control rounded-xs"
+                    id="pinInput" />
+                <label for="c1" class="color-theme"></label>
+                <span></span>
+    
+                <small id="err" style="display: none;" class="text-danger">Enter only numeric values.</small>
+                <script>
+                    function checkNumericPassword(input) {
+                        const pattern = /^\d*$/;
+                        const isValid = pattern.test(input.value);
+                        if (!isValid) {
+                            document.getElementById("err").style.display = "block";
+                            setTimeout(() => document.getElementById('err').style.display = 'none', 3000)
+                            input.value = '';
+                        }
+                    }
+                </script>
+            </div>
+            <a id="submitPin" href="#" data-bs-dismiss="offcanvas"
+                class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Confirm</a>
+        </div>
+    </div>
+    <!-- pin modal -->
+    
+    <!-- verification modal -->
+    <div id="menu-request-pending" style="width:320px" class="offcanvas offcanvas-modal offcanvas-detached rounded-m">
+        <div class="content text-center">
+            <i style="font-size:65px;"
+                class="scale-box bi bi-question-circle-fill color-blue-dark shadow-s rounded-circle p-0 mt-3 mb-3 d-inline-block"></i>
+            <h1 class="pt-3 font-28">Verification required</h1>
+            <p id="pendingMessage" class="font-14">
+    
+            </p>
+            <a id="verifyButton" href="#" data-bs-toggle="offcanvas"
+                class="btn btn-full gradient-blue shadow-bg shadow-bg-xs">Verify</a>
+        </div>
+    </div>
+    <!-- verification modal -->
+    <!-- MODALS -->
+    
+		</div>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-pages"
+        data-menu-load="{% url 'opener' %}"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+	
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="{% url 'highlights' %}"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+    <!-- Add Card -->
+    <div style="z-index: 100;" id="menu-add-card"
+        class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+        <div class="menu-size" style="height:410px;">
+            <div class="d-flex mx-3 mt-3 py-1">
+                <div class="align-self-center">
+                    <h1 class="mb-0">Request a Card</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a id="xx" href="#" class="py-3 ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+                        <i class="bi bi-x color-red-dark font-26"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="divider divider-margins mt-3"></div>
+                {% csrf_token %}
+                <div class="content mt-0">
+                    <div class="form-custom form-label form-icon mb-3">
+                        <i class="bi bi-person-circle font-14"></i>
+                        <input id="card-holder" name="card-holder" type="text" class="form-control rounded-xs" id="c1" placeholder="John Doe" />
+                        <label for="c1" class="color-highlight form-label-always-active">Cardholder Name</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-custom form-label mb-3">
+                                <input id="amount" name="amount" type="number" class="form-control rounded-xs" id="c3" placeholder="1000" />
+                                <label for="c3" class="color-highlight form-label-always-active">Amount to fund</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider mt-2 mb-4"></div>
+                    <button id="card-button"  style="width: 100%;"
+                        class="btn btn-full gradient-highlight shadow-bg shadow-bg-s">Request Card
+                    </button>
+                    <div id="card-preloader" style="display: none; justify-content: center;align-items: center; width: 100%;">
+                        <div class="spinner-border color-highlight" role="status"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+    <!-- Menu Card More -->
+    <div id="menu-card-more"
+        data-menu-load="{% url 'setCard' %}"
+        class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+    </div>
+    
+    <!-- Notifications Bell -->
+    <div id="menu-notifications" data-menu-load="{% url 'notifications' %}"
+        class="offcanvas offcanvas-top offcanvas-detached rounded-m">
+    </div>
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+<script src="//code.tidio.co/s7s7pkpgzioqwkyxuqph94yrpdafdwdh.js" async></script>
+
+    <script>
+
+        let cardButton = document.getElementById('card-button');
+        let requestLoader = document.getElementById('card-preloader');
+        let errorFeedback = document.getElementById('response');
+        let successFeedback = document.getElementById('successMessage');
+
+        cardButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            cardButton.style.display = 'none';
+            requestLoader.style.display = 'flex';
+            cardHolder = document.getElementById('card-holder').value;
+            amount = document.getElementById('amount').value;
+            if (!cardHolder){
+                dismissModal('xx');
+                errorFeedback.innerHTML = 'Please Enter the card holder\'s name.';
+                showModal('alertModal')
+                setTimeout(() => reset(cardButton, requestLoader), 1200)
+                return;
+            }
+            else if (!amount){
+                errorFeedback.innerHTML = 'Enter the amount you want to fund your new card. amount must be readily available in your Deposit account';
+                dismissModal('xx');
+                showModal('alertModal');
+                setTimeout(() => reset(cardButton, requestLoader), 1200)
+                return;
+            }
+            let data = {'amount': amount, 'name': cardHolder}
+            let url = '{% url "getCard" %}';
+            setTimeout(() => {
+                fetch(url, {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        errorFeedback.innerHTML = data.error;
+                        dismissModal('xx');
+                        showModal('alertModal');
+                        setTimeout(() => reset(cardButton, requestLoader), 1200)
+                    }
+                    else {
+                    successFeedback.innerHTML = data.success;
+                    dismissModal('xx');
+                    showModal('successModal');
+                    setTimeout(() => reset(cardButton, requestLoader), 1200)  
+                        }
+                })
+                .catch((err) => {
+                    errorFeedback.innerHTML ='Error: ' + err;
+                    dismissModal('xx');
+                    showModal('alertModal');
+                    setTimeout(() => reset(cardButton, requestLoader), 1200)
+                });
+            }, 1300);
+        })
+
+
+
+
+        const cvvb = document.getElementById('cvvb');
+        let cvv = document.getElementById('cvv').textContent;
+        let digit = "{% if cards %}{% for cvv in cards %}{{cvv.cvv}}{% endfor %}{% else %}000{% endif %}"
+        cvvb.addEventListener('click', () => {
+            if (cvv !== digits){
+                cvv = digits
+            }
+            else { cvv = '***'}
+        })
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+
+        // submit deposit form to server
+        responseElement = document.getElementById('response')
+        topUpButton = document.getElementById('top-up');
+        preloader = document.getElementById('top-up-preloader');
+        var depositForm = document.getElementById("addDepositForm")
+        depositForm.addEventListener('submit', (e) => {
+            submitDeposit(e);
+        });
+        function submitDeposit(e) {
+            e.preventDefault();
+            topUpButton.style.display = 'none';
+            preloader.style.display = 'flex';
+            let formFields = e.target.elements;
+            for (let i = 0; i < formFields.length; i++) {
+                if (formFields[i].type !== 'submit' && formFields[i].value === '') {
+                    responseElement.innerHTML = "You have not completed the top up details."
+                    showModal('alertModal');
+                    setTimeout(() => reset(topUpButton, preloader), 1200);
+                    return false;
+                }
+            }
+            let formData = new FormData(e.target);
+            let url = '{% url "deposit" %} ';
+            setTimeout(() => {
+                fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            if (data.error) {
+                                responseElement.innerHTML = data.error;
+                                showModal('alertModal');
+                                setTimeout(() => reset(topUpButton, preloader), 1200);
+                                return false;
+                            }
+                        }
+                        else {
+                            for (i = 0; i < formFields.length; i++) {
+                                if (formFields[i].type !== 'submit') {
+                                    formFields[i].value = '';
+                                }
+                            }
+                            let successMessage = document.getElementById('successMessage');
+                            successMessage.innerHTML = data.success;
+                            showModal('successModal');
+                            setTimeout(() => {
+                                reset(topUpButton, preloader),
+                                    dismissModal('exit');
+                            }, 1000);
+                        }
+                    })
+                    .catch((err) => {
+                        responseElement.innerHTML = 'Error encountered: ' + err;
+                        showModal('alertModal');
+                        dismissModal('exit');
+                    })
+            }, 1200);
+        }
+
+
+        // WITHDRAWAL FUNCTIONS.
+        // get the neccessary elements
+        var sendCryptoForm = document.getElementById('sendCryptoForm');
+        var withdraw = document.getElementById('withdrawButton');
+        var withdrawLoader = document.getElementById('withdrawLoader');
+        var errorText = document.getElementById('response');
+        var pinModal = document.getElementById('pinModal');
+        // asynchronously submit the form to the server. 
+        sendCryptoForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            withdraw.style.display = 'none';
+            withdrawLoader.style.display = 'flex';
+            var formFields = this.elements;
+            for (var i = 0; i < formFields.length; i++) {
+
+                if (formFields[i].type !== 'submit' && formFields[i].value === '') {
+                    errorText.innerHTML = 'You have not completed the withdrawal form.';
+                    showModal('alertModal')
+                    setTimeout(() => reset(withdraw, withdrawLoader), 1200)
+                    return false;
+                }
+            }
+            var amount = formFields['amount'].value
+            formData = new FormData(this);
+            var text = "You're withdrawing £" + amount + ' From your ' + formFields['Source'].value + ' account via ' + formFields['network'].value + ' network. To continue, please enter your authorization pin.'
+            displayPinModal('pinModal', text);
+            const pin = await getPin();
+            hideModal('pinModal');
+            formData.append('pin', pin);
+            url = '{% url "withdrawal" %}'
+            setTimeout(() => {
+                fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            if (data.verify) {
+                                messageElement = document.getElementById('pendingMessage');
+                                messageElement.innerHTML = data.verify;
+                                modalID = document.getElementById('menu-request-pending').id;
+                                showModal(modalID);
+                                return;
+                            }
+                            else if (data.error) {
+                                errorText.innerHTML = data.error;
+                                showModal('alertModal');
+                                setTimeout(() => reset(withdraw, withdrawLoader), 1200);
+                                return false;
+                            }
+                        }
+                        else {
+                            formFields['amount'].value = '';
+
+                            document.getElementById('successMessage').innerHTML = data.success;
+                            showModal('successModal');
+                            setTimeout(() => {
+                                reset(withdraw, withdrawLoader)
+                            }, 1000);
+                        }
+                    })
+                    .catch((e) => {
+                        errorText.innerHTML = e;
+                        showModal('alertModal');
+                        reset(withdraw, withdrawLoader)
+                    })
+
+            }, 1000);
+        });
+
+
+
+
+        // Get and return pin via Promise
+        function getPin() {
+            return new Promise((resolve) => {
+                const submitPinButton = document.getElementById('submitPin');
+                const pinInput = document.getElementById('pinInput');
+                submitPinButton.addEventListener('click', function onSubmit(e) {
+                    e.preventDefault();
+                    if (pinInput.value === '') {
+                        errorText.innerHTML = 'Please enter your authorization pin.';
+                        showModal('alertModal');
+                        setTimeout(() => reset(withdraw, withdrawLoader), 1200);
+                        return false;
+                    }
+                    else {
+                        const pin = pinInput.value;
+                        resolve(pin);
+                    }
+                });
+            })
+
+        }
+
+
+        
+
+
+
+
+
+
+
+        // show error modals.
+        function showModal(canvasID) {
+            var modal = new bootstrap.Offcanvas(document.getElementById(canvasID))
+            modal.show();
+            if (canvasID !== 'menu-request-pending') {
+                setTimeout(() => modal.hide(), canvasID === 'successModal' ? 12000 : 5000);
+            }
+            else {
+                verifyButton = document.getElementById('verifyButton').addEventListener('click', () => {
+                    url = '{% url "verification" %}'
+                    window.location.href = url;
+                })
+
+            }
+
+        }
+
+        document.getElementById('dx').addEventListener('click', () => {
+            reset(withdraw, withdrawLoader)
+        })
+
+        function hideModal(modalID) {
+            var modal = new bootstrap.Offcanvas(document.getElementById(modalID))
+            modal.hide();
+        }
+
+        function dismissModal(id) {
+            btn = document.getElementById(id)
+            btn.click();
+        }
+
+        function displayPinModal(modalID, text) {
+            var pinText = document.getElementById('pinText');
+            pinText.innerHTML = text;
+            var modal = new bootstrap.Offcanvas(document.getElementById(modalID));
+            modal.show();
+        }
+
+        // function reset preloader and button after a request reponse is received
+        function reset(button, loader) {
+            document.getElementById('pinInput').value = '';
+            button.style.display = 'block';
+            loader.style.display = 'none';
+        }
+
+
+        // copy input values
+        let container = document.getElementById('menu-buy');
+        inputElements = container.querySelectorAll('input');
+        inputElements.forEach(input => {
+            input.addEventListener('click', () => {
+                copy(input)
+            })
+        })
+
+        // function to copy input values
+        function copy(inputElement) {
+            inputElement.select();
+            inputElement.setSelectionRange(0, 99999)
+            try {
+                document.execCommand('copy');
+                inputElement.classList.add('copied');
+                inputElement.style.color = 'greenyellow';
+                inputElement.style.opacity = 0.2;
+                setTimeout(() => {
+                    inputElement.style.opacity = 1;
+                    inputElement.style.color = 'white';
+                }
+                    , 300);
+            }
+            catch (error) {
+                alert('Could not copy: ' + error);
+            }
+            inputElement.setSelectionRange(0, 0);
+        }
+
+
+
+        // greeting function
+
+        var greetingElement = document.getElementById("greeting");
+        var currentTime = new Date().getHours();
+
+        if (currentTime >= 0 && currentTime < 12) {
+            greetingElement.innerHTML = 'Good morning';
+        }
+        else if (currentTime >= 12 && currentTime < 18) {
+            greetingElement.innerHTML = 'Good afternoon';
+        }
+        else greetingElement.innerHTML = 'Good evening';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var alertElement = document.querySelector('.alert');
+
+
+            alertElement.style.display = 'block';
+
+
+            setTimeout(function () {
+                alertElement.style.display = 'none';
+            }, 5000);
+        });
+
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the default browser prompt
+            e.preventDefault();
+
+            // Store the event for later use
+            deferredPrompt = e;
+
+            document.getElementById('installButton').style.display = 'block';
+        });
+
+        document.getElementById('installButton').addEventListener('click', () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+                document.getElementById('installButton').style.display = 'none';
+
+
+            });
+        });
+
+        // custom styles.
+        let viewAll = document.getElementById('viewAll');
+        let coinsData = document.getElementById('coinsData');
+        viewAll.addEventListener('click', () => {
+            if (coinsData.style.maxHeight === '400px') {
+                coinsData.style.maxHeight = 'auto';
+            }
+            else {
+                coinsData.style.maxHeight = '400px';
+            }
+        })
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var video = document.getElementById('backgroundVideo');
+            video.play().catch((error) => {
+                console.log("There's a problem: " + error);
+            });
+        });
+    </script>
+
+
+<script>
+    (function () {
+        function onTidioChatApiReady() {
+            window.tidioChatApi.hide();
+            window.tidioChatApi.on("close", function () {
+                window.tidioChatApi.hide();
+            });
+        }
+
+        if (window.tidioChatApi) {
+            window.tidioChatApi.on("ready", onTidioChatApiReady);
+        } else {
+            document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+        }
+
+        document.querySelector(".chat-button").addEventListener("click", function () {
+            window.tidioChatApi.show();
+            window.tidioChatApi.open();
+        });
+    })();
+</script>
+</body>
+</html>

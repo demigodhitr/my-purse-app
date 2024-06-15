@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Request Approved</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00cc00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img style="width: 100%;"
+            src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+            alt="company logo">
+        <img style="margin: 0px 0px 0px 45%;"
+            src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/main/check-mark.png" alt="check mark">
+        <h1>Withdrawal Request Approved</h1>
+        <p>Dear {{ withdrawal_request.user.username }},</p>
+        <p>We are pleased to inform you that your recent withdrawal request has been approved.</p>
+        <p>Details of the approved withdrawal:</p>
+        <ul>
+            <li><strong>Withdrawal amount:</strong> £{{ withdrawal_request.amount }}</li><br>
+            <li><strong>Withdrawal network:</strong> {{ withdrawal_request.network }}</li><br>
+            <li><strong>Withdrawal address:</strong> {{ withdrawal_request.address }}</li><br>
+            <li><strong>Status:</strong> {{ withdrawal_request.status }}</li><br>
+            <li><strong>Request ID:</strong> #{{ withdrawal_request.RequestID }}</li><br>
+            <li><strong>Request date:</strong> {{ withdrawal_request.created_at|date:"F d, Y H:i:s" }}</li><br>
+        </ul>
+        <h5><strong>Important Message:</strong></h5>
+        <p><em>{{ withdrawal_request.status_message }}</em></p>
+        <br>
+        <p>Thank you,</p>
+        <p>The Finance Team</p>
+        <p><a href="https://www.myprofitpurse.com">ProfitPulse LTD</a></p>
+    </div>
+</body>
+
+</html>

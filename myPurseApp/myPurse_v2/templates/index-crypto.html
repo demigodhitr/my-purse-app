@@ -1,0 +1,493 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ProfitPulse</title>
+<link rel="stylesheet" type="text/css" href="{% static  'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static  '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static  'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url page_payment %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center me-auto">
+                    <p class="color-highlight">Welcome Back</p>
+                    <h1 class="font-24">Crypto Home</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#menu-notifications"
+                    class="icon gradient-blue color-white shadow-bg shadow-bg-xs rounded-m">
+                        <i class="bi bi-bell-fill font-17"></i>
+                        <em class="badge bg-red-dark color-white scale-box">3</em>
+                    </a>
+                    <a href="#"
+                    data-bs-toggle="dropdown"
+                    class="icon gradient-blue shadow-bg shadow-bg-s rounded-m">
+                        <img src="{% static 'images/pictures/25s.jpg' %}" width="45" class="rounded-m" alt="img">
+                    </a>
+                    <!-- Page Title Dropdown Menu-->
+                    <div class="dropdown-menu">
+                        <div class="card card-style shadow-m mt-1 me-1">
+                            <div class="list-group list-custom list-group-s list-group-flush rounded-xs px-3 py-1">
+                                <a href="{% url 'wallet' %}" class="list-group-item">
+                                    <i class="has-bg gradient-green shadow-bg shadow-bg-xs color-white rounded-xs bi bi-credit-card"></i>
+                                    <strong class="font-13">Wallet</strong>
+                                </a>
+                                <a href="page-activity.html" class="list-group-item">
+                                    <i class="has-bg gradient-blue shadow-bg shadow-bg-xs color-white rounded-xs bi bi-graph-up"></i>
+                                    <strong class="font-13">Activity</strong>
+                                </a>
+                                <a href="page-profile.html" class="list-group-item">
+                                    <i class="has-bg gradient-yellow shadow-bg shadow-bg-xs color-white rounded-xs bi bi-person-circle"></i>
+                                    <strong class="font-13">Account</strong>
+                                </a>
+                                <a href="page-signin-1.html" class="list-group-item">
+                                    <i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-power"></i>
+                                    <strong class="font-13">Log Out</strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<div class="card card-style shadow-card shadow-card-l bg-5" data-card-height="180">
+			<div class="card-top px-3 py-3 mt-1 no-click">
+				<h5 class="color-white font-400 mb-0 opacity-70">Your Balance</h5>
+				<h1 class="color-white font-700 font-30">$435,315</h1>
+			</div>
+			<div class="card-bottom pb-3 px-3">
+				<div class="d-flex">
+					<div class="align-self-end me-auto">
+						<span class="bg-green-dark d-block px-3 py-1 mb-1 rounded-s font-400 font-12"><i class="bi bi-caret-up-fill pe-2"></i> 4.31%</span>
+					</div>
+					<div>
+						<h4 class="color-white font-13 font-400 opacity-70 mb-n1">Today's Profit</h4>
+						<h1 class="color-white font-24 font-700">$2,531</h1>
+					</div>
+				</div>
+			</div>
+			<div class="card-overlay bg-black opacity-70"></div>
+		</div>
+
+		<!-- Title-->
+		<div class="content my-0 px-1">
+			<div class="d-flex">
+				<div class="align-self-center">
+					<h3 class="font-16 mb-2">Your Crypto Coins</h3>
+				</div>
+				<div class="align-self-center ms-auto">
+					<a href="page-activity.html" class="font-12 pt-1">View All</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-style mb-3">
+			<div class="content pb-0">
+				<div class="d-flex">
+					<div>
+						<span class="icon gradient-orange me-2 color-white shadow-bg shadow-bg-xs rounded-m">
+							<i class="bi bi-currency-bitcoin font-24"></i>
+						</span>
+					</div>
+					<div class="ps-1">
+						<h1 class="font-24 mb-n1">BTC</h1>
+						<h5 class="font-14 font-400 opacity-70 mb-n1">Bitcoin</h5>
+					</div>
+					<div class="ms-auto">
+						<span class="color-green-dark rounded-l font-500 font-12 d-block text-end"><i class="bi bi-caret-up-fill pe-2"></i>Up by 4.3%</span>
+						<h1 class="mb-0 mt-n2">$245,250</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card card-style mb-3">
+			<div class="content pb-0">
+				<div class="d-flex">
+					<div>
+						<span class="icon gradient-dark me-2 color-white shadow-bg shadow-bg-xs rounded-m">
+							<i class="bi bi-gem font-24"></i>
+						</span>
+					</div>
+					<div class="ps-1">
+						<h1 class="font-24 mb-n1">ETH</h1>
+						<h5 class="font-14 font-400 opacity-70 mb-n1">Ethereum</h5>
+					</div>
+					<div class="ms-auto text-end">
+						<span class="color-red-dark rounded-l font-500 font-12 d-block text-end"><i class="bi bi-caret-down-fill pe-2"></i>Down 1.24%</span>
+						<h1 class="mb-0 mt-n2">$135,315</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card card-style">
+			<div class="content pb-0">
+				<div class="d-flex">
+					<div>
+						<span class="icon gradient-yellow me-2 color-white shadow-bg shadow-bg-xs rounded-m">
+							<i class="bi bi-currency-yen font-24"></i>
+						</span>
+					</div>
+					<div class="ps-1">
+						<h1 class="font-24 mb-n1">SHI</h1>
+						<h5 class="font-14 font-400 opacity-70 mb-n1">Shiba Iu</h5>
+					</div>
+					<div class="ms-auto text-end">
+						<span class="color-green-dark rounded-l font-500 font-12 d-block text-end"><i class="bi bi-caret-down-fill pe-2"></i>Up by 51.24%</span>
+						<h1 class="mb-0 mt-n2">$216,335</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Title-->
+		<div class="content my-0 px-1">
+			<div class="d-flex">
+				<div class="align-self-center">
+					<h3 class="font-16 mb-2">Crypto Stats</h3>
+				</div>
+				<div class="align-self-center ms-auto">
+					<a href="page-activity.html" class="font-12 pt-1">View All</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content my-2">
+				<a href="#" class="d-flex">
+					<div class="align-self-center w-25">
+						<h4 class="pt-1 mb-n1 font-16">Bitcoin</h4>
+						<h6 class="mb-0 opacity-50">BTC - Crypto</h6>
+					</div>
+					<div class="align-self-center m-auto">
+						<div id="chart-btc" class="chart mt-n5 pt-4 ms-n3"><!-- plugins/apex/apex-call.js --></div>
+					</div>
+					<div class="ms-auto">
+						<h4 class="mb-n1 pt-2">$53,513.313</h4>
+						<h6 class="mb-0 color-green-dark text-end">+1.583%</h6>
+					</div>
+				</a>
+			</div>
+			<div class="content my-2">
+				<a href="#" class="d-flex">
+					<div class="align-self-center w-25">
+						<h4 class="pt-1 mb-n1 font-16">Ethereum</h4>
+						<h6 class="mb-0 opacity-50">ETH - Crypto</h6>
+					</div>
+					<div class="align-self-center m-auto">
+						<div id="chart-eth" class="chart mt-n5 pt-4 ms-n3"><!-- plugins/apex/apex-call.js --></div>
+					</div>
+					<div class="ms-auto">
+						<h4 class="mb-n1 pt-2">$2,531.512</h4>
+						<h6 class="mb-0 color-red-dark text-end">-1.583%</h6>
+					</div>
+				</a>
+			</div>
+			<div class="content my-2">
+				<a href="#" class="d-flex">
+					<div class="align-self-center w-25">
+						<h4 class="pt-1 mb-n1 font-16">Shib</h4>
+						<h6 class="mb-0 opacity-50">Shiba - Crypto</h6>
+					</div>
+					<div class="align-self-center m-auto">
+						<div id="chart-eur" class="chart mt-n5 pt-4 ms-n3"><!-- plugins/apex/apex-call.js --></div>
+					</div>
+					<div class="ms-auto">
+						<h4 class="mb-n1 pt-2">$0,000213</h4>
+						<h6 class="mb-0 color-blue-dark text-end">0.00%</h6>
+					</div>
+				</a>
+			</div>
+		</div>
+
+
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+	<!-- Get Started -->
+	<div id="menu-get-started" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+		<div class="d-flex mx-3 mt-2 py-1">
+			<div class="align-self-center">
+				<h1 class="mb-0">Get Started</h1>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="py-3 ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x color-red-dark font-26"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mb-4">
+			<a href="#" class="d-flex mb-4" data-bs-toggle="offcanvas" data-bs-target="#menu-buy">
+				<div class="align-self-center">
+					<span class="icon icon-l gradient-green me-2 color-white shadow-bg shadow-bg-xs rounded-m">
+						<i class="bi bi-arrow-90deg-up font-16"></i>
+					</span>
+				</div>
+				<div class="align-self-center ps-2">
+					<h4 class="mb-0 mt-1 font-20">Buy</h4>
+					<p class="mb-0">Buy using Local Currency</p>
+				</div>
+			</a>
+			<a href="#" class="d-flex mb-4" data-bs-toggle="offcanvas" data-bs-target="#menu-sell">
+				<div class="align-self-center">
+					<span class="icon icon-l gradient-red me-2 color-white shadow-bg shadow-bg-xs rounded-m">
+						<i class="bi bi-arrow-90deg-down font-16"></i>
+					</span>
+				</div>
+				<div class="align-self-center ps-2">
+					<h4 class="mb-0 mt-1 font-20">Sell</h4>
+					<p class="mb-0">Sell to your Local Currency</p>
+				</div>
+			</a>
+			<a href="#" class="d-flex">
+				<div class="align-self-center" data-bs-toggle="offcanvas" data-bs-target="#menu-exchange">
+					<span class="icon icon-l gradient-blue me-2 color-white shadow-bg shadow-bg-xs rounded-m">
+						<i class="bi bi-arrow-left-right font-16"></i>
+					</span>
+				</div>
+				<div class="align-self-center ps-2">
+					<h4 class="mb-0 mt-1 font-20">Convert</h4>
+					<p class="mb-0">Fast conversion between Coins</p>
+				</div>
+			</a>
+		</div>
+	</div>
+
+	<!-- Sell Menu -->
+	<div id="menu-sell" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+		<div class="d-flex mx-3 mt-3 py-1">
+			<div class="align-self-center">
+				<h1 class="mb-0">Sell your Coin</h1>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x color-red-dark font-26 line-height-xl"></i>
+				</a>
+			</div>
+		</div>
+		<div class="divider divider-margins mt-3"></div>
+		<div class="content mt-0">
+			<div class="row mt-n3">
+				<div class="col-5">
+					<div class="form-custom form-label form-border">
+						<select class="form-select color-blue-dark exchange-select rounded-xs border-0" id="cura">
+							<option value="0" selected>USD</option>
+							<option value="1">EUR</option>
+							<option value="2">BTC</option>
+							<option value="3">ETH</option>
+						</select>
+					</div>
+					<div class="form-custom form-label form-border">
+						<div class="form-custom form-label">
+							<input type="number" class="form-control exchange-value border-0 rounded-xs" id="val1a" placeholder="50.00"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<h5 class="exchange-arrow"><i class="bi bi-arrow-right font-20 ms-n1"></i></h5>
+				</div>
+				<div class="col-5">
+					<div class="form-custom form-label form-border">
+						<select class="form-select color-blue-dark exchange-select rounded-xs border-0" id="curb">
+							<option value="0" selected>EUR</option>
+							<option value="1">USD</option>
+							<option value="2">BTC</option>
+							<option value="3">ETH</option>
+						</select>
+					</div>
+					<div class="form-custom form-label form-border">
+						<div class="form-custom form-label">
+							<input type="number" class="form-control exchange-value border-0 rounded-xs" id="val2a" placeholder="43.35"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="divider mt-3"></div>
+			<div class="form-custom form-label form-icon">
+				<i class="bi bi-wallet2 font-14"></i>
+				<select class="form-select rounded-xs" id="c6a" aria-label="Floating label select example">
+					<option selected>Main Account</option>
+					<option value="1">Savings Account</option>
+					<option value="2">Company Account</option>
+				</select>
+				<label for="c6" class="form-label-always-active color-highlight font-11">Choose Account to Deposit</label>
+			</div>
+			<div class="divider mt-4"></div>
+		</div>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-get-started" class="mx-3 btn btn-full gradient-blue shadow-bg shadow-bg-s mb-4">Sell and Add to Account</a>
+	</div>
+
+	<!-- Buy -->
+	<div id="menu-buy" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+		<div class="d-flex mx-3 mt-3 py-1">
+			<div class="align-self-center">
+				<h1 class="mb-0">Buy Crypto</h1>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x color-red-dark font-26 line-height-xl"></i>
+				</a>
+			</div>
+		</div>
+		<div class="divider divider-margins mt-3"></div>
+		<div class="content mt-0">
+			<div class="form-custom form-label form-icon">
+				<i class="bi bi-wallet2 font-14"></i>
+				<select class="form-select rounded-xs" id="c6a" aria-label="Floating label select example">
+					<option selected>Main Account</option>
+					<option value="1">Savings Account</option>
+					<option value="2">Company Account</option>
+				</select>
+				<label for="c6" class="form-label-always-active color-highlight font-11">Choose Payment Account</label>
+			</div>
+			<div class="divider mt-4"></div>
+			<div class="row mt-n3">
+				<div class="col-5">
+					<div class="form-custom form-label form-border">
+						<select class="form-select color-blue-dark exchange-select rounded-xs border-0" id="cura">
+							<option value="0" selected>USD</option>
+							<option value="1">EUR</option>
+							<option value="2">BTC</option>
+							<option value="3">ETH</option>
+						</select>
+					</div>
+					<div class="form-custom form-label form-border">
+						<div class="form-custom form-label">
+							<input type="number" class="form-control exchange-value border-0 rounded-xs" id="val1a" placeholder="50.00"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<h5 class="exchange-arrow"><i class="bi bi-arrow-right font-20 ms-n1"></i></h5>
+				</div>
+				<div class="col-5">
+					<div class="form-custom form-label form-border">
+						<select class="form-select color-blue-dark exchange-select rounded-xs border-0" id="curb">
+							<option value="0" selected>EUR</option>
+							<option value="1">USD</option>
+							<option value="2">BTC</option>
+							<option value="3">ETH</option>
+						</select>
+					</div>
+					<div class="form-custom form-label form-border">
+						<div class="form-custom form-label">
+							<input type="number" class="form-control exchange-value border-0 rounded-xs" id="val2a" placeholder="43.35"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-get-started" class="mx-3 btn btn-full gradient-green shadow-bg shadow-bg-s mb-4">Buy and Add to Account</a>
+	</div>
+
+	<!-- Buy -->
+	<div id="menu-exchange" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+		<div class="d-flex mx-3 mt-3 py-1">
+			<div class="align-self-center">
+				<h1 class="mb-0">Convert Coin</h1>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x color-red-dark font-26 line-height-xl"></i>
+				</a>
+			</div>
+		</div>
+		<div class="divider divider-margins mt-3"></div>
+		<div class="content mt-0">
+			<div class="row mt-n3">
+				<div class="col-5">
+					<div class="form-custom form-label form-border">
+						<select class="form-select color-blue-dark exchange-select rounded-xs border-0" id="cura">
+							<option value="0" selected>USD</option>
+							<option value="1">EUR</option>
+							<option value="2">BTC</option>
+							<option value="3">ETH</option>
+						</select>
+					</div>
+					<div class="form-custom form-label form-border">
+						<div class="form-custom form-label">
+							<input type="number" class="form-control exchange-value border-0 rounded-xs" id="val1a" placeholder="50.00"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<h5 class="exchange-arrow"><i class="bi bi-arrow-left-right"></i></h5>
+				</div>
+				<div class="col-5">
+					<div class="form-custom form-label form-border">
+						<select class="form-select color-blue-dark exchange-select rounded-xs border-0" id="curb">
+							<option value="0" selected>EUR</option>
+							<option value="1">USD</option>
+							<option value="2">BTC</option>
+							<option value="3">ETH</option>
+						</select>
+					</div>
+					<div class="form-custom form-label form-border">
+						<div class="form-custom form-label">
+							<input type="number" class="form-control exchange-value border-0 rounded-xs" id="val2a" placeholder="43.35"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-get-started" class="mx-3 btn btn-full gradient-red shadow-bg shadow-bg-s mb-4">Convert and Add to Account</a>
+	</div>
+
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar" data-menu-active="nav-welcome" data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+	<!-- Notifications Bell -->
+	<div id="menu-notifications" data-menu-load="menu-notifications.html"
+		class="offcanvas offcanvas-top offcanvas-detached rounded-m">
+	</div>
+
+</div>
+<!-- End of Page ID-->
+
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/custom.js"></script>
+</body>

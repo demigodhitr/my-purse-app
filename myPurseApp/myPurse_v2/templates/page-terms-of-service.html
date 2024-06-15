@@ -1,0 +1,294 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <style>
+        p, li {
+            margin: 20px 0px !important;
+        }
+    </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#121212">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Terms and conditions - Profit Pulse LTD</title>
+<link rel="stylesheet" type="text/css" href="{% static  'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{%  static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+    
+    <!-- Footer Bar
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}" class="active-nav"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div> -->
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#" data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Terms of Service</h1>
+                </div>
+            </div>
+        </div>
+                {% for message in messages %}
+                {% if 'success' in message.tags and 'consent' in message.tags%}
+                <div class="alert alert-success">
+                    {{ message }}                    
+                </div>
+                {% elif 'error' in message.tags and 'consent' in message.tags %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                {% endif %}
+                {% endfor %}
+        
+        <div class="card card-style">
+            <div class="content">
+                <h1 class="mb-0">
+                   Terms & conditions of service.
+                </h1>
+                <p class="mb-0 color-highlight font-12 bottom-10">Modified on 18 December 2023</p>
+                <p>
+                   Welcome to ProfitPulse LTD. This page outlines how we offer our services, how you can use those services and how we use the informations you provide. The following terms and conditions outline the rules and regulations for the use of any of our products or services.
+                </p>
+            </div>
+        </div>
+        <div class="card card-style">
+            <br>
+            <div class="content">
+                <h2 class="">Terms &  Condtions </h2>
+                <p>
+                    By accessing our app, website or any of our product and services, you are agreeing to be bound by our Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this web site are protected by applicable copyright and trade mark law.
+                </p>
+                <h4 class="">1.Information Collection and Use</h4>
+                <ol type="a">
+                    <p>
+                        While using our site, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include but is not limited to:
+                        <ol type="i">
+                            <li><p>Device Name;</p></li>
+                            <li><p>Device Unique Identifier;</p></li>
+                            <li><p>contact information;</p></li>
+                            <li><p>Device details (those made available by your browser/device);</p></li>
+                        </ol>
+                    </p>
+                </ol>
+                <h4 class="">2. Device Log Data</h4>
+                <p>
+                    Like many site operators, we collect information that your browser sends whenever you visit our site ("Log Data").
+                    This Log Data may include but is not limited to information such as:
+                    <ol type="i">
+                        <li>
+                            <p>your computer's Internet Protocol ("IP") address</p>
+                        </li>
+                        <li>
+                            <p>the time and date of your visit.</p>
+                        </li>
+                         <li>
+                            <p>Browser type, version</p>
+                         </li>
+                         <li>
+                            <p>the pages of our site that you visit</p>
+                         </li>
+                         <li>
+                            <p>the time spent on those pages, and other statistics.</p>
+                         </li>
+                    </ol>
+                </p>
+                <h4 class="">3. Cookies & other browser informations.</h4>
+                <p>
+                    We employ the use of cookies very strictly. By using our website or app, you consent to the use of cookies in accordance with our privacy policy. Most interactive websites use cookies to enable us to retrieve user details for each visit. Cookies are used in some areas of our site to enable the functionality of this area and ease of use for those people visiting. Some of our affiliate/advertising partners may also use cookies.
+                </p>
+
+                <h4 class="">4. User Verification</h4>
+                <p>
+                   As a forex investment broker, we are committed to adhering to regulatory requirements. Users from the United States are subject to additional verification processes in line with laws and regulations set forth by the relevant regulatory bodies. This may include the submission of additional documentation to ensure compliance with legal obligations.
+                </p>
+                <h4 class="">5. Security</h4>
+                <p>
+                    We take the security of our website seriously. Any unauthorized attempts to upload or change information, or otherwise
+                    cause damage to this service, are strictly prohibited and may be punishable under applicable law.
+                <br>
+                    By using Our website, you agree that we may collect and process your personal information as described.
+                </p>
+                    <h4 class=""> 6. Services and Fees</h4>
+                    <p class="">
+                        Our fee structures are transparent and pocket friendly. We demand fees for some of our core services to cover service costs. this includes but is not limited to:</p>
+                    <ol type="i">
+                        <li><p><strong>Trading fees.</strong>
+                            Payable at the end of a user's trade successful completion.</p></li>
+                        <li>
+                            <p><strong>Crypto card activation.</strong>
+                            We have now implemented a direct network withdrawal which utilizes 3D payments to process transactions.With our crypto card, withdrawals are automatically confirmed by on the network and are swift. This card is
+                            required for withdrawal related activities. To activate a card, We will request a payment of £1,000.00 only for activation fee. a minimum activation amount of £1,000 is also applicable (for Micro-plans). Crypto Card minimum balance is dependent on user's investment plan. Liaise with your account manager or support team for more info. Investors might not be able to make withdrawals if at least one card is not activated in their account.</p>
+                        </li>
+                        <li>
+                            <p><strong>Other fees.</strong>
+                            We will always publicly communicate changes in our fees structures and any changes or updates made will be made to each user on the system. you can check this page time to time to stay updated on the latest updates
+                            from the company.</p>
+                        </li>
+                
+                    </ol>
+                    <p class="">
+                        Overall, our service fees covers the exceptional services and expertise our team provides throughout our trading process, this fees helps up maintain consistency in our services. Also serves as our contingency plan for any unforeseen losses during the trade. This fee cannot be debited from your account due to account gateway keys encryption, which only
+                        authorised account holder can access. this feature is implementd in line with requirements and regulations set
+                        forth by the regulatory Apex body. The Financial Conduct Authority (F.C.A), United Kingdom.
+                    </p>
+                <h4 class="">7. Changes to Terms</h4>
+                <p>
+                    We reserve the right to change these terms and conditions from time to time. Your continued use of the site will be
+                    deemed as acceptance of such changes. Please check this page regularly for any updates.
+                </p>
+            </div>
+        </div>
+        <!-- Privacy policies -->
+        <div id="policy-section" class="card card-style">
+            <div class="content">
+                <h1 class="mb-0">
+                    Privacy Policies / User Data Integrity.
+                </h1>
+                <p class="mb-0 color-highlight font-12 bottom-10">Modified on 10 January, 2023</p>
+                <p>
+                    Here, we provide transparent informations about our privacy policies and how we prioritize user data integrity.
+                </p>
+            </div>
+            <br>
+            <div class="content">
+                <h4 class="mb-0">
+                    1. How we collect these informations.
+                </h4>
+                <p>
+                    When you visit our Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device. Additionally, as you browse the Site, we collect information about the individual web pages or products that you view, what websites or search terms referred you to the Site, and information about how you interact with the Site. We refer to this automatically-collected information as "Device Information."
+
+                    <h5 class="mb-0">2. We collect this informations using.</h5>
+                    <ol type="a">
+                        <li>
+                            <p>
+                                <strong>Cookies</strong>
+                            </p>
+                            <p>
+                                Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow) that enables the site's or service provider's systems to recognize your browser and capture and remember certain information. For instance, we may use cookies to help us remember and process your consent to the terms outline herein.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+                <h4 class="mb-0">
+                    3. How we use these informations.
+                </h4>
+                <p class="">
+                    We use the Device Information that we collect to help us screen for potential risk and fraud (in particular, your IP address), and more generally to improve and optimize our Site (for example, by generating analytics about how our customers browse and interact with the Site).
+                </p>
+                <h4 class="mb-0">
+                  4. Sharing your informations.
+                </h4>
+                <p class="">
+                    We do not share your personal information with third parties except as described in this Privacy Policy. We may share your Device Information with third-party service providers, specifically (Google Analytics) who help us to analyze our Site traffic and usage data. These service providers may have access to your Device Information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose. These informations do not expose any of your personal information or credentials provided during registration.
+                </p>
+                <h4 class="mb-0">
+                  5. Your Rights.
+                </h4>
+                <p class="">
+                    If you are a European resident, you have the right to access personal information we hold about you and to ask that your personal information be corrected, updated, or deleted. If you would like to exercise this right, please contact our support team..
+                </p>
+                <h4 class="mb-0">
+                  6. Changes to these privacy policies.
+                </h4>
+                <p class="">
+                    We may update this Privacy Policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal, or regulatory reasons.
+                </p>
+                <h4 class="">7. Contact Information</h4>
+                <p class="">
+                    If you have any questions or concerns about these terms and conditions, please contact us through our 
+                    <a href="mailto:support@myprofitpurse.com">SUPPORT MAIL</a>.
+                    Thank you for choosing ProfitPulse LTD!
+                </p>
+                <h4 class="">8. Consent Choice</h4>
+                <p class="">
+                    Check the box below to Agree to these terms and conditions. 
+                </p>
+            </div>
+        </div>
+
+        <div style="padding: 20px;" class="card card-style">
+        <form action="{% url 'terms' %}" method="post">
+            {% csrf_token %}
+            <div style="display: inline-flex; cursor: pointer;">
+                <input style="margin-bottom: 35px; cursor: pointer; margin-right: 8px; width: 25px; height: 25px;" type="checkbox" id="consent" name="consent" value="accepted">
+                <label style="cursor: pointer;" for="consent"><h5>I AGREE</h5> </label>
+            </div>
+        <button type="submit" style="min-width: 96%;" class="btn btn-full mx-3 gradient-red shadow-bg shadow-bg-s">Confirm choice</button>
+        </form>
+        </div>
+        
+        
+    
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-pages"
+        data-menu-load="{% url 'opener' %}"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+	
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="{% url 'highlights' %}"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+    <!-- Add Card -->
+    <div id="menu-add-card"
+        data-menu-load="{% url 'addCard' %}"
+        class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+    </div>
+    
+    <!-- Menu Card More -->
+    <div id="menu-card-more"
+        data-menu-load="{% url 'setCard' %}"
+        class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+    </div>
+    
+    <!-- Notifications Bell -->
+    <div id="menu-notifications" 
+        data-menu-load="{% url 'notifications' %}"
+        class="offcanvas offcanvas-top offcanvas-detached rounded-m">
+    </div>
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

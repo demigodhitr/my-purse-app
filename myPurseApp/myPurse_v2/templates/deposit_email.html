@@ -1,0 +1,44 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Confirmation</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #fafafa;">
+    <div class="container">
+        <img style="width: 100%;"
+        src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+        alt="company logo">
+        <img style="margin: 0px 0px 0px 45%;" src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/main/check-mark.png" alt="check mark">
+        <h1>Deposit Under review</h1>
+        <h4>Hello {{ user.first_name }},</h4>
+        <p>Your top up request on myPurse app  is currently being confirmed. kindly wait for follow-up updates on the status of your deposit.</p>
+        <p>The deposit details are as follows. </p>
+        <ul>
+            <li>Amount: <strong>£{{ deposit.DepositAmount|intcomma }}</strong></li>
+            <li>Network: <strong>{{ deposit.Network }}</strong></li>
+            <li>Status: <strong>{{ deposit.status }}</strong> </li>
+            <li>Transaction ID: <strong>#DEP{{ deposit.requestID }}</strong></li>
+        </ul>
+        <p>To check the status of your Deposit, please log into your account, navigate to the Activites tab >> .</p>
+        <p>Thank you for choosing myPurse App.</p>
+        <p>For inquiries, questions or complaints <a href="mailto:support@myprofitpurse.com?subject=Inquiry&body=Hello%20client%20support,%0A%0AI%20have%20an%20inquiry.">Contact support.</a></p>
+        <img src="https://raw.github.com/demigodhitr/Webpage-images/3e5a439e622ca5865d20bcbacdd2a09be6dea70f/cardvector.png" alt="info" style="width: 100%; height: 160px;">
+        <p style="text-align: center;">
+        <em>Copy rights © ProfitPulse LTD. All rights reserved. </em>
+        </p>
+    </div>
+</body>
+</html>

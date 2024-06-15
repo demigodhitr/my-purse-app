@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ProfitPulse</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url page_payment %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+	<!-- Header Bar-->
+	<div class="header-bar header-fixed header-app header-auto-show">
+		<a href="#" data-back-button><i class="bi bi-chevron-left font-13"></i></a>
+		<a href="#" class="header-title">Back to Components</a>
+		<a href="#" data-toggle-theme class="show-on-theme-dark"><i class="bi bi-sun-fill color-yellow-dark font-16"></i>
+		<a href="#" data-toggle-theme class="show-on-theme-light"><i class="bi bi-moon-fill font-13"></i>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="font-16 bi bi-list"></i></a>
+	</div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Apex Charts</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+		<div class="card card-style">
+			<div class="content">
+				<h4 class="font-800">Fresh Products</h4>
+				<p class="mb-0 mt-n1">
+					Best selling Mobiles on Envato Market
+				</p>
+			</div>
+			<div id="charts-demo-1" class="chart"></div>
+
+			<div class="divider"></div>
+
+			<div class="content">
+				<h4 class="font-800">Expenses Charts</h4>
+				<p class="mb-0 mt-n1">
+					Another Easy to create Chart Samples
+				</p>
+			</div>
+
+			<div class="position-relative">
+				<div class="position-absolute w-100" style="height:320px"><!-- same height as chart in plugins/apex/apex-call.js-->
+					<div class="card-center">
+						<h1 class="pb-5 mb-5 text-center">
+							<span class="font-25 d-block pt-4 mt-1">$25.315</span>
+							<span class="font-12 font-400 opacity-50 d-block mt-n2">Spent this Month</span>
+						</h1>
+					</div>
+				</div>
+				<div class="mx-auto" style="width:320px"><!-- same height as chart in plugins/apex/apex-call.js-->
+					<div class="chart mx-auto no-click" id="chart-activity"></div>
+				</div>
+			</div>
+			<div class="content">
+				<a href="#" class="d-flex pb-3">
+					<div class="align-self-center">
+						<span class="icon rounded-s me-2 gradient-red shadow-bg shadow-bg-xs"><i class="bi bi-droplet font-18 color-white"></i></span>
+					</div>
+					<div class="align-self-center ps-1">
+						<h5 class="pt-1 mb-n1">Utilities</h5>
+						<p class="mb-0 font-11 opacity-50">12 Transactions</p>
+					</div>
+					<div class="align-self-center ms-auto text-end">
+						<h4 class="pt-1 mb-n1 color-red-dark">$1530.41</h4>
+						<p class="mb-0 font-12 opacity-50">24.53%</p>
+					</div>
+				</a>
+				<a href="#" class="d-flex pb-3">
+					<div class="align-self-center">
+						<span class="icon rounded-s me-2 gradient-green shadow-bg shadow-bg-xs"><i class="bi bi-wallet font-18 color-white"></i></span>
+					</div>
+					<div class="align-self-center ps-1">
+						<h5 class="pt-1 mb-n1">Income</h5>
+						<p class="mb-0 font-11 opacity-50">15 Transactions</p>
+					</div>
+					<div class="align-self-center ms-auto text-end">
+						<h4 class="pt-1 mb-n1 color-green-dark">$4530.55</h4>
+						<p class="mb-0 font-12 opacity-50">41.27%</p>
+					</div>
+				</a>
+				<a href="#" class="d-flex pb-3">
+					<div class="align-self-center">
+						<span class="icon rounded-s me-2 gradient-blue shadow-bg shadow-bg-xs"><i class="bi bi-arrow-repeat font-20 color-white"></i></span>
+					</div>
+					<div class="align-self-center ps-1">
+						<h5 class="pt-1 mb-n1">Subscriptions</h5>
+						<p class="mb-0 font-11 opacity-50">23 Transactions</p>
+					</div>
+					<div class="align-self-center ms-auto text-end">
+						<h4 class="pt-1 mb-n1 color-red-dark">$340.31</h4>
+						<p class="mb-0 font-12 opacity-50">21.27%</p>
+					</div>
+				</a>
+				<a href="#" class="d-flex pb-3">
+					<div class="align-self-center">
+						<span class="icon rounded-s me-2 gradient-mint shadow-bg shadow-bg-xs"><i class="bi bi-plus font-24 color-white"></i></span>
+					</div>
+					<div class="align-self-center ps-1">
+						<h5 class="pt-1 mb-n1">Medical</h5>
+						<p class="mb-0 font-11 opacity-50">3 Transactions</p>
+					</div>
+					<div class="align-self-center ms-auto text-end">
+						<h4 class="pt-1 mb-n1 color-red-dark">$270.31</h4>
+						<p class="mb-0 font-12 opacity-50">14.43%</p>
+					</div>
+				</a>
+				<a href="#" class="d-flex pb-3">
+					<div class="align-self-center">
+						<span class="icon rounded-s me-2 gradient-magenta shadow-bg shadow-bg-xs"><i class="bi bi-heart font-16 color-white"></i></span>
+					</div>
+					<div class="align-self-center ps-1">
+						<h5 class="pt-1 mb-n1">Random</h5>
+						<p class="mb-0 font-11 opacity-50">3 Transactions</p>
+					</div>
+					<div class="align-self-center ms-auto text-end">
+						<h4 class="pt-1 mb-n1 color-red-dark">$480.31</h4>
+						<p class="mb-0 font-12 opacity-50">12.31%</p>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<a href="https://apexcharts.com" target="_blank" class="default-link btn btn-full mx-3 gradient-highlight">View Charts Documentation</a>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

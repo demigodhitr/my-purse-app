@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ProfitPulse</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url page_payment %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+	<!-- Header Bar-->
+	<div class="header-bar header-fixed header-app header-auto-show">
+		<a href="#" data-back-button><i class="bi bi-chevron-left font-13"></i></a>
+		<a href="#" class="header-title">Back to Components</a>
+		<a href="#" data-toggle-theme class="show-on-theme-dark"><i class="bi bi-sun-fill color-yellow-dark font-16"></i>
+		<a href="#" data-toggle-theme class="show-on-theme-light"><i class="bi bi-moon-fill font-13"></i>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="font-16 bi bi-list"></i></a>
+	</div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Tabs</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+		<div class="card card-style">
+			<div class="content mt-3">
+				<div class="tabs tabs-box" id="tab-group-1">
+					<div class="tab-controls rounded-s border-highlight">
+						<a class="font-13 color-highlight" data-bs-toggle="collapse" href="#tab-1" aria-expanded="true">Basic</a>
+						<a class="font-13 color-highlight" data-bs-toggle="collapse" href="#tab-2" aria-expanded="false">Pro</a>
+						<a class="font-13 color-highlight" data-bs-toggle="collapse" href="#tab-3" aria-expanded="false">Premium</a>
+					</div>
+					<div class="mt-3"></div>
+					<div class="collapse show" id="tab-1" data-bs-parent="#tab-group-1"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-2" data-bs-parent="#tab-group-1"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-3" data-bs-parent="#tab-group-1"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<div class="tabs tabs-pill" id="tab-group-2">
+					<div class="tab-controls rounded-m p-1">
+						<a class="font-12 rounded-m" data-bs-toggle="collapse" href="#tab-4" aria-expanded="true">Days</a>
+						<a class="font-12 rounded-m" data-bs-toggle="collapse" href="#tab-5" aria-expanded="false">Hours</a>
+						<a class="font-12 rounded-m" data-bs-toggle="collapse" href="#tab-x" aria-expanded="false">Minutes</a>
+					</div>
+					<div class="mt-3"></div>
+					<div class="collapse show" id="tab-4" data-bs-parent="#tab-group-2"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-5" data-bs-parent="#tab-group-2"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-x" data-bs-parent="#tab-group-2"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-style">
+			<div class="content">
+				<div class="tabs tabs-icons" id="tab-group-3">
+					<div class="tab-controls">
+						<a class="rounded-l font-600" data-bs-toggle="collapse" href="#tab-6" aria-expanded="true">
+							<i class="font-18 bi bi-house-fill"></i>
+							<span class="font-10 opacity-40">Home</span>
+						</a>
+						<a class="rounded-l font-600" data-bs-toggle="collapse" href="#tab-7" aria-expanded="false">
+							<i class="font-18 bi bi-camera-fill"></i>
+							<span class="font-10 opacity-40">Media</span>
+						</a>
+						<a class="rounded-l font-600" data-bs-toggle="collapse" href="#tab-8" aria-expanded="false">
+							<i class="font-18 bi bi-chat-fill"></i>
+							<span class="font-10 opacity-40">Chat</span>
+						</a>
+						<a class="rounded-l font-600" data-bs-toggle="collapse" href="#tab-9" aria-expanded="false">
+							<i class="font-18 bi bi-envelope-fill"></i>
+							<span class="font-10 opacity-40">Contact</span>
+						</a>
+					</div>
+					<hr>
+					<div class="collapse show" id="tab-6" data-bs-parent="#tab-group-3"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-7" data-bs-parent="#tab-group-3"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-8" data-bs-parent="#tab-group-3"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-9" data-bs-parent="#tab-group-3"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-style mb-5">
+			<div class="content mt-1">
+				<div class="tabs tabs-borders" id="tab-group-4">
+					<div class="tab-controls">
+						<a class="font-13" data-bs-toggle="collapse" href="#tab-10" aria-expanded="true">About</a>
+						<a class="font-13" data-bs-toggle="collapse" href="#tab-11" aria-expanded="false">Pricing</a>
+						<a class="font-13" data-bs-toggle="collapse" href="#tab-12" aria-expanded="false">Contact</a>
+					</div>
+					<div class="mt-3"></div>
+					<div class="collapse show" id="tab-10" data-bs-parent="#tab-group-4"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-11" data-bs-parent="#tab-group-4"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-12" data-bs-parent="#tab-group-4"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="tabs tabs-cards" id="tab-group-5">
+			<div class="tab-controls">
+				<a class="font-13" data-bs-toggle="collapse" href="#tab-13" aria-expanded="true">About</a>
+				<a class="font-13" data-bs-toggle="collapse" href="#tab-14" aria-expanded="false">Pricing</a>
+				<a class="font-13" data-bs-toggle="collapse" href="#tab-15" aria-expanded="false">Contact</a>
+			</div>
+			<div class="card card-style">
+				<div class="collapse show" id="tab-13" data-bs-parent="#tab-group-5"><p class="content">Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+				<div class="collapse" id="tab-14" data-bs-parent="#tab-group-5"><p class="content">Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+				<div class="collapse" id="tab-15" data-bs-parent="#tab-group-5"><p class="content">Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+			</div>
+		</div>
+		<div class="tabs tabs-links" id="tab-group-6">
+			<div class="tab-controls bg-transparent mx-3 mb-2">
+				<a class="font-12 rounded-s" data-bs-toggle="collapse" href="#tab-16" aria-expanded="true">Days</a>
+				<a class="font-12 rounded-s" data-bs-toggle="collapse" href="#tab-17" aria-expanded="false">Hours</a>
+				<a class="font-12 rounded-s" data-bs-toggle="collapse" href="#tab-18" aria-expanded="false">Minutes</a>
+			</div>
+			<div class="card card-style">
+				<div class="content">
+					<div class="collapse show" id="tab-16" data-bs-parent="#tab-group-6"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-17" data-bs-parent="#tab-group-6"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+					<div class="collapse" id="tab-18" data-bs-parent="#tab-group-6"><p>Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.</p></div>
+				</div>
+			</div>
+		</div>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

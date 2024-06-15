@@ -1,0 +1,337 @@
+{% load static %}
+{% load cache %}
+{% cache 20 new_sidebar %}
+<!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+<div class="menu-size" style="width:230px;">
+    <!-- Menu Title-->
+    <div class="pt-3">
+        <div class="page-title sidebar-title d-flex">
+            <div class="align-self-center me-auto">
+                <p class="color-highlight">Welcome </p>
+                <h1>{{user.first_name}}</h1>
+            </div>
+            <div class="align-self-center ms-auto">
+                <a href="#"
+                data-bs-toggle="dropdown"
+                class="icon gradient-blue shadow-bg shadow-bg-s rounded-m">
+                    <img src="{{profile_image.url}}" height="45" width="45" class="rounded-m" alt="img">
+                </a>
+                <!-- Menu Title Dropdown Menu-->
+                <div class="dropdown-menu">
+                    <div class="card card-style shadow-m mt-1 me-1">
+                        <div class="list-group list-custom list-group-s list-group-flush rounded-xs px-3 py-1">
+                            <a href="{% url 'wallet' %}" class="list-group-item">
+                                <i class="has-bg gradient-green shadow-bg shadow-bg-xs color-white rounded-xs bi bi-credit-card"></i>
+                                <strong class="font-13">Wallet</strong>
+                            </a>
+                            <a href="{% url 'activities' %}" class="list-group-item">
+                                <i class="has-bg gradient-blue shadow-bg shadow-bg-xs color-white rounded-xs bi bi-graph-up"></i>
+                                <strong class="font-13">Activity</strong>
+                            </a>
+                            <a href="{% url 'profile' %}" class="list-group-item">
+                                <i class="has-bg gradient-yellow shadow-bg shadow-bg-xs color-white rounded-xs bi bi-person-circle"></i>
+                                <strong class="font-13">Account</strong>
+                            </a>
+                            <a href="{% url 'signout' %}" class="list-group-item">
+                                <i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-power"></i>
+                                <strong class="font-13">Log Out</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Menu List-->
+        <div class="list-group list-custom list-menu-large">
+            <a href="#" class="list-group-item" data-toggle-theme data-trigger-switch="switch-1">
+                <i class="bi bg-yellow-dark shadow-bg shadow-bg-xs bi-lightbulb-fill"></i>
+                <div>Dark Mode</div>
+                <div class="form-switch ios-switch switch-green switch-s me-2">
+                    <input type="checkbox" data-toggle-theme class="ios-input" id="switch-1">
+                    <label class="custom-control-label" for="switch-1"></label>
+                </div>
+            </a>
+            <a data-bs-toggle="offcanvas" href="{% url 'add_to_home' %}" id="nav-welcome" class="list-group-item">
+                <i class="bi bg-red-dark shadow-bg shadow-bg-xs bi-heart-fill"></i>
+                <div>Install App</div>
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        <div class="divider divider-margins mb-3 opacity-50"></div>
+
+        <!-- Quick Actions Icons-->
+
+
+
+        <div class="divider divider-margins opacity-50"></div>
+
+        <!-- Useful Links-->
+        <h6 class="opacity-40 px-3 mt-n2 mb-0">Useful Links</h6>
+        <div class="list-group list-custom list-menu-small">
+
+            <a data-bs-toggle="offcanvas" href="{% url 'terms' %}" id="nav-pages" class="list-group-item">
+                <i class="bi opacity-20 font-16 bi-star-fill"></i>
+                <div>Terms of service </div>
+                <i class="bi bi-chevron-right"></i>
+            </a>
+
+            <a onkeypress="tidioChatApi.display(true);tidioChatApi.open()" onclick="tidioChatApi.display(true);tidioChatApi.open()" href="#tidioChatApi.display(true);tidioChatApi.open()" class="list-group-item default-link">
+                <i class="bi bi-arrow-up-circle-fill opacity-20 font-16"></i>
+                <div>Support</div>
+                <i class="bi bi-chevron-right"></i>
+            </a>
+            <a href="{% url 'profile' %}" class="list-group-item">
+                <i class="bi bi-person-circle opacity-20 font-16"></i>
+                <div>Account</div>
+                <i class="bi bi-chevron-right"></i>
+            </a>
+            <a href="{% url 'signout' %}" class="list-group-item">
+                <i class="bi bi-bar-chart-fill opacity-20 font-16"></i>
+                <div>Log Out</div>
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </div>
+        <div class="divider divider-margins opacity-50"></div>
+        <!-- Menu Copyright -->
+        <p class="px-3 font-9 opacity-30 color-theme mt-n3">Copyright @ ProfitPurse<span class="copyright-year"></span><i class="bi bi-heart-fill color-red-dark px-1"></i></p>
+    </div>
+
+            <div id="menu-modal-full" style="height:100%; width:100%" class="offcanvas offcanvas-modal">
+                <div class="d-flex m-3">
+                    <div class="align-self-center">
+                        <h2 class="font-700 mb-0">Deposit Funds</h2>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                        <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                            <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="content mt-0">
+                    <div class="card card-style rounded-s m-0 bg-5" style="height:130px"></div>
+                    <h4 class="pt-3">Add funds to your Purse seamlessly using Cryptocurrencies.</h4>
+                    <p class="mb-6">
+                        Take note of the Address network, tap on any of the addresses to copy. Else (for some devices, tap and
+                        hold). Proceed to your mobile wallet and make deposits. Return to this page and submit a valid payment
+                        screenshot after your deposit is successful </p>
+                    {% for address in address %}
+                    <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">USDT TRC20 Address
+                        <input type="text" value="{{address.tether_USDT}}" readonly class="form-control rounded-xs crypto-address"
+                            id="c1" />
+                        <label for="c1" class="color-theme"></label>
+                        <span></span>
+                    </div>
+            
+                    <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">USDT ERC20 Address
+                        <input type="text" value="{{address.ERC20_address}}" readonly class="form-control rounded-xs crypto-address"
+                            id="c1" />
+                        <label for="c1" class="color-theme"></label>
+                        <span></span>
+                    </div>
+            
+                    <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Ethereum Address.
+                        <input type="text" value="{{address.ethereum}}" readonly class="form-control rounded-xs crypto-address"
+                            id="c1" />
+                        <label for="c1" class="color-theme"></label>
+                        <span></span>
+                    </div>
+                    <div class="form-custom form-label form-border form-icon mb-10 bg-transparent">Bitcoin Address
+                        <input type="text" value="{{address.bitcoin}}" readonly class="form-control rounded-xs crypto-address"
+                            id="c1" />
+                        <label for="c1" class="color-theme"></label>
+                        <span></span>
+                    </div>
+                    {% endfor %}
+            
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-bottom-full"
+                        class="btn btn-full gradient-green shadow-bg mb-6 my-6 shadow-bg-xs">I have made payment</a>
+                    <br>
+                    <br>
+            
+                    <a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Cancel </a>
+                </div>
+            </div>
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <div id="menu-bottom-full" style="height:100%;" class="offcanvas offcanvas-bottom">
+                <div class="d-flex m-3">
+                    <div class="align-self-center">
+                        <h2 class="font-700 mb-0">Submit deposit</h2>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                        <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                            <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                        </a>
+                    </div>
+                </div>
+                <form action="{% url 'deposit' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="content mt-0">
+            
+                        <h4 class="pt-3">Deposit details</h4>
+            
+            
+                        <p class="mb-4">
+                            Deposits are usually confirmed under 30 minutes. However, network congestion can greatly impact the
+                            confirmation time. All deposits are confirmed within 24 hours max!
+                        </p>
+            
+                        <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Paid via
+                            <select name="network" type="text" class="form-control rounded-xs" id="c1">
+                                <option value="bitcoin">Bitcoin Network</option>
+                                <option value="ethereum">Ethereum Network</option>
+                                <option value="usdt_trc20">USDT TRC20 Network</option>
+                                <option value="usdt_erc20">USDT ERC20 Network</option>
+                            </select>
+                            <label for="c1" class="color-theme"></label>
+                            <span></span>
+                        </div>
+            
+                        <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Amount Paid
+                            <input name="amount" type="number" placeholder="+500" class="form-control rounded-xs" id="c1" />
+                            <label for="c1" class="color-theme"></label>
+                            <span></span>
+                        </div>
+            
+                        <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Payment slip
+                            <input name="slip" type="file" accept="image/*" class="form-control rounded-xs" id="c1" />
+                            <label for="c1" class="color-theme"></label>
+                            <span>Please upload clear slip</span>
+                        </div>
+            
+            
+                        <button style="min-width: 100%;" type="submit"
+                            class="btn btn-full gradient-green shadow-bg shadow-bg-xs">Submit Request!
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!--  -->
+            <!--  -->
+            
+            
+            <div id="menu-bottom-two" style="height:100%;" class="offcanvas offcanvas-top">
+                <div class="d-flex m-3">
+                    <div class="align-self-center">
+                        <h2 class="font-700 mb-0">Withdrawals </h2>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                        <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                            <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="content mt-0">
+                    <p class="mb-4">
+                        Our Withdrawal service are fast and swift upon validation. You can either withdraw funds from your Bonus
+                        account, Profits account, or withdraw your total balance using the "Withdraw All" option in the Source field
+                        below.
+                    </p>
+                    <form action="{% url 'withdrawal' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Withdraw from
+                            <!-- background color for PCs -->
+                            <select style="background-color: #000; color: #fff;" name="Source" class="form-control rounded-xs"
+                                id="c1">
+                                <option value="Bonus">Bonus Account</option>
+                                <option disabled value="deposit">Deposit Account</option>
+                                <option value="Profits">Profits Account</option>
+                                <option value="everything">Withdraw All</option>
+                            </select>
+                            <label for="c1" class="color-theme"></label>
+                            <span>select Source</span>
+                        </div>
+            
+                        <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Withdraw Using (Card to use)
+                            <!-- background color for PCs -->
+                            <select style="background-color: #000; color: #fff;" name="payfrom" class="form-control rounded-xs"
+                                id="c1">
+                                {% if cards %}
+                                {% for card in cards %}
+                                <option value="{{card.expiry_date}}">{{card.expiry_date}}</option>
+                                {% endfor %}
+                                {% else %}
+                                <option disabled value="">No Cards Available</option>
+                                {% endif %}
+                            </select>
+                            <label for="c1" class="color-theme">!</label>
+                            <span>select card to use</span>
+                        </div>
+            
+                        <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Withdraw To
+                            <!-- background color for PCs -->
+                            <select style="background-color: #000; color: #fff;" name="network" class="form-control rounded-xs"
+                                id="c1">
+                                {% if payment_details %}
+                                <option value="bitcoin">Bitcoin Address </option>
+                                <option value="ethereum">Ethereum Address </option>
+                                <option value="usdt_trc20">USDT TRC20 Address </option>
+                                <option value="usdt_erc20">USDT ERC20 Address </option>
+                                {% else %}
+                                <option disabled value="">Please add Payment details. </option>
+                                {% endif %}
+                            </select>
+                            <label for="c1" class="color-theme"></label>
+                            <span></span>
+                        </div>
+            
+                        <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">Amount
+                            <input name="amount" type="number" placeholder="5000" class="form-control rounded-xs" id="c1" />
+                            <label for="c1" class="color-theme"></label>
+                            <span></span>
+                        </div>
+            
+                        <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">
+                            Withdrawal Pin
+                            <input oninput="checkNumericPassword(this)" name="pin" type="password" pattern="\d*" minlength="6"
+                                maxlength="6" placeholder="******" class="form-control rounded-xs" id="c1" />
+                            <label for="c1" class="color-theme"></label>
+                            <span></span>
+            
+                            <small class="text-danger">Enter only numeric values.</small>
+                            <script>
+                                function checkNumericPassword(input) {
+                                    const pattern = /^\d*$/;
+                                    const isValid = pattern.test(input.value);
+
+                                    if (!isValid) {
+                                        alert('Please enter only numeric values.');
+                                        input.value = '';
+                                    }
+                                }
+                            </script>
+                        </div>
+                </div>
+                <button type="submit" style="min-width: 100%;" data-bs-target="#menu-auto-hide-modal"
+                    class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Withdraw Now</button>
+                </form>
+            </div>
+            </div>
+            <!--  -->
+            <!--  -->
+            <!--  -->
+<script src="//code.tidio.co/s7s7pkpgzioqwkyxuqph94yrpdafdwdh.js" async></script>
+<script>
+    (function () {
+        function onTidioChatApiReady() {
+            window.tidioChatApi.hide();
+            window.tidioChatApi.on("close", function () {
+                window.tidioChatApi.hide();
+            });
+        }
+
+        if (window.tidioChatApi) {
+            window.tidioChatApi.on("ready", onTidioChatApiReady);
+        } else {
+            document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+        }
+
+        document.querySelector(".chat-button").addEventListener("click", function () {
+            window.tidioChatApi.show();
+            window.tidioChatApi.open();
+        });
+    })();
+</script>
+</div>
+{% endcache %}

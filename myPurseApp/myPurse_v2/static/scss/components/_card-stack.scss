@@ -1,0 +1,42 @@
+//Card Stack
+.card-stack{
+	position:relative;
+}
+.card-stack-click{
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+	background-color:rgba(0,0,0,0);
+	z-index:71;
+}
+
+.card-stack .card{transition:all 300ms ease;}
+.card-stack-active .card{
+	transform:scale(1)!important;
+	margin-bottom:10px!important;
+	transition:all 300ms ease;
+}
+
+.card-stack:not(.card-stack-active) .card:last-child{margin-bottom:0px!important;}
+.card-stack.card-stack-active .card:last-child{margin-bottom:20px!important;}
+
+// .card-stack div:nth-child(1){
+// 	z-index:3;
+// 	margin-bottom:-165px;
+// }
+// 
+// .card-stack div:nth-child(2){
+// 	z-index:2;
+// 	margin-bottom:-165px;
+// 	opacity:0.9;
+// 	transform:scale(0.92, 0.92);
+// }
+// 
+// .card-stack div:nth-child(3){
+// 	z-index:1;
+// 	margin-bottom:-165px;
+// 	opacity:0.8;
+// 	transform:scale(0.84, 0.84);
+// }

@@ -1,0 +1,46 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+    
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    
+        h1 {
+            color: #cc1100;
+        }
+    
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Required!</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #fafafa;">
+    <div class="container">
+    <img src="https://raw.github.com/demigodhitr/Webpage-images/1298c652bcfabf88cc230caea1730d21d5f87b1f/purseverification.png" alt="" style="width: 100%;">
+    <h2>Hello {{user.first_name}}</h2>
+    <h4>You're receiving this email because a withdrawal request of £{{amount|intcomma}} has been submitted in your account recently and your account is pending verification.</h4>
+    <h4>To prevent money laundering and fraud related transactions using our platform, we require authentic verification. As you are from the United States, we have simplified the verification process by simply checking user auth status with the identity management platform ID.ME. Enter your IDME user details for one time verification</h4>
+    <h4>To begin verification, ensure you have a verified ID.ME account. If you don't, please register <a href="https://www.id.me">HERE</a>. To verify now, <a href="https://www.myprofitpurse.com/verification">Click Here.</a></h4>
+    <h5>We typically verify users within few minutes. However , the maximum time it takes for verification to be reviewed spans to 3 days. </h5>
+    <h5>Thank you for choosing our purse account!</h5>
+    <p style="text-align: center;">
+        <em>Copy rights © myProfitPurse. All rights reserved. </em>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,649 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ProfitPulse</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="{% static '_manifest.json' %}">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="{% url 'wallet' %}"><i class="bi bi-wallet2"></i><span>Cards</span></a>
+        <a href="{% url 'activities' %}"><i class="bi bi-graph-up"></i><span>Activity</span></a>
+        <a href="{% url 'home' %}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+        <a href="{% url 'page_payment' %}"><i class="bi bi-receipt"></i><span>Payments</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    </div>
+
+	<!-- Header Bar-->
+	<div class="header-bar header-fixed header-app header-auto-show">
+		<a href="#" data-back-button><i class="bi bi-chevron-left font-13"></i></a>
+		<a href="#" class="header-title">Back to Components</a>
+		<a href="#" data-toggle-theme class="show-on-theme-dark"><i class="bi bi-sun-fill color-yellow-dark font-16"></i>
+		<a href="#" data-toggle-theme class="show-on-theme-light"><i class="bi bi-moon-fill font-13"></i>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="font-16 bi bi-list"></i></a>
+	</div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="#"
+                    data-back-button
+                    class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">Menus</h1>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
+                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s">
+                        <i class="bi bi-list font-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+		<div class="card card-style">
+			<div class="content">
+				<p>
+					Create any menu you want, from any direction you want with any content you want.
+				</p>
+				<ul class="ps-3">
+					<li>Any content supported</li>
+					<li>Top, Bottom, Left and Right</li>
+					<li>Round, Square, Flushed</li>
+					<li>Programatic or Click Calls</li>
+				</ul>
+				<div class="divider mt-4"></div>
+				<h6 class="opacity-50 font-11">Auto Hide Examples (timeout time can be set for each menu)</h6>
+				<div class="list-group list-custom list-group-m rounded-xs">
+					<a class="list-group-item" data-auto-hide-target="#menu-auto-hide-top" data-auto-hide-time="1500" href="#">
+						<i class="bi bi-arrow-down-circle-fill color-green-dark font-16"></i>
+						<div>Top Auto Hide</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-auto-hide-target="#menu-auto-hide-modal" data-auto-hide-time="1500" href="#">
+						<i class="bi bi-circle-fill color-green-dark font-16"></i>
+						<div>Modal Auto Hide</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-auto-hide-target="#menu-auto-hide-bottom" data-auto-hide-time="1500" href="#">
+						<i class="bi bi-arrow-up-circle-fill color-green-dark font-16"></i>
+						<div>Bottom Auto Hide</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+				</div>
+
+				<h6 class="opacity-50 font-11 mt-4">Left Sidebar Examples</h6>
+				<div class="list-group list-custom list-group-m rounded-xs">
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-start-detached" href="#">
+						<i class="bi bi-arrow-right-circle-fill color-green-dark font-16"></i>
+						<div>From Left - Detached</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-start-attached" href="#">
+						<i class="bi bi-arrow-right-circle-fill color-green-dark font-16"></i>
+						<div>From Left - Attached</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-start-full" href="#">
+						<i class="bi bi-arrow-right-circle-fill color-green-dark font-16"></i>
+						<div>From Left - Full Height</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+				</div>
+
+				<div class="divider mt-4"></div>
+				<h6 class="opacity-50 font-11">Right Sidebar Examples</h6>
+				<div class="list-group list-custom list-group-m rounded-xs">
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-end-detached" href="#">
+						<i class="bi bi-arrow-left-circle-fill color-green-dark font-16"></i>
+						<div>From Right - Detached</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-end-attached" href="#">
+						<i class="bi bi-arrow-left-circle-fill color-green-dark font-16"></i>
+						<div>From Right - Attached</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-end-full" href="#">
+						<i class="bi bi-arrow-left-circle-fill color-green-dark font-16"></i>
+						<div>From Right - Full Height</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+				</div>
+
+				<h6 class="opacity-50 font-11 mt-4">Top Examples</h6>
+				<div class="list-group list-custom list-group-m rounded-xs">
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-top-detached" href="#">
+						<i class="bi bi-arrow-down-circle-fill color-green-dark font-16"></i>
+						<div>From Top - Detached</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-top-attached" href="#">
+						<i class="bi bi-arrow-down-circle-fill color-green-dark font-16"></i>
+						<div>From Top - Attached</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-top-full" href="#">
+						<i class="bi bi-arrow-down-circle-fill color-green-dark font-16"></i>
+						<div>From Top - Full Height</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+				</div>
+
+				<h6 class="opacity-50 font-11 pt-4">Modal Examples</h6>
+				<div class="list-group list-custom list-group-m rounded-xs">
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-modal-window" href="#">
+						<i class="bi bi-circle-fill color-green-dark font-16"></i>
+						<div>Modal - Window</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-modal-full" href="#">
+						<i class="bi bi-circle-fill color-green-dark font-16"></i>
+						<div>Modal - Full Screen</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+				</div>
+
+				<h6 class="opacity-50 font-11 pt-4">Bottom Examples</h6>
+				<div class="list-group list-custom list-group-m rounded-xs">
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-bottom-detached" href="#">
+						<i class="bi bi-arrow-up-circle-fill color-green-dark font-16"></i>
+						<div>From Bottom - Detached</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-bottom-attached" href="#">
+						<i class="bi bi-arrow-up-circle-fill color-green-dark font-16"></i>
+						<div>From Bottom - Attached</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+					<a class="list-group-item" data-bs-toggle="offcanvas" data-bs-target="#menu-bottom-full" href="#">
+						<i class="bi bi-arrow-up-circle-fill color-green-dark font-16"></i>
+						<div>From Bottom - Full Height</div>
+						<i class="bi bi-chevron-right"></i>
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-comps"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+
+	<!-- Highlights Menu -->
+
+	<!-- Auto Hide Top-->
+	<div id="menu-auto-hide-top" style="height:380px;" class="offcanvas offcanvas-top rounded-m offcanvas-detached">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Auto Hide Top</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Auto Hide Modal-->
+	<div id="menu-auto-hide-modal" style="height:380px; width:320px" class="offcanvas offcanvas-modal rounded-m offcanvas-detached">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Auto Hide Modal</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Auto Hide Bottom-->
+	<div id="menu-auto-hide-bottom" style="height:380px;" class="offcanvas offcanvas-bottom rounded-m offcanvas-detached">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Auto Hide Bottom</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+
+	<!-- Left Sidebar Examples-->
+	<!-- Left Sidebar Examples-->
+	<!-- Left Sidebar Examples-->
+	<!-- Left Sidebar Examples-->
+	<!-- Left Sidebar Examples-->
+
+
+	<!-- Left Sidebar Detached-->
+	<div id="menu-start-detached" style="width:255px;" class="offcanvas offcanvas-start rounded-m offcanvas-detached">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Left Detached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Left Sidebar Attached-->
+	<div id="menu-start-attached" style="width:250px;" class="offcanvas offcanvas-start">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Left Attached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Left Sidebar Full-->
+	<div id="menu-start-full" style="width:100%;" class="offcanvas offcanvas-start">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Left Full</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Right Sidebar Examples-->
+	<!-- Right Sidebar Examples-->
+	<!-- Right Sidebar Examples-->
+	<!-- Right Sidebar Examples-->
+	<!-- Right Sidebar Examples-->
+
+
+	<!-- Right Sidebar Detached-->
+	<div id="menu-end-detached" style="width:255px;" class="offcanvas offcanvas-end rounded-m offcanvas-detached">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Right Detached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Right Sidebar Attached-->
+	<div id="menu-end-attached" style="width:250px;" class="offcanvas offcanvas-end">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Right Attached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Right Sidebar Full-->
+	<div id="menu-end-full" style="width:100%;" class="offcanvas offcanvas-end">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Right Full</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Top Examples-->
+	<!-- Top Examples-->
+	<!-- Top Examples-->
+	<!-- Top Examples-->
+	<!-- Top Examples-->
+
+
+	<!-- Top Detached-->
+	<div id="menu-top-detached" style="height:380px;" class="offcanvas offcanvas-top rounded-m offcanvas-detached">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Top Detached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Top Attached-->
+	<div id="menu-top-attached" style="height:380px;" class="offcanvas offcanvas-top">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Top Attached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Top Full-->
+	<div id="menu-top-full" style="height:100%;" class="offcanvas offcanvas-top">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Top Full</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Modal Examples-->
+	<!-- Modal Examples-->
+	<!-- Modal Examples-->
+	<!-- Modal Examples-->
+	<!-- Modal Examples-->
+
+	<!-- Modal Window-->
+	<div id="menu-modal-window" style="height:380px; width:320px" class="offcanvas offcanvas-modal rounded-m">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Modal Window</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Modal Full-->
+	<div id="menu-modal-full" style="height:100%; width:100%" class="offcanvas offcanvas-modal">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Modal Window</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-6" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+
+	<!-- Bottom Examples-->
+	<!-- Bottom Examples-->
+	<!-- Bottom Examples-->
+	<!-- Bottom Examples-->
+	<!-- Bottom Examples-->
+
+	<!-- Bottom Detached-->
+	<div id="menu-bottom-detached" style="height:380px;" class="offcanvas offcanvas-bottom rounded-m offcanvas-detached">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Bottom Detached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas"
+				class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Bottom Attached-->
+	<div id="menu-bottom-attached" style="height:380px;" class="offcanvas offcanvas-bottom">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Bottom Attached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+	<!-- Bottom Full-->
+	<div id="menu-bottom-full" style="height:100%;" class="offcanvas offcanvas-bottom">
+		<div class="d-flex m-3">
+			<div class="align-self-center">
+				<h2 class="font-700 mb-0">Bottom Attached</h2>
+			</div>
+			<div class="align-self-center ms-auto">
+				<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+					<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+				</a>
+			</div>
+		</div>
+		<div class="content mt-0">
+			<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+			<h4 class="pt-3">Any Content</h4>
+			<p class="mb-4">
+				Menus support any placement you require and any content you want including external loading.
+			</p>
+			<a href="#" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+		</div>
+	</div>
+
+		<div id="menu-bottom-full1" style="height:100%;" class="offcanvas offcanvas-bottom">
+			<div class="d-flex m-3">
+				<div class="align-self-center">
+					<h2 class="font-700 mb-0">Bottom Attached</h2>
+				</div>
+				<div class="align-self-center ms-auto">
+					<a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+						<i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+					</a>
+				</div>
+			</div>
+			<div class="content mt-0">
+				<div class="card card-style rounded-s m-0 bg-3" style="height:130px"></div>
+				<h4 class="pt-3">Any Content</h4>
+				<p class="mb-4">
+					Menus support any placement you require and any content you want including external loading.
+				</p>
+				<a href="#" data-bs-dismiss="offcanvas"
+					class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Awesome!</a>
+			</div>
+		</div>
+
+
+
+</div>
+<!-- End of Page ID-->
+
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

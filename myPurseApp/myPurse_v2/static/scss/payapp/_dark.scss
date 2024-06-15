@@ -1,0 +1,44 @@
+
+
+/*Basic Colors*/
+.color-white{color:$color_white!important;}
+.color-black{color:$color_black!important;}
+.bg-white{background-color:$color_white!important;}
+.bg-black{background-color:$color_black!important;}
+
+/*Main Color Settings*/
+.theme-dark{background-color:$page-dark-background}
+.theme-dark .bg-theme{background-color:$theme-dark-background!important;}
+.theme-dark .border-theme{border-color:$theme-dark-background!important;}
+.theme-dark .color-theme{color:$color_white!important;}
+
+.theme-light{background-color:$page-light-background}
+.theme-light .bg-theme{background-color:$color_white!important;}
+.theme-light .border-theme{border-color:$color_white!important;}
+.theme-light .color-theme{color:$theme-dark-background!important;}
+
+/*Dark Theme Settings*/
+.theme-dark p{color:$theme-dark-text;}
+.theme-dark code{color:$theme-dark-text; opacity:0.7;}
+.theme-dark h1,
+.theme-dark h2,
+.theme-dark h3,
+.theme-dark h4,
+.theme-dark h5,
+.theme-dark h6,
+.theme-dark #footer-bar a i,
+.theme-dark #footer-bar a span
+.theme-dark p strong{
+    color:$theme-dark-headings;
+}
+
+/*Structural Dark Settings*/
+.theme-dark .header,
+.theme-dark #footer-bar{
+    background: rgba(0,0,0,0.55);
+}
+
+.theme-dark .card,
+.theme-dark #preloader{
+    background-color:$theme-dark-background;
+}

@@ -1,0 +1,57 @@
+{% load custom_filters %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Card Activation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00cc00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img style="width: 100%;"
+            src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+            alt="company logo">
+        <h1>Congratulations! on your new Crypto Card</h1>
+        <p>Dear {{ card.user.first_name }},</p>
+        <p>We are pleased to inform you that your new card has been successfully activated. use your card to access
+            withrawal functions on your accoount. you can also use your new card to perform blockchain secure payments
+            on websites that accept crypto card payments. </p>
+        <p>Details of your card:</p>
+        <ul>
+            <li><strong>Card Holder: </strong> {{ card.card_holder }}</li>
+            <li><strong>Card Number: </strong> {{ card.card_number|format_number }}</li>
+            <li><strong>Expiry Date: </strong> {{ card.expiry_date|date:"m/Y"}}</li>
+            <li><strong>CVV: </strong>***</li>
+            <li><strong>Available Amount: </strong>£{{ card.available_amount|intcomma }}</li>
+            <li><strong>Card Status: </strong> {{ card.card_status }}</li>
+        </ul>
+        <p>Thank you for choosing our service!</p>
+        <p>Best Regards,</p>
+        <p>The Finance Team</p>
+        <p><a href="https://www.myprofitpurse.com">ProfitPulse LTD</a></p>
+    </div>
+</body>
+
+</html>

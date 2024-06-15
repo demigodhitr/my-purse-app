@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ message.Subject }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00cc00;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img style="width: 100%;"
+            src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+            alt="company logo">
+        <h1>{{ message.Subject }}</h1>
+        <p>Dear {{ message.user.first_name }},</p>
+        <p>you have an Important message from ProfitPulse.</p>
+        <p style="font-weight: bold;"><em>{{ message.Message }}</em></p>
+        <p>If you have any question, complaints or the likes, please contact your assigned account manager for further clarification!</p>
+        <p>Best Regards,</p>
+        <p>Management Team</p>
+        <p><a href="https://www.myprofitpurse.com">Profit Pulse LTD</a></p>
+    </div>
+</body>
+
+</html>

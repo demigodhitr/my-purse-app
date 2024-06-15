@@ -1,0 +1,136 @@
+/*Switches*/
+
+$switch-green:#8CC152;
+$switch-green-fade:rgba(139, 193, 82, 0.5);
+$switch-red:#ED5565;
+$switch-red-fade:rgba(237, 85, 101, 0.5);
+$switch-blue:#4A89DC;
+$switch-blue-fade:rgba(74, 137, 220, 0.5);
+
+$switch-xsmall:0.6;
+$switch-small:0.7;
+$switch-medium:0.8;
+$switch-large:0.9;
+
+//General Settings
+.switch-xs, .switch-s, .switch-m, .switch-l{transform-origin: 100% 50%;}
+.switch-xs {transform: scale($switch-xsmall)}
+.switch-s {transform: scale($switch-small)}
+.switch-m {transform: scale($switch-medium)}
+.switch-l {transform: scale($switch-large)}
+
+//Global Settings//
+//////////////////
+.ios-switch input, .android-switch input {display: none;}
+.android-switch, .ios-switch{
+	margin:0px;
+	padding:0px;
+	height:32px;
+	position: relative;
+}
+
+.android-switch *, .ios-switch *{cursor:pointer!important;}
+
+/*iOS Switches*/
+////////////////
+.ios-switch {width:58px;}
+.ios-switch label::before {
+	cursor:pointer;
+	content: '';
+	display: block!important;
+	background-color: $faded_dark;
+	pointer-events: all;
+	margin-left: -1px;
+	width: 58px!important;
+	height: 32px!important;
+	border-radius: 50px!important;
+	transition: all 200ms ease
+}
+
+.ios-switch i{
+	pointer-events: none;
+	position:absolute;
+	z-index:2;
+	top:50%;
+	z-index:1;
+	font-style:normal;
+	transform:translateY(-50%);
+}
+.ios-switch i:first-child:not(.bi){padding-left:4px; margin-top:0px;}
+.ios-switch i:last-child:not(.bi){padding-right:4px; margin-top:0px;}
+
+.ios-switch i:first-child{left:3px; margin-top:1px;}
+.ios-switch i:last-child{right:5px; margin-top:1px;}
+
+.ios-switch label::after {
+	cursor:pointer;
+	position:relative;
+	content: '';
+	display: block!important;
+	margin-top: -31px;
+	z-index: 2;
+	width: 30px!important;
+	height: 30px!important;
+	transition: all 250ms ease;
+	border-radius: 50px!important;
+	background-color: #fff;
+	border: solid 1px rgba(152,152,152,.3);
+	transition: all 200ms ease
+}
+
+.ios-input:checked~.custom-control-label::after {transform: translateX(26px)!important}
+.ios-input:checked~.custom-control-label::before{background-color: $colorHighlightDark}
+.switch-green .ios-input:checked~.custom-control-label::before{background-color: $switch-green!important}
+.switch-blue .ios-input:checked~.custom-control-label::before{background-color: $switch-blue!important}
+.switch-red .ios-input:checked~.custom-control-label::before{background-color: $switch-red!important}
+
+/*Android Switches*/
+////////////////////
+.android-switch {width:54px;}
+.android-switch label::before {
+	display: block!important;
+	content: '';
+	pointer-events: all;
+	margin-top: 5px;
+	width: 53px!important;
+	height: 17px!important;
+	border-radius: 50px!important;
+	background-color: $faded_dark;
+	transition: all 250ms ease
+}
+
+.android-switch label::after {
+	display: block!important;
+	content: '';
+	border: solid 1px rgba(0,0,0,0.07)!important;
+	margin-top: -22px;
+	width: 27px!important;
+	height: 27px!important;
+	background-color: #fff;
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.07)!important;
+	border-radius: 50px!important;
+	transition: all 250ms ease
+}
+
+.android-input:checked~.custom-control-label::after {
+	border: none!important;
+	transform: translateX(27px)!important
+}
+
+.android-switch-short{margin-right:-8px}
+.android-switch-short.android-switch label::before {width:43px!important;}
+.android-switch-short .android-input:checked~.custom-control-label::after{transform:translateX(18px)!important}
+
+.switch-blue .android-input:checked~.custom-control-label::after {background-color: $switch-blue!important;}
+.switch-blue .android-input:checked~.custom-control-label::before {background-color: $switch-blue-fade!important}
+.switch-green .android-input:checked~.custom-control-label::after {background-color: $switch-green!important;}
+.switch-green .android-input:checked~.custom-control-label::before {background-color: $switch-green-fade!important}
+.switch-red .android-input:checked~.custom-control-label::after {background-color: $switch-red!important;}
+.switch-red .android-input:checked~.custom-control-label::before {background-color: $switch-red-fade!important;}
+
+//Switches Dark Settings//
+//////////////////////////
+.theme-dark .ios-switch label::before,
+.theme-dark .android-switch label::before{
+	background-color: $faded_light;
+}

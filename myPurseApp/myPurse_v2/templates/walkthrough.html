@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+	<title>myPurse</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
+		rel="stylesheet">
+	<link rel="manifest" href="{% static '_manifest.json' %}">
+	<meta id="theme-check" name="theme-color" content="#000000">
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/icon-192x192.png' %}">
+	<style>
+		.installation-section {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.9);
+			color: white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			z-index: 1000;
+		}
+
+		.installation-section h4 {
+			margin: 0 20px;
+		}
+
+		.hidden {
+			display: none;
+		}
+	</style>
+	<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+	<script src="{% static 'scripts/custom.js' %}"></script>
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('{% static "_service-worker.js" %}').then(function (registration) {
+				console.log('Service worker registration succeeded:', registration);
+			}, function (error) {
+				console.log('Service worker registration failed:', error);
+			});
+		} else {
+			console.log('Service workers are not supported.');
+		}
+
+		document.addEventListener('DOMContentLoaded', function () {
+			// Check if running in standalone mode on iOS || Android || Windows
+			if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+				// Check if the user has visited before
+				if (localStorage.getItem('Visited')) {
+					// User has visited before, redirect to login page
+					window.location.href = '{% url "signin" %}';
+				} else {
+					// First visit, mark as visited in localStorage
+					localStorage.setItem('Visited', 'true');
+
+					// Remove the hidden class from the main page content
+					document.getElementById('page').classList.remove('hidden');
+
+					// Hide all installation sections
+					document.querySelectorAll('.installation-section').forEach(section => {
+						section.style.display = 'none';
+					});
+				}
+			} else {
+				const showSection = (id) => {
+					document.querySelectorAll('.installation-section').forEach(section => {
+						section.style.display = 'none';
+					});
+					document.getElementById(id).style.display = 'flex';
+				}
+
+				const showCanvas = (id) => {
+					const canvas = new bootstrap.Offcanvas(document.getElementById(id));
+					canvas.show();
+				}
+
+				const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+				if (/windows phone/i.test(userAgent)) {
+					showSection('windows-instructions');
+					showCanvas('menu-install-pwa-windows');
+				} else if (/android/i.test(userAgent)) {
+					showSection('android-instructions');
+					showCanvas('menu-install-pwa-android');
+				} else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+					showSection('apple-instructions');
+					showCanvas('menu-install-pwa-apple');
+				} else {
+					// Default to windows if no match found
+					showSection('windows-instructions');
+					showCanvas('menu-install-pwa-windows');
+				}
+
+				// Handle the PWA install prompt for Android
+				window.addEventListener('beforeinstallprompt', (e) => {
+					e.preventDefault();
+					const btnInstall = document.querySelectorAll('.pwa-install');
+					btnInstall.forEach(btnInstall => {
+						btnInstall.style.display = 'block';
+						btnInstall.addEventListener('click', (ev) => {
+							e.prompt();
+							e.userChoice.then(choiceResult => {
+								if (choiceResult.outcome === 'accepted') {
+									console.log('User accepted the PWA prompt');
+								} else {
+									console.log('User dismissed the PWA prompt');
+								}
+							});
+						});
+
+					})
+				});
+			}
+		});
+	</script>
+</head>
+
+<body class="theme-dark">
+
+	<div id="preloader">
+		<div class="spinner-border color-highlight" role="status"></div>
+	</div>
+
+	<section id="apple-instructions" class="installation-section hidden">
+		<h4>Please install this app by adding to your homescreen to continue</h4>
+	</section>
+	<section id="android-instructions" class="installation-section hidden">
+		<h4>Please install this app natively to access its content</h4>
+	</section>
+	<section id="windows-instructions" class="installation-section hidden">
+		<h4>Please install this app on your PC to continue.</h4>
+	</section>
+
+	<!-- Page Wrapper-->
+	<div id="page" class="hidden">
+		<!-- Page Content - Only Page Elements Here-->
+		<div class="page-content pb-0 mb-0">
+			<div class="card bg-9" data-card-height="cover">
+				<div class="card-center">
+					<div class="bg-theme rounded-m px-3 py-4 mx-3 text-center">
+						<h1 class="font-28 mb-0">Discover myPurse app..</h1>
+						<p class="color-blue-dark mt-2 mb-3">The ultimate Mobile Finance Broker, powered by ProfitPulse.
+						</p>
+						<p class="font-14">
+							Your digital purse just got even better. With added robust security features to ensure
+							maximum protection.
+						</p>
+						<ol style="list-style-type: circle;" type="i">
+							<li>
+								<i
+									class="bi bi-arrow-90deg-up color-blue-dark shadow-s rounded-circle p-0 d-inline-block"></i>
+								Steadily monitor your investments while on the go.
+							</li>
+							<li>
+								<i
+									class="bi bi-arrow-90deg-up color-blue-dark shadow-s rounded-circle p-0 d-inline-block"></i>
+								Swiftly make transactions from and to your account and never run out of cash when in
+								need.
+							</li>
+							<li>
+								<i
+									class="bi bi-arrow-90deg-up color-blue-dark shadow-s rounded-circle p-0 d-inline-block"></i>
+								Enhanced with modern design and incredibly powerful and flexible features. Say hello to
+								myPurse!
+							</li>
+						</ol>
+						<a href="{% url 'login' %}"
+							class="btn btn-l scale-box mx-3 px-5 gradient-blue shadow-bg shadow-bg-s">Sign in</a>
+						<a href="{% url 'signup' %}"
+							class="btn btn-l scale-box px-5 gradient-mint shadow-bg shadow-bg-s">Sign up</a>
+					</div>
+				</div>
+			</div>
+			<div class="card-overlay rounded-0 bg-black opacity-70"></div>
+		</div>
+		<!-- End of Page Content-->
+	</div>
+
+	<!-- Offcanvas Install Menus -->
+	<div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-apple">
+		<div class="content">
+			<img src="{% static 'app/icons/icon-128x128.png' %}" alt="img" width="80" class="rounded-m mx-auto my-4">
+			<h1 class="text-center">Install myPurse app</h1>
+			<p class="boxed-text-xl">
+				myPurse is better experienced as a native app. Open your Safari menu <img
+					src="{% static 'images/pictures/safari.png' %}" alt="safari" style="background-color: #fff;"
+					height="20px" width="20px"> and tap "Add to Home Screen to install".
+			</p>
+			<a href="#"
+				class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-50 font-11 text-center d-block mt-n2"
+				data-bs-dismiss="offcanvas">Maybe Later</a>
+		</div>
+	</div>
+
+	<div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-android">
+		<div class="content">
+			<img src="{% static 'app/icons/icon-128x128.png' %}" alt="img" width="80" class="rounded-m mx-auto my-4">
+			<h1 class="text-center">Install myPurse</h1>
+			<p class="boxed-text-l">
+				Install myPurse to enjoy a unique and native experience.
+			</p>
+			<a href="#"
+				class="pwa-install btn btn-m rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s btn-full">Install</a><br>
+			<a href="#" data-bs-dismiss="offcanvas"
+				class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-60 font-11 text-center d-block mt-n1">Maybe
+				later</a>
+		</div>
+	</div>
+
+	<div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-windows">
+		<div class="content">
+			<img src="{% static 'app/icons/icon-128x128.png' %}" alt="img" width="80" class="rounded-m mx-auto my-4">
+			<h1 class="text-center">Install myPurse</h1>
+			<p class="boxed-text-l">
+				Install myPurse App to your Desktop for native experience.
+			</p>
+			<a href="#"
+				class="pwa-install btn btn-m rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s btn-full">Install</a><br>
+			<a href="#" data-bs-dismiss="offcanvas"
+				class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-60 font-11 text-center d-block mt-n1">Maybe
+				later</a>
+		</div>
+	</div>
+
+</body>
+
+</html>

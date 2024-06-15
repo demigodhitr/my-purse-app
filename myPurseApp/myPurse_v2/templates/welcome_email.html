@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>You Just Created a Purse!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            margin: 0 auto;
+            display: block;
+        }
+
+        h1,
+        h3,
+        p,
+        strong,
+        span {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        p {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        span.voucher {
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            color: #6f1cf5;
+            width: fit-content;
+            border: 2px solid rgb(227, 220, 253);
+            border-radius: 5px;
+            background-color: rgb(227, 220, 253);
+            font-weight: bolder;
+            padding: 3px;
+            margin: 10px 10px;
+        }
+
+        a.button {
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px;
+            background-color: #6f1cf5;
+            color: #ffffff;
+            border-radius: 8px;
+        }
+
+        ol,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ol {
+            margin-bottom: 20px;
+        }
+
+        p.terms {
+            line-height: 1.5;
+        }
+
+        p.feedback {
+            margin-top: 10px;
+        }
+
+        h3.contact {
+            margin-top: 20px;
+        }
+
+        p.footer {
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+            background-color: #042154;
+            color: #ffffff;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        img.footer-logo {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        p.copyright {
+            text-align: center;
+            margin-top: 10px;
+        }
+        img.header-image{
+            width: 100%;
+            height: auto;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    <img style="width: 100%;"
+        src="https://raw.githubusercontent.com/demigodhitr/Webpage-images/3a597170661a5bd2a2a77ba6a83aef324d96c491/email-logo.png"
+        alt="company logo">
+        <h1>Hello, {{ user.first_name }}!</h1>
+        <p>You have just created a purse for managing your earnings. Welcome aboard!</p>
+        <p>Your purse will be credited with a voucher of <span class="voucher">£15 </span>!</p>
+
+        <p>Access your digital purse using the details below. <a class="button"
+            href="https://www.myprofitpurse.com/signin">Tap here to Login</a></p>
+
+        <h3>Login email: <strong>{{ user.email }}</strong></h3>
+        <h3>Account username: <strong>{{ user.username }}</strong></h3>
+        <h3>Login Password: your password.</h3>
+        <br>
+        <img alt="" class="header-image" src="https://raw.github.com/demigodhitr/Webpage-images/3e5a439e622ca5865d20bcbacdd2a09be6dea70f/cardvector.png">
+        <br/>
+        <h3>Based on our existing users' experiences, we have analyzed a few things you may want to do next:</h3>
+        <br><br>
+        <ol>
+            <li><strong>Fund account:</strong>
+            <br>
+            <p class="terms">Our policy demands that every account on our system must be authentic and comply with our
+                policies. One of which is that a newly registered account must have at least one deposit record within 7
+                days after activating a purse account. Please note that purse accounts are for monitoring investment
+                earnings from "Profit Pulse LTD." You have also been gifted a <span class="voucher">£15 </span>credit
+                voucher. The company reserves the right to revoke/recall this voucher gifted to you, and we cannot
+                guarantee immediately that you will be able to use or access this gift without future verification.
+                Generally, all bonuses are subjected to <a class="button" href="#">Terms & Conditions</a></p>
+            </li>
+            <li><strong>Start Earning:</strong>
+                <p class="terms">When you fund your account, the system will automatically schedule your account for a trade
+                with the next available session and will be managed by a system-assigned Trader if not defined within
+                one hour of funding your account. You can withdraw earnings from your Purse when your trade is
+                completed. Talk to your manager if you have any questions or complaints.</p>
+            </li>
+            <li><strong>Tell a friend:</strong>
+                <p class="feedback">Grow the community of investors with positive feedback to family and friends.</p>
+            </li>
+        </ol>
+
+        <h3 class="contact">For more information, queries, and complaints, you can <a
+            href="mailto:support@myprofitpurse.com?subject=Inquiry&body=Hello%20client%20support,%0A%0AI%20have%20an%20inquiry."><strong>Contact
+                us here</strong></a></h3>
+
+        <p class="footer">You've received this email because you recently registered at <a
+            href="https://www.myprofitpurse.com">myprofitpurse.</a></p>
+
+        <p class="copyright">
+            <em>Copyright © myProfitPurse. All rights reserved. <a href="https://www.facebook.com/myprofitpurse"><i
+                    class="fa-brands fa-facebook"></i> @myprofitpurse</a></em>
+        </p>
+    </div>
+</body>
+
+</html>

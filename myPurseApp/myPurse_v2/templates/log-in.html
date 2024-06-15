@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>Login - myPurse</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/bootstrap-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="manifest" href="{% static '_manifest.json' %}">
+    <meta id="theme-check" name="theme-color" content="#000">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'app/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'app/icons/favicon-16x16.png' %}">
+</head>
+
+<body class="theme-dark">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content my-0 py-0">
+
+            <!-- Top Detached-->
+            <div id="alertCanvas" class="offcanvas offcanvas-top rounded-m offcanvas-detached">
+                <div class="d-flex m-3">
+                    <div class="align-self-center">
+                        <h2 class="font-700 mb-0">Response</h2>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                        <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                            <i class="bi bi-x-circle-fill color-red-dark font-16"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="content mt-0">
+                    <p id="response" class="mb-4"></p>
+                    <a href="#" data-bs-dismiss="offcanvas"
+                        class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Dismiss
+                    </a>
+                </div>
+            </div>
+            <!-- Top Detached ends here -->
+
+            <!-- Verification modal -->
+            <div id="verifyCanvas" class="offcanvas offcanvas-top rounded-m offcanvas-detached">
+                <div class="d-flex m-3">
+                    <div class="align-self-center">
+                        <h2 class="font-700 mb-0">Verification your Email:</h2>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                        <a href="#" class="icon icon-xs me-n2" data-bs-dismiss="offcanvas">
+                            <i class="bi bi-x-circle-fill color-red-dark font-16 font-18"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="content mt-0">
+                    <p id="message" class="mb-4">
+                        
+                    </p>
+                    <a id="vButton" href="#" data-bs-dismiss="offcanvas"
+                        class="btn btn-full gradient-highlight shadow-bg shadow-bg-xs">Verify Email</a>
+                </div>
+            </div>
+            <!-- Verification modal ends here -->
+
+        <div class="card bg-5 card-fixed">
+            <video style="opacity: 0.3;" height="100%" muted loop autoplay playsinline>
+                <source src="{% static 'videos/card-bg.mp4' %}">
+            </video>
+            <div class="card-center mx-3 px-4 py-4 bg-blue rounded-m">
+                <h1 class="font-30 font-800 mb-0">myPurse </h1>
+                <p>Login to your Account.</p>
+                <form id="loginForm">
+                {% csrf_token %}
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">
+                    <i class="bi bi-person-circle font-13"></i>
+                    <input name="username" type="text" class="form-control rounded-xs" id="c1" placeholder="Username"/>
+                    <label for="c1" class="color-theme">Username</label>
+                    <span>(required)</span>
+                </div>
+                <div class="form-custom form-label form-border form-icon mb-4 bg-transparent">
+                    <i class="bi bi-asterisk font-13"></i>
+                    <input name="password" type="password" class="form-control rounded-xs" id="c2" placeholder="Password"/>
+                    <label for="c2" class="color-theme">Password</label>
+                    <span>(required)</span>
+                </div>
+                <div class="form-check form-check-custom">
+                    <input class="form-check-input" type="checkbox" name="type" value="" id="c2a">
+                    <label class="form-check-label font-12" for="c2a">Remember this account</label>
+                    <i class="is-checked color-highlight font-13 bi bi-check-circle-fill"></i>
+                    <i class="is-unchecked color-highlight font-13 bi bi-circle"></i>
+                </div>
+                {% if not disable %}
+                <button id="loginButton" type="submit" style="width: 100%;" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4">LOG IN</button>
+                {% else %}
+                <button disabled style="opacity: 0.5; width: 100%;" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4">DISABLED</button>
+                {% endif %}
+                <div id="login-preloader" style="display: none; justify-content: center; align-items: center;">
+                    <div class="spinner-border color-highlight" role="status"></div>
+                
+                </div>
+                </form>
+                <div class="row">
+                    <div class="col-6 text-start">
+                        <a href="{% url 'password_reset' %}" class="font-11 color-theme opacity-40 pt-4 d-block">Forgot Password?</a>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a href="{% url 'signup' %}" class="font-11 color-theme opacity-40 pt-4 d-block">Create Account</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-overlay rounded-0 m-0 bg-black opacity-70"></div>
+        </div>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+
+
+</div>
+<!-- End of Page ID-->
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+        }
+
+    const csrftoken = getCookie('csrftoken');
+    let response = document.getElementById("response");
+    let message = document.getElementById("message");
+    let vButton = document.getElementById("vButton");
+    const preloader = document.getElementById('login-preloader');
+    const button = document.getElementById('loginButton');
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', (e) => {
+        button.style.display = 'none';
+        preloader.style.display = 'flex';
+        e.preventDefault();
+        formFields = e.target.elements;
+        if (formFields['username'].value === '' || formFields['password'].value === '') {
+            response.innerHTML = 'Enter a valid username and password to continue';
+            showModal('alertCanvas', 6000);
+            setTimeout(() => reset(button, preloader), 1300)
+            return false;
+        }
+        formData = new FormData(loginForm)
+        url = '{% url "login" %}'
+        setTimeout(() => {
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': csrftoken
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.log(response);
+                }
+                return response.json();
+            })
+        .then(data => {
+            if (!data.success) {
+                if (data.verify){
+                    vButton.addEventListener('click', () => {
+                        let email = data.email;
+                        var raw_url = '{% url "email_verification" "email" %}'
+                        var url = raw_url.replace('email', email)
+                        window.location.href = url;
+                    });
+                    message.innerHTML = data.verify;
+                    showModal('verifyCanvas', 30000);
+                    setTimeout(() => reset(button, preloader), 1300)
+                    return;
+                }
+                else if (data.error){
+                    if (data.disable){
+                        disable(button.id)
+                        button.style.opacity = 0.6;
+                        response.innerHTML = data.error;
+                        showModal('alertCanvas', 6000);
+                        setTimeout(() => {
+                            button.remove();
+                        }, 5000)
+                    }
+                    response.innerHTML = data.error;
+                    showModal('alertCanvas', 6000);
+                    setTimeout(() => reset(button, preloader), 1300)
+                }
+            }
+            else {
+                response.innerHTML = data.success;
+                showModal('alertCanvas', 6000);
+                setTimeout(() => {
+                    window.location.href = '{% url "home" %}'
+                }, 1200)
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            response.innerHTML = 'Server is currently conjested. Please try again later.';
+            showModal('alertCanvas', 6000);
+            setTimeout(() => reset(button, preloader), 1300)
+        })
+        }, 1200);
+    });
+
+
+
+
+
+    function reset(button, loader){
+        button.style.display = 'block';
+        loader.style.display = 'none';
+
+    }
+    function showModal(canvasID, timeout){
+        var canvas = document.getElementById(canvasID);
+        var modal = new bootstrap.Offcanvas(canvas);
+        modal.show();
+        setTimeout(() => {
+          modal.hide();  
+        }, timeout);
+    }
+
+    function disable(id){
+        document.getElementById(id).disabled = true;
+    }
+
+
+
+</script>
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+</body>

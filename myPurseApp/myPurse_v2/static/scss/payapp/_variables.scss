@@ -1,0 +1,101 @@
+//Dark Mode Main Colors
+$color_white: #FFF;
+$color_black: #000;
+$color_dark: #1f1f1f;
+$faded_dark: rgba(0,0,0,0.07);
+$faded_light: rgba(255,255,255,0.05);
+
+$theme-light-text: #666666;
+$theme-light-background:#f0f0f0;
+$page-light-background:#EFEEF3;
+
+$theme-dark-text: #898989;
+$theme-dark-background: #0f1117;
+$page-dark-background:#18191a;
+
+$theme-dark-headings: #FFF;
+$theme-dark-switch: #1b1d21;
+$theme-dark-navigation: #21252a;
+
+//Line Heights
+$line-height-xxs:12px;
+$line-height-xs:14px;
+$line-height-s:18px;
+$line-height-m:24px;
+$line-height-l:26px;
+$line-height-xl:32px;
+$line-height-xxl:46px;
+
+//Boxed Text Sizes
+$box-text-xl:90%;
+$box-text-l:85%;
+$box-text-m:80%;
+$box-text-s:70%;
+
+//Element Rounded Borders
+$rounded-0:0px;
+$rounded-xxs:5px;
+$rounded-xs:10px;
+$rounded-s:15px;
+$rounded-m:20px;
+$rounded-l:25px;
+$rounded-xl:30px;
+$rounded-xxl:35px;
+
+//Buttons Sizes
+$btn-xxs:6px 10px;
+$btn-xs:8px 14px;
+$btn-s:10px 18px;
+$btn-m:14px 20px;
+$btn-l:16px 26px;
+$btn-xl:17px 30px;
+$btn-xxl:19px 34px;
+
+//Center Button Sizes
+$btn-center-xs:100px;
+$btn-center-s:120px;
+$btn-center-m:160px;
+$btn-center-l:220px;
+$btn-center-xl:250px;
+
+//Icons
+$icon-xxs:32px;
+$icon-xs:36px;
+$icon-s:40px;
+$icon-m:44px;
+$icon-l:48px;
+$icon-xl:54px;
+$icon-xxl:61px;
+
+//Borders
+$border-xxs:1px;
+$border-xs:2px;
+$border-s:3px;
+$border-m:4px;
+$border-l:5px;
+$border-xl:6px;
+$border-xxl:7px;
+
+//Shadows
+$shadow-0:0px 0px 0px 0px rgba(0,0,0,0);
+$shadow-xxs:0 2px 10px 0 rgba(0,0,0,0.03);
+$shadow-xs:0 4px 12px 0 rgba(0,0,0,0.04);
+$shadow-s:0 6px 16px 0 rgba(0,0,0,0.06);
+$shadow-m:0 8px 24px 0 rgba(0,0,0,0.08);
+$shadow-l:0 10px 15px 0 rgba(0,0,0,0.12);
+$shadow-xl:0 12px 15px 0 rgba(0,0,0,0.18);
+$shadow-xxl:0 14px 15px 0 rgba(0,0,0,0.18);
+
+
+//Global Spacing Settings*/
+$globalShadow: -5px 10px 20px 0 rgba(0,0,0,.10);
+$globalMargin: 30px;
+$globalFullMargin:30px;
+$globalHalfMargin:15px;
+
+//Transitions for Menus, Action Sheets, Modals etc*/
+$disabledTransitions: all 0ms ease;
+$globalTransitions: all 350ms ease;
+
+
+.fa-rotate-180, .fa-rotate-90, [data-bs-toggle] i{transition:$globalTransitions;}

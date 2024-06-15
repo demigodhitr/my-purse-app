@@ -1,0 +1,134 @@
+/*List Groups*/
+
+.list-group .active{background-color:$colorHighlightDark!important; border-color:$colorHighlightDark!important;}
+.list-group *{font-family:$font-main-family;}
+.list-group strong{font-family:$font-heading-family;}
+
+$list-group-s:9px;
+$list-group-m:11px;
+$list-group-l:13px;
+
+//Size Settings//
+/////////////////
+.list-group-s .list-group-item{padding-top:$list-group-s; padding-bottom:$list-group-s;}
+.list-group-m .list-group-item{padding-top:$list-group-m; padding-bottom:$list-group-m;}
+.list-group-l .list-group-item{padding-top:$list-group-l; padding-bottom:$list-group-l;}
+
+//Reset//
+/////////
+
+.list-custom{
+	overflow:hidden;
+}
+
+//Badge Settings//
+//////////////////
+.list-group .badge{
+	font-size:10px;
+	padding-top:4px;
+	color:$color_white;
+	background-color:$colorHighlightDark;
+	position:absolute;
+	right:$globalMargin/2;
+	top:50%;
+	transform:translateY(-50%);
+}
+.list-group .active .badge{
+	background-color:$color_white;
+	color:$color_black;
+}
+
+//Icon Settings//
+/////////////////
+.list-group i:first-child{
+	padding-right:8px;
+	display:inline-block;
+	width:25px;
+}
+
+.list-group i:last-child{
+	font-size:8px;
+	position:absolute;
+	right:$globalMargin/2;
+	transform:translateY(-50%);
+	top:50%;
+}
+
+
+//Second List Styles//
+//////////////////////
+.list-custom *:not(.list-submenu){overflow:visible!important;}
+.list-custom .list-group-item{display:flex;}
+.list-custom.list-group-flush .list-group-item{padding-left:0px; padding-right:0px;}
+.list-custom.list-group-flush i:last-child{right:0px}
+.list-custom.list-group-flush i:first-child:not(.has-bg){margin-right:-5px;}
+.list-custom.list-group-flush .badge{margin-right:-14px;}
+
+.list-custom .list-group-item *{align-self:center; cursor:pointer}
+.list-custom .list-group-item i,
+.list-custom .list-group-item div{
+	display:block;
+}
+
+.list-custom .list-group-item i:first-child:not(.has-bg){padding-right:34px; margin-right:-5px; padding-left:0px;}
+.list-custom .list-group-item i.has-bg{
+	width:30px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	padding:0px;
+	margin-right:15px;
+}
+
+.list-custom .list-group-item span:not(.badge){
+	pointer-events:none;
+	display:block;
+	font-size:11px;
+	margin-top:-8px;
+	font-weight:400;
+	opacity:0.4;
+}
+.list-custom .list-group-item strong{
+	pointer-events:none;
+	line-height:28px;
+	display:block;
+	font-size:15px;
+	font-weight:700;
+	letter-spacing:-0.2px;
+}
+
+.list-custom .ios-switch,
+.list-custom .android-switch{
+	z-index:97;
+	position: relative;
+	margin-left:auto;
+	margin-right:-5px;
+	transform-origin: 100% 50%;
+}
+
+//Check Visited
+.check-visited .visited-link i:last-child::after {
+	font-family: "bootstrap-icons";
+	font-style:normal;
+	position: absolute;
+	right: 0px;
+	font-size: 16px;
+	margin-top: .5px;
+	content: "\f26a";
+	opacity: 1;
+	color: #a0d468;
+}
+
+//Clasic Lists
+//////////////
+
+.icon-list{list-style:none; padding-left:0px;}
+.icon-list i{padding-right:10px;}
+
+//Dark Settings
+.theme-light .list-group *{border-color:$faded_dark;}
+.theme-light .list-custom a:hover{color:#000; opacity:1!important;}
+.theme-dark .list-custom a:hover{color:#FFF; opacity:1!important;}
+
+.theme-dark .list-group *{border-color:$faded_light;}
+.theme-dark .list-group-item{background-color:$theme-dark-background; color:#FFF;}

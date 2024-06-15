@@ -1,0 +1,87 @@
+/*Dividers*/
+
+$divider-s:40px;
+$divider-m:44px;
+$divider-l:48px;
+$divider-breaker:50px;
+
+.divider{
+	position: relative;
+	height:1px;
+	display:block;
+	background-color:$faded_dark;
+	margin-bottom:$globalMargin;
+}
+
+.divider-margins{
+	margin-left:$globalMargin/2;
+	margin-right:$globalMargin/2;
+	margin-bottom:$globalMargin;
+}
+
+divider:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.divider-icon i{
+	position:absolute;
+	left:50%;
+	height:44px;
+	width:44px;
+	text-align:center;
+	line-height:50px;
+	margin-top:-24px;
+	transform:translate(-50%);
+	z-index:6;
+}
+
+.divider-icon em{
+	position:absolute;
+	content:'';
+	height:2px;
+	left:50%;
+	width:44px;
+	background-color:$theme-light-background;
+	margin-left:-22px;
+	top:50%;
+	margin-top:-1px;
+	z-index:5;
+}
+
+.divider-faded{
+	background-color: transparent;
+	background-image:		  linear-gradient(left , rgba(0,0,0,0.01) 2%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.01)  98%);
+	background-image: -webkit-linear-gradient(left , rgba(0,0,0,0.01) 2%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.01)  98%);
+}
+.divider-faded i{
+	position:absolute;
+	left:50%;
+	height:44px;
+	width:44px;
+	text-align:center;
+	line-height:44px;
+	margin-top:-22px;
+	transform:translate(-50%);
+	z-index:6;
+}
+
+/*Size Settings*/
+.divider-s i{width:$divider-s; height:$divider-s; line-height:$divider-s; font-size:14px; margin-top:-$divider-s/2;}
+.divider-m i{width:$divider-m; height:$divider-m; line-height:$divider-m; font-size:19px; margin-top:-$divider-m/2;}
+.divider-l i{width:$divider-l; height:$divider-l; line-height:$divider-l; font-size:21px; margin-top:-$divider-l/2;}
+
+.divider-s:not(.divider-icon):not(.divider-faded){width:$divider-breaker*1; height:3px;}
+.divider-m:not(.divider-icon):not(.divider-faded){width:$divider-breaker*1.5; height:3px;}
+.divider-l:not(.divider-icon):not(.divider-faded){width:$divider-breaker*2.15; height:3px;}
+
+
+/*Dark Settings*/
+.theme-dark .divider{background-color:$faded_light;}
+.theme-dark .divider em{background-color:$theme-dark-background;}
+.theme-dark .divider-faded{
+	background-color: transparent;
+	background-image:		  linear-gradient(left , rgba(255,255,255,0.01) 2%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.01)  98%);
+	background-image: -webkit-linear-gradient(left , rgba(255,255,255,0.01) 2%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.01)  98%);
+}
